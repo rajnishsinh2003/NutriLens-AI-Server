@@ -1,0 +1,2788 @@
+{
+    "adhirasam": {
+        "display_name": "Adhirasam",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 130,
+        "cultural_context": {
+            "origin": "Tamil Nadu, South India",
+            "traditional_pairing": "Filter Coffee or Payasam",
+            "festival": "Diwali & Pongal",
+            "fun_fact": "One of the oldest Indian sweets, mentioned in ancient Sangam Tamil literature dating back 2000+ years."
+        }
+    },
+    "aloo fry": {
+        "display_name": "Aloo Fry",
+        "calories_per_100g": 280,
+        "carbs_per_100g": 32.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 15.0,
+        "density": 0.7,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 72,
+        "carbon_footprint_gco2_per_100g": 150,
+        "cultural_context": {
+            "origin": "Pan-India (Home-style)",
+            "traditional_pairing": "Roti, Dal & Rice",
+            "festival": "Everyday comfort food",
+            "fun_fact": "Potatoes were introduced to India by the Portuguese in the 17th century and became India's most versatile vegetable."
+        }
+    },
+    "aloo gobi": {
+        "display_name": "Aloo Gobi",
+        "calories_per_100g": 120,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 8.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 90,
+        "cultural_context": {
+            "origin": "Punjab, North India",
+            "traditional_pairing": "Roti, Raita & Pickle",
+            "festival": "Winter harvest season",
+            "fun_fact": "Featured in the Hollywood film 'Bend It Like Beckham' — making it one of the most internationally recognized Indian dishes."
+        }
+    },
+    "aloo matar": {
+        "display_name": "Aloo Matar",
+        "calories_per_100g": 120,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 8.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 95,
+        "cultural_context": {
+            "origin": "Uttar Pradesh, North India",
+            "traditional_pairing": "Puri or Chapati",
+            "festival": "Navratri (Sattvic version)",
+            "fun_fact": "Green peas were considered a luxury vegetable in Mughal courts before becoming a common winter staple."
+        }
+    },
+    "aloo methi": {
+        "display_name": "Aloo Methi",
+        "calories_per_100g": 120,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 8.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 90,
+        "cultural_context": {
+            "origin": "Rajasthan & Gujarat",
+            "traditional_pairing": "Bajra Roti or Paratha",
+            "festival": "Winter cooking season",
+            "fun_fact": "Fenugreek (methi) seeds have been found in the tomb of Tutankhamun, showing their ancient use across civilizations."
+        }
+    },
+    "aloo shimla mirch": {
+        "display_name": "Aloo Shimla Mirch",
+        "calories_per_100g": 120,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 8.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 85,
+        "cultural_context": {
+            "origin": "North India (Punjab)",
+            "traditional_pairing": "Roti & Dal",
+            "festival": "Everyday home cooking",
+            "fun_fact": "Bell peppers are called 'Shimla Mirch' because they were first cultivated in the hills of Shimla during British rule."
+        }
+    },
+    "aloo tikki": {
+        "display_name": "Aloo Tikki",
+        "calories_per_100g": 280,
+        "carbs_per_100g": 32.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 15.0,
+        "density": 0.7,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 160,
+        "cultural_context": {
+            "origin": "Uttar Pradesh (Lucknow & Delhi)",
+            "traditional_pairing": "Tamarind & Green Chutney",
+            "festival": "Street food staple, Holi celebrations",
+            "fun_fact": "McDonald's iconic 'McAloo Tikki' burger was invented for the Indian market and became their bestselling item in India."
+        }
+    },
+    "anarsa": {
+        "display_name": "Anarsa",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 120,
+        "cultural_context": {
+            "origin": "Maharashtra, Western India",
+            "traditional_pairing": "Tea or Milk",
+            "festival": "Diwali",
+            "fun_fact": "Made from soaked rice flour and jaggery, this centuries-old recipe requires 7 days of preparation."
+        }
+    },
+    "ariselu": {
+        "display_name": "Ariselu",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 130,
+        "cultural_context": {
+            "origin": "Andhra Pradesh & Telangana",
+            "traditional_pairing": "Payasam or Filter Coffee",
+            "festival": "Sankranti (Makar Sankranti)",
+            "fun_fact": "Also called 'Ariselu' or 'Adhirasam' — it's the signature sweet exchanged between families during harvest festivals."
+        }
+    },
+    "bandar laddu": {
+        "display_name": "Bandar Laddu",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 140,
+        "cultural_context": {
+            "origin": "Machilipatnam (Bandar), Andhra Pradesh",
+            "traditional_pairing": "Tea",
+            "festival": "Weddings & Celebrations",
+            "fun_fact": "Named after the port city 'Bandar' (Machilipatnam), these laddus are made with a secret 200-year-old family recipe."
+        }
+    },
+    "basundi": {
+        "display_name": "Basundi",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.15,
+        "type": "liquid",
+        "serving_size_info": "1 cup (150g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 250,
+        "cultural_context": {
+            "origin": "Gujarat & Maharashtra",
+            "traditional_pairing": "Puri or Jalebi",
+            "festival": "Janmashtami & Diwali",
+            "fun_fact": "It takes 3-4 hours of slow milk reduction to make authentic basundi — patience is the key ingredient."
+        }
+    },
+    "beetroot": {
+        "display_name": "Beetroot",
+        "calories_per_100g": 43,
+        "carbs_per_100g": 10.0,
+        "protein_per_100g": 1.6,
+        "fat_per_100g": 0.2,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "1 bowl (100g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 40,
+        "cultural_context": {
+            "origin": "Global (popularized in India as salad/juice)",
+            "traditional_pairing": "Lemon juice & Salt",
+            "festival": "Health-conscious everyday food",
+            "fun_fact": "Beetroot juice can boost athletic performance by up to 16% due to its natural nitrate content."
+        }
+    },
+    "bhatura": {
+        "display_name": "Bhatura",
+        "calories_per_100g": 270,
+        "carbs_per_100g": 50.0,
+        "protein_per_100g": 7.0,
+        "fat_per_100g": 5.0,
+        "density": 0.5,
+        "type": "flatbread",
+        "serving_size_info": "1 piece",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 72,
+        "carbon_footprint_gco2_per_100g": 200,
+        "cultural_context": {
+            "origin": "Punjab, North India",
+            "traditional_pairing": "Chole (Chickpea Curry) & Pickle",
+            "festival": "Weekend brunch & celebrations",
+            "fun_fact": "Chole Bhature is Punjab's unofficial state dish and was originally a breakfast food for farmers."
+        }
+    },
+    "bhindi masala": {
+        "display_name": "Bhindi Masala",
+        "calories_per_100g": 120,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 8.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 80,
+        "cultural_context": {
+            "origin": "North India (Rajasthan & UP)",
+            "traditional_pairing": "Roti & Dal",
+            "festival": "Everyday home-style cooking",
+            "fun_fact": "Okra (bhindi) was brought to India from Africa and became so popular that India is now the world's largest producer."
+        }
+    },
+    "biryani": {
+        "display_name": "Biryani",
+        "calories_per_100g": 160,
+        "carbs_per_100g": 22.0,
+        "protein_per_100g": 6.0,
+        "fat_per_100g": 6.0,
+        "density": 0.8,
+        "type": "solid",
+        "serving_size_info": "1 plate (250g)",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 350,
+        "cultural_context": {
+            "origin": "Hyderabad, Telangana (also Lucknow)",
+            "traditional_pairing": "Raita, Mirchi Ka Salan & Boiled Egg",
+            "festival": "Eid, Weddings & Celebrations",
+            "fun_fact": "Hyderabadi Biryani was invented by the Nizam's royal chefs. The city has over 7,000 biryani restaurants today."
+        }
+    },
+    "bitter gourd": {
+        "display_name": "Bitter Gourd",
+        "calories_per_100g": 80,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 2.0,
+        "fat_per_100g": 5.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "1 bowl (100g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 35,
+        "cultural_context": {
+            "origin": "South & Southeast Asia",
+            "traditional_pairing": "Rice & Sambar",
+            "festival": "Ayurvedic detox food",
+            "fun_fact": "Despite being the most hated vegetable among children, bitter gourd is one of the most nutritious foods on Earth."
+        }
+    },
+    "boondi": {
+        "display_name": "Boondi",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 150,
+        "cultural_context": {
+            "origin": "Rajasthan, Western India",
+            "traditional_pairing": "Raita or as standalone snack",
+            "festival": "Ganesh Chaturthi & Weddings",
+            "fun_fact": "Boondi raita is the universal Indian wedding side dish — served at an estimated 10 million weddings per year."
+        }
+    },
+    "butter chicken": {
+        "display_name": "Butter Chicken",
+        "calories_per_100g": 180,
+        "carbs_per_100g": 4.0,
+        "protein_per_100g": 15.0,
+        "fat_per_100g": 11.0,
+        "density": 1.05,
+        "type": "solid",
+        "serving_size_info": "1 bowl (200g)",
+        "allergens": [
+            "dairy"
+        ],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 450,
+        "cultural_context": {
+            "origin": "Delhi (Moti Mahal Restaurant, 1950s)",
+            "traditional_pairing": "Naan, Butter Roti & Rumali Roti",
+            "festival": "Modern celebration cuisine",
+            "fun_fact": "Invented accidentally by chef Kundan Lal Gujral who mixed leftover tandoori chicken into a tomato-butter gravy."
+        }
+    },
+    "chak hao kheer": {
+        "display_name": "Chak Hao Kheer",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [
+            "dairy",
+            "nuts"
+        ],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 200,
+        "cultural_context": {
+            "origin": "Manipur, Northeast India",
+            "traditional_pairing": "As standalone dessert",
+            "festival": "Ningol Chakouba & Lai Haraoba",
+            "fun_fact": "Made from black rice (Chak Hao) which is so rare it was once called 'Forbidden Rice' in China."
+        }
+    },
+    "cham cham": {
+        "display_name": "Cham Cham",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 220,
+        "cultural_context": {
+            "origin": "West Bengal, Eastern India",
+            "traditional_pairing": "Tea or as dessert course",
+            "festival": "Durga Puja & Bengali New Year",
+            "fun_fact": "Also spelled 'Chom Chom' — it's essentially a cylindrical cousin of Rasgulla, rolled in coconut or mawa."
+        }
+    },
+    "chana masala": {
+        "display_name": "Chana Masala",
+        "calories_per_100g": 150,
+        "carbs_per_100g": 20.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 6.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "1 serving",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 100,
+        "cultural_context": {
+            "origin": "Punjab, North India",
+            "traditional_pairing": "Bhatura, Puri or Rice",
+            "festival": "Navratri & Lohri",
+            "fun_fact": "India produces 70% of the world's chickpeas, making chana masala one of the most sustainable protein sources."
+        }
+    },
+    "chapati": {
+        "display_name": "Chapati",
+        "calories_per_100g": 270,
+        "carbs_per_100g": 50.0,
+        "protein_per_100g": 7.0,
+        "fat_per_100g": 5.0,
+        "density": 0.5,
+        "type": "flatbread",
+        "serving_size_info": "1 piece",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 70,
+        "cultural_context": {
+            "origin": "Pan-India (originated in East Africa/India)",
+            "traditional_pairing": "Any curry, dal or sabzi",
+            "festival": "Daily staple across North India",
+            "fun_fact": "The word 'Chapati' comes from the Hindi word 'chapna' meaning to flatten — Indians consume 10+ billion chapatis daily."
+        }
+    },
+    "chhena kheeri": {
+        "display_name": "Chhena Kheeri",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [
+            "dairy",
+            "nuts"
+        ],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 240,
+        "cultural_context": {
+            "origin": "Odisha, Eastern India",
+            "traditional_pairing": "As standalone dessert",
+            "festival": "Rath Yatra & Jagannath Temple offerings",
+            "fun_fact": "Offered as Bhog (divine food) at the famous Jagannath Temple in Puri — one of India's holiest desserts."
+        }
+    },
+    "chicken razala": {
+        "display_name": "Chicken Razala",
+        "calories_per_100g": 180,
+        "carbs_per_100g": 4.0,
+        "protein_per_100g": 15.0,
+        "fat_per_100g": 11.0,
+        "density": 1.05,
+        "type": "solid",
+        "serving_size_info": "1 bowl (200g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 420,
+        "cultural_context": {
+            "origin": "Kolkata, West Bengal (Mughlai cuisine)",
+            "traditional_pairing": "Paratha or Naan",
+            "festival": "Eid & festive gatherings",
+            "fun_fact": "A royal Mughlai dish from the kitchens of Nawabs — 'razala' means a spiced yogurt-based preparation."
+        }
+    },
+    "chicken tikka": {
+        "display_name": "Chicken Tikka",
+        "calories_per_100g": 190,
+        "carbs_per_100g": 3.0,
+        "protein_per_100g": 20.0,
+        "fat_per_100g": 10.0,
+        "density": 1.05,
+        "type": "solid",
+        "serving_size_info": "4 pieces (120g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 380,
+        "cultural_context": {
+            "origin": "Punjab (undivided India/Pakistan)",
+            "traditional_pairing": "Mint Chutney & Onion Rings",
+            "festival": "Barbecue gatherings & celebrations",
+            "fun_fact": "Chicken Tikka was declared Britain's national dish in 2001 by Foreign Secretary Robin Cook."
+        }
+    },
+    "chicken tikka masala": {
+        "display_name": "Chicken Tikka Masala",
+        "calories_per_100g": 180,
+        "carbs_per_100g": 4.0,
+        "protein_per_100g": 15.0,
+        "fat_per_100g": 11.0,
+        "density": 1.05,
+        "type": "solid",
+        "serving_size_info": "1 bowl (200g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 430,
+        "cultural_context": {
+            "origin": "Debated: Glasgow, UK or Punjab",
+            "traditional_pairing": "Naan or Jeera Rice",
+            "festival": "Modern celebration cuisine",
+            "fun_fact": "The most ordered Indian dish worldwide — over 23 million portions are sold every year in the UK alone."
+        }
+    },
+    "chikki": {
+        "display_name": "Chikki",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [
+            "nuts"
+        ],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 110,
+        "cultural_context": {
+            "origin": "Lonavala, Maharashtra",
+            "traditional_pairing": "Tea or as travel snack",
+            "festival": "Makar Sankranti",
+            "fun_fact": "Lonavala is the 'Chikki Capital of India' with over 100+ chikki factories producing millions daily."
+        }
+    },
+    "daal baati churma": {
+        "display_name": "Daal Baati Churma",
+        "calories_per_100g": 140,
+        "carbs_per_100g": 26.0,
+        "protein_per_100g": 3.0,
+        "fat_per_100g": 3.0,
+        "density": 0.8,
+        "type": "solid",
+        "serving_size_info": "1 plate (250g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 180,
+        "cultural_context": {
+            "origin": "Rajasthan, Western India",
+            "traditional_pairing": "Served as a complete meal trio",
+            "festival": "Rajasthani weddings & Teej",
+            "fun_fact": "Originally a warrior's meal — baatis were buried in desert sand and baked by the sun during Rajput military campaigns."
+        }
+    },
+    "daal puri": {
+        "display_name": "Daal Puri",
+        "calories_per_100g": 300,
+        "carbs_per_100g": 40.0,
+        "protein_per_100g": 5.5,
+        "fat_per_100g": 14.0,
+        "density": 0.5,
+        "type": "flatbread",
+        "serving_size_info": "1 piece (45g)",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 72,
+        "carbon_footprint_gco2_per_100g": 170,
+        "cultural_context": {
+            "origin": "Bengal & Bihar, Eastern India",
+            "traditional_pairing": "Aloo Dum or Cholar Dal",
+            "festival": "Durga Puja & Bengali festivities",
+            "fun_fact": "Bengali Dal Puri uses chana dal stuffing — it's the quintessential 'picnic food' of Kolkata."
+        }
+    },
+    "dal curry": {
+        "display_name": "Dal Curry",
+        "calories_per_100g": 110,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 4.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 90,
+        "cultural_context": {
+            "origin": "Pan-India",
+            "traditional_pairing": "Rice or Roti",
+            "festival": "Daily staple across all of India",
+            "fun_fact": "India has over 60 varieties of dal (lentils) — making it the world's largest producer and consumer of pulses."
+        }
+    },
+    "dal makhani": {
+        "display_name": "Dal Makhani",
+        "calories_per_100g": 110,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 4.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 160,
+        "cultural_context": {
+            "origin": "Punjab, North India",
+            "traditional_pairing": "Butter Naan or Jeera Rice",
+            "festival": "Lohri & celebration meals",
+            "fun_fact": "Authentic dal makhani is slow-cooked for 24+ hours on low flame — restaurant shortcuts use pressure cookers."
+        }
+    },
+    "dal tadka": {
+        "display_name": "Dal Tadka",
+        "calories_per_100g": 110,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 4.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 95,
+        "cultural_context": {
+            "origin": "Pan-India (North Indian style)",
+            "traditional_pairing": "Steamed Rice & Papad",
+            "festival": "Everyday comfort food",
+            "fun_fact": "The sizzling 'tadka' (tempering) technique of hot oil + spices is a 3000-year-old Ayurvedic cooking method."
+        }
+    },
+    "dharwad pedha": {
+        "display_name": "Dharwad Pedha",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 230,
+        "cultural_context": {
+            "origin": "Dharwad, Karnataka",
+            "traditional_pairing": "As standalone sweet",
+            "festival": "Dussehra & Karnataka festivals",
+            "fun_fact": "Has a GI (Geographical Indication) tag — only authentic Dharwad Pedha can be made and sold under this name."
+        }
+    },
+    "doodhpak": {
+        "display_name": "Doodhpak",
+        "calories_per_100g": 150,
+        "carbs_per_100g": 20.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 6.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "1 serving",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 260,
+        "cultural_context": {
+            "origin": "Gujarat, Western India",
+            "traditional_pairing": "Puri or as standalone dessert",
+            "festival": "Diwali & Janmashtami",
+            "fun_fact": "A Gujarati version of kheer that uses 5x more milk — it takes 2 liters of milk to make just one bowl."
+        }
+    },
+    "dosa": {
+        "display_name": "Dosa",
+        "calories_per_100g": 170,
+        "carbs_per_100g": 30.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 4.0,
+        "density": 0.5,
+        "type": "flatbread",
+        "serving_size_info": "1 piece (120g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 80,
+        "cultural_context": {
+            "origin": "Tamil Nadu & Karnataka, South India",
+            "traditional_pairing": "Coconut Chutney & Sambar",
+            "festival": "Daily breakfast staple",
+            "fun_fact": "The longest dosa ever made measured 16.68 meters — achieved in 2022 in Kancheepuram, Tamil Nadu."
+        }
+    },
+    "double ka meetha": {
+        "display_name": "Double Ka Meetha",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 210,
+        "cultural_context": {
+            "origin": "Hyderabad, Telangana",
+            "traditional_pairing": "Dry fruits & Saffron milk",
+            "festival": "Eid & Hyderabadi weddings",
+            "fun_fact": "'Double' refers to 'double roti' (bread) — a Nizam-era dessert that turns stale bread into royal pudding."
+        }
+    },
+    "dum aloo": {
+        "display_name": "Dum Aloo",
+        "calories_per_100g": 120,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 8.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 120,
+        "cultural_context": {
+            "origin": "Kashmir, North India",
+            "traditional_pairing": "Steamed Rice or Naan",
+            "festival": "Kashmiri Wazwan feast",
+            "fun_fact": "Kashmiri Dum Aloo uses baby potatoes cooked in yogurt gravy without onion or garlic — purely Sattvic."
+        }
+    },
+    "gajar ka halwa": {
+        "display_name": "Gajar Ka Halwa",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [
+            "gluten",
+            "nuts"
+        ],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 220,
+        "cultural_context": {
+            "origin": "Punjab, North India",
+            "traditional_pairing": "Vanilla Ice Cream or Rabri",
+            "festival": "Winter season & Lohri",
+            "fun_fact": "Originally made with red carrots available only in winter — it takes 1 kg of carrots for just 2 servings."
+        }
+    },
+    "gavvalu": {
+        "display_name": "Gavvalu",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 130,
+        "cultural_context": {
+            "origin": "Andhra Pradesh, South India",
+            "traditional_pairing": "Tea or Coffee",
+            "festival": "Sankranti & Ugadi",
+            "fun_fact": "Named after their seashell shape ('gavva' means shell) — each piece is hand-shaped by experienced cooks."
+        }
+    },
+    "ghevar": {
+        "display_name": "Ghevar",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 200,
+        "cultural_context": {
+            "origin": "Rajasthan (Jaipur)",
+            "traditional_pairing": "Rabri topping",
+            "festival": "Teej & Raksha Bandhan",
+            "fun_fact": "Making ghevar requires splashing batter into hot ghee from height — the honeycomb pattern forms naturally."
+        }
+    },
+    "gulab jamun": {
+        "display_name": "Gulab Jamun",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [
+            "dairy"
+        ],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 240,
+        "cultural_context": {
+            "origin": "Mughal India (Persian origin)",
+            "traditional_pairing": "Vanilla Ice Cream or standalone",
+            "festival": "Diwali, Eid & Weddings",
+            "fun_fact": "Named from Persian: 'gulab' (rose water) + 'jamun' (berry-sized) — over 5 billion are consumed in India yearly."
+        }
+    },
+    "idly": {
+        "display_name": "Idly",
+        "calories_per_100g": 150,
+        "carbs_per_100g": 32.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 0.4,
+        "density": 0.8,
+        "type": "solid",
+        "serving_size_info": "1 piece (50g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 60,
+        "cultural_context": {
+            "origin": "Tamil Nadu & Karnataka, South India",
+            "traditional_pairing": "Sambar & Coconut Chutney",
+            "festival": "Daily breakfast staple",
+            "fun_fact": "Idli batter ferments naturally overnight — the fermentation creates natural probiotics making it gut-friendly."
+        }
+    },
+    "imarti": {
+        "display_name": "Imarti",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 180,
+        "cultural_context": {
+            "origin": "Uttar Pradesh, North India",
+            "traditional_pairing": "Rabri or standalone",
+            "festival": "Diwali & Dussehra",
+            "fun_fact": "Made from urad dal batter shaped into flower patterns — it's the North Indian cousin of South India's Jangiri."
+        }
+    },
+    "jalebi": {
+        "display_name": "Jalebi",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 190,
+        "cultural_context": {
+            "origin": "Persia (came to India via Middle East)",
+            "traditional_pairing": "Rabri, Milk or Fafda (Gujarat)",
+            "festival": "Diwali, Holi & Eid",
+            "fun_fact": "The original Persian name was 'Zulbiya' — Indian street vendors perfected the spiral technique over centuries."
+        }
+    },
+    "kachori": {
+        "display_name": "Kachori",
+        "calories_per_100g": 280,
+        "carbs_per_100g": 32.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 15.0,
+        "density": 0.7,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 72,
+        "carbon_footprint_gco2_per_100g": 180,
+        "cultural_context": {
+            "origin": "Rajasthan & Uttar Pradesh",
+            "traditional_pairing": "Aloo Sabzi & Green Chutney",
+            "festival": "Morning breakfast snack",
+            "fun_fact": "Jodhpur's Pyaaz Kachori is so famous that tourists visit specifically to taste it — sold since 1940s."
+        }
+    },
+    "kadai paneer": {
+        "display_name": "Kadai Paneer",
+        "calories_per_100g": 160,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 7.0,
+        "fat_per_100g": 12.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [
+            "dairy"
+        ],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 280,
+        "cultural_context": {
+            "origin": "North India (Punjabi cuisine)",
+            "traditional_pairing": "Butter Naan or Laccha Paratha",
+            "festival": "Restaurant & celebration favorite",
+            "fun_fact": "Named after the iron 'kadai' (wok) it's cooked in — the kadai adds a distinct smoky flavor to the dish."
+        }
+    },
+    "kadhi pakoda": {
+        "display_name": "Kadhi Pakoda",
+        "calories_per_100g": 120,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 8.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 170,
+        "cultural_context": {
+            "origin": "Rajasthan & Gujarat (variants across India)",
+            "traditional_pairing": "Steamed Rice & Papad",
+            "festival": "Everyday comfort meal",
+            "fun_fact": "Every Indian state has its own kadhi recipe — Rajasthani uses buttermilk, Punjabi uses yogurt, Gujarati adds sugar."
+        }
+    },
+    "kajjikaya": {
+        "display_name": "Kajjikaya",
+        "calories_per_100g": 150,
+        "carbs_per_100g": 20.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 6.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "1 serving",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 140,
+        "cultural_context": {
+            "origin": "Andhra Pradesh & Telangana",
+            "traditional_pairing": "Tea or as festive snack",
+            "festival": "Sankranti & Diwali",
+            "fun_fact": "Also called 'Karanji' in Maharashtra — it's a crescent-shaped sweet stuffed with coconut and dry fruits."
+        }
+    },
+    "kakinada khaja": {
+        "display_name": "Kakinada Khaja",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 160,
+        "cultural_context": {
+            "origin": "Kakinada, Andhra Pradesh",
+            "traditional_pairing": "Tea",
+            "festival": "All celebrations",
+            "fun_fact": "Has a GI tag — authentic Kakinada Khaja has 16 crispy layers, each thinner than a sheet of paper."
+        }
+    },
+    "kalakand": {
+        "display_name": "Kalakand",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 250,
+        "cultural_context": {
+            "origin": "Alwar, Rajasthan",
+            "traditional_pairing": "As standalone sweet",
+            "festival": "Diwali & Raksha Bandhan",
+            "fun_fact": "Invented by Baba Thakur Das in Alwar — the original shop still sells the same recipe from the 1940s."
+        }
+    },
+    "karela bharta": {
+        "display_name": "Karela Bharta",
+        "calories_per_100g": 150,
+        "carbs_per_100g": 20.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 6.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "1 serving",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 70,
+        "cultural_context": {
+            "origin": "Bihar & Jharkhand",
+            "traditional_pairing": "Roti & Dal",
+            "festival": "Chhath Puja offerings",
+            "fun_fact": "Bitter gourd is called 'the insulin plant' in Ayurveda — diabetic patients across India eat it regularly."
+        }
+    },
+    "kebab": {
+        "display_name": "Kebab",
+        "calories_per_100g": 190,
+        "carbs_per_100g": 3.0,
+        "protein_per_100g": 20.0,
+        "fat_per_100g": 10.0,
+        "density": 1.05,
+        "type": "solid",
+        "serving_size_info": "4 pieces (120g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 400,
+        "cultural_context": {
+            "origin": "Lucknow, Uttar Pradesh (Awadhi cuisine)",
+            "traditional_pairing": "Mint Chutney, Rumali Roti & Onion",
+            "festival": "Eid & Mughlai feasts",
+            "fun_fact": "Lucknow's Tunday Kebabi has been serving kebabs since 1905 — the recipe uses 160 spices and is a guarded secret."
+        }
+    },
+    "kofta": {
+        "display_name": "Kofta",
+        "calories_per_100g": 120,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 8.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 300,
+        "cultural_context": {
+            "origin": "Mughlai-Kashmiri cuisine",
+            "traditional_pairing": "Naan or Jeera Rice",
+            "festival": "Celebrations & special occasions",
+            "fun_fact": "The word 'kofta' comes from Persian 'kuftan' meaning to grind — vegetarian koftas are an Indian innovation."
+        }
+    },
+    "kuzhi paniyaram": {
+        "display_name": "Kuzhi Paniyaram",
+        "calories_per_100g": 280,
+        "carbs_per_100g": 32.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 15.0,
+        "density": 0.7,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 90,
+        "cultural_context": {
+            "origin": "Tamil Nadu, South India",
+            "traditional_pairing": "Coconut Chutney & Sambar",
+            "festival": "Temple festival offerings",
+            "fun_fact": "Made in a special cast-iron mold with 7-12 cavities — the leftover idli/dosa batter gets a delicious makeover."
+        }
+    },
+    "lassi": {
+        "display_name": "Lassi",
+        "calories_per_100g": 150,
+        "carbs_per_100g": 20.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 6.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "1 serving",
+        "allergens": [
+            "dairy"
+        ],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 180,
+        "cultural_context": {
+            "origin": "Punjab, North India",
+            "traditional_pairing": "Paratha or Chole Bhature",
+            "festival": "Summer drink & Baisakhi",
+            "fun_fact": "Lassi has been drunk in the Punjab region for over 1000 years — it's considered the world's first smoothie."
+        }
+    },
+    "ledikeni": {
+        "display_name": "Ledikeni",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 230,
+        "cultural_context": {
+            "origin": "Kolkata, West Bengal",
+            "traditional_pairing": "As standalone sweet",
+            "festival": "Bengal festivities",
+            "fun_fact": "Named after Lady Canning (wife of the British Governor General) — Indian chefs created it in her honor in 1858."
+        }
+    },
+    "litti chokha": {
+        "display_name": "Litti Chokha",
+        "calories_per_100g": 280,
+        "carbs_per_100g": 32.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 15.0,
+        "density": 0.7,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 130,
+        "cultural_context": {
+            "origin": "Bihar, Eastern India",
+            "traditional_pairing": "Served together as complete meal",
+            "festival": "Chhath Puja",
+            "fun_fact": "Bihar's iconic dish — littis were carried by Bihari soldiers as battlefield rations because they stay fresh for days."
+        }
+    },
+    "lyangcha": {
+        "display_name": "Lyangcha",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 220,
+        "cultural_context": {
+            "origin": "West Bengal, Eastern India",
+            "traditional_pairing": "Tea",
+            "festival": "Durga Puja",
+            "fun_fact": "A cylindrical cousin of Gulab Jamun — originated in Burdwan district and is Bengal's favorite tea-time sweet."
+        }
+    },
+    "maach jhol": {
+        "display_name": "Maach Jhol",
+        "calories_per_100g": 180,
+        "carbs_per_100g": 4.0,
+        "protein_per_100g": 15.0,
+        "fat_per_100g": 11.0,
+        "density": 1.05,
+        "type": "solid",
+        "serving_size_info": "1 bowl (200g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 280,
+        "cultural_context": {
+            "origin": "West Bengal, Eastern India",
+            "traditional_pairing": "Steamed Rice",
+            "festival": "Bengali daily lunch staple",
+            "fun_fact": "Bengalis consume more fish per capita than any other Indian community — 'Machher Jhol' is their soul food."
+        }
+    },
+    "makki di roti sarson da saag": {
+        "display_name": "Makki Di Roti Sarson Da Saag",
+        "calories_per_100g": 270,
+        "carbs_per_100g": 50.0,
+        "protein_per_100g": 7.0,
+        "fat_per_100g": 5.0,
+        "density": 0.5,
+        "type": "flatbread",
+        "serving_size_info": "1 piece",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 100,
+        "cultural_context": {
+            "origin": "Punjab, North India",
+            "traditional_pairing": "White Butter & Jaggery",
+            "festival": "Lohri & Winter season",
+            "fun_fact": "Immortalized in Bollywood's DDLJ — this winter dish takes 4-5 hours of slow cooking on traditional chulha."
+        }
+    },
+    "malapua": {
+        "display_name": "Malapua",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 200,
+        "cultural_context": {
+            "origin": "Odisha & Bihar",
+            "traditional_pairing": "Rabri or Kheer",
+            "festival": "Holi & Rath Yatra",
+            "fun_fact": "Considered one of the oldest Indian desserts — mentioned in ancient texts as 'Apupa' dating back 3000 years."
+        }
+    },
+    "mango pickle": {
+        "display_name": "Mango Pickle",
+        "calories_per_100g": 230,
+        "carbs_per_100g": 15.0,
+        "protein_per_100g": 1.0,
+        "fat_per_100g": 18.0,
+        "density": 1.1,
+        "type": "solid",
+        "serving_size_info": "1 tablespoon (15g)",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 60,
+        "cultural_context": {
+            "origin": "Pan-India (every region has variants)",
+            "traditional_pairing": "Rice, Roti, Curd Rice & Paratha",
+            "festival": "Summer mango season",
+            "fun_fact": "India has 1000+ regional pickle varieties — grandmothers guard their secret pickle recipes like family treasures."
+        }
+    },
+    "misi roti": {
+        "display_name": "Misi Roti",
+        "calories_per_100g": 270,
+        "carbs_per_100g": 50.0,
+        "protein_per_100g": 7.0,
+        "fat_per_100g": 5.0,
+        "density": 0.5,
+        "type": "flatbread",
+        "serving_size_info": "1 piece",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 80,
+        "cultural_context": {
+            "origin": "Rajasthan & Haryana",
+            "traditional_pairing": "Curd, Pickle & White Butter",
+            "festival": "Winter everyday staple",
+            "fun_fact": "Made with gram flour mixed into wheat dough — it's a protein-rich alternative to regular chapati."
+        }
+    },
+    "misti doi": {
+        "display_name": "Misti Doi",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 200,
+        "cultural_context": {
+            "origin": "West Bengal, Eastern India",
+            "traditional_pairing": "As standalone dessert course",
+            "festival": "Durga Puja & Bengali New Year",
+            "fun_fact": "Set in earthen clay pots (matir handi) — the clay absorbs moisture making the yogurt thicker and creamier."
+        }
+    },
+    "modak": {
+        "display_name": "Modak",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 170,
+        "cultural_context": {
+            "origin": "Maharashtra & Konkan coast",
+            "traditional_pairing": "As Bhog offering to Lord Ganesha",
+            "festival": "Ganesh Chaturthi",
+            "fun_fact": "Lord Ganesha's favorite sweet — over 100 million modaks are consumed during Ganesh Chaturthi across Maharashtra."
+        }
+    },
+    "mysore pak": {
+        "display_name": "Mysore Pak",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 230,
+        "cultural_context": {
+            "origin": "Mysore, Karnataka",
+            "traditional_pairing": "Filter Coffee",
+            "festival": "Dussehra (Mysore Dasara)",
+            "fun_fact": "Invented by the royal chef Kakasura Madappa in the Mysore Palace — the original recipe used 50% pure ghee."
+        }
+    },
+    "naan": {
+        "display_name": "Naan",
+        "calories_per_100g": 270,
+        "carbs_per_100g": 50.0,
+        "protein_per_100g": 7.0,
+        "fat_per_100g": 5.0,
+        "density": 0.5,
+        "type": "flatbread",
+        "serving_size_info": "1 piece",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 72,
+        "carbon_footprint_gco2_per_100g": 110,
+        "cultural_context": {
+            "origin": "Mughal India (Persian origin)",
+            "traditional_pairing": "Butter Chicken, Dal Makhani & Kebabs",
+            "festival": "Restaurant & tandoor cuisine",
+            "fun_fact": "The word 'Naan' first appeared in 1300 AD — it requires a tandoor clay oven heated to 480°C (900°F)."
+        }
+    },
+    "navrattan korma": {
+        "display_name": "Navrattan Korma",
+        "calories_per_100g": 120,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 8.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 200,
+        "cultural_context": {
+            "origin": "Mughal Royal Kitchen",
+            "traditional_pairing": "Naan, Pulao or Jeera Rice",
+            "festival": "Royal feasts & celebrations",
+            "fun_fact": "'Navrattan' means 9 gems — the dish contains exactly 9 vegetables/fruits representing the 9 jewels of Mughal courts."
+        }
+    },
+    "palak paneer": {
+        "display_name": "Palak Paneer",
+        "calories_per_100g": 160,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 7.0,
+        "fat_per_100g": 12.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [
+            "dairy"
+        ],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 250,
+        "cultural_context": {
+            "origin": "Punjab, North India",
+            "traditional_pairing": "Butter Naan or Roti",
+            "festival": "Winter season & everyday cuisine",
+            "fun_fact": "Palak Paneer is the #1 dish that converts non-vegetarians to try Indian vegetarian food worldwide."
+        }
+    },
+    "paneer butter masala": {
+        "display_name": "Paneer Butter Masala",
+        "calories_per_100g": 160,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 7.0,
+        "fat_per_100g": 12.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [
+            "dairy"
+        ],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 300,
+        "cultural_context": {
+            "origin": "Delhi & Punjab",
+            "traditional_pairing": "Butter Naan or Garlic Naan",
+            "festival": "Restaurant & celebration favorite",
+            "fun_fact": "India produces 50% of the world's paneer — yet the word 'paneer' comes from Persian 'panir' meaning cheese."
+        }
+    },
+    "phirni": {
+        "display_name": "Phirni",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 210,
+        "cultural_context": {
+            "origin": "Mughlai cuisine (Delhi & Lucknow)",
+            "traditional_pairing": "As chilled dessert course",
+            "festival": "Eid & Ramadan Iftar",
+            "fun_fact": "Served in traditional earthen bowls (shikora) — the clay keeps it naturally cool even without refrigeration."
+        }
+    },
+    "pithe": {
+        "display_name": "Pithe",
+        "calories_per_100g": 150,
+        "carbs_per_100g": 20.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 6.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "1 serving",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 140,
+        "cultural_context": {
+            "origin": "West Bengal & Bangladesh",
+            "traditional_pairing": "Nolen Gur (Date Palm Jaggery)",
+            "festival": "Makar Sankranti (Poush Parbon)",
+            "fun_fact": "Bengal has 100+ varieties of pithe — families compete to make the most creative shapes during Poush Mela."
+        }
+    },
+    "poha": {
+        "display_name": "Poha",
+        "calories_per_100g": 140,
+        "carbs_per_100g": 26.0,
+        "protein_per_100g": 3.0,
+        "fat_per_100g": 3.0,
+        "density": 0.8,
+        "type": "solid",
+        "serving_size_info": "1 plate (250g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 70,
+        "cultural_context": {
+            "origin": "Madhya Pradesh & Maharashtra",
+            "traditional_pairing": "Sev, Lemon & Jalebi (Indore style)",
+            "festival": "Daily breakfast across Central India",
+            "fun_fact": "Indore is the 'Poha Capital of India' — the city consumes 1000+ tons of poha every single day."
+        }
+    },
+    "poornalu": {
+        "display_name": "Poornalu",
+        "calories_per_100g": 150,
+        "carbs_per_100g": 20.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 6.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "1 serving",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 150,
+        "cultural_context": {
+            "origin": "Andhra Pradesh, South India",
+            "traditional_pairing": "Ghee & Milk",
+            "festival": "Ugadi & Vinayaka Chavithi",
+            "fun_fact": "Also called 'Bobbatlu' or 'Puran Poli' — it's the most pan-Indian sweet with 20+ regional names."
+        }
+    },
+    "pootharekulu": {
+        "display_name": "Pootharekulu",
+        "calories_per_100g": 150,
+        "carbs_per_100g": 20.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 6.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "1 serving",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 130,
+        "cultural_context": {
+            "origin": "Atreyapuram, Andhra Pradesh",
+            "traditional_pairing": "As standalone sweet",
+            "festival": "Weddings & special occasions",
+            "fun_fact": "Called 'Paper Sweet' because the rice starch sheets are paper-thin — has a GI tag for Atreyapuram."
+        }
+    },
+    "puri": {
+        "display_name": "Puri",
+        "calories_per_100g": 300,
+        "carbs_per_100g": 40.0,
+        "protein_per_100g": 5.5,
+        "fat_per_100g": 14.0,
+        "density": 0.5,
+        "type": "flatbread",
+        "serving_size_info": "1 piece (45g)",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 72,
+        "carbon_footprint_gco2_per_100g": 160,
+        "cultural_context": {
+            "origin": "Pan-India (originated in UP/Bihar)",
+            "traditional_pairing": "Aloo Sabzi, Halwa & Chole",
+            "festival": "Pujas, festivals & special breakfasts",
+            "fun_fact": "The perfect puri puffs up like a balloon due to steam — Indian grandmothers can tell quality by the 'phulka' sound."
+        }
+    },
+    "qubani ka meetha": {
+        "display_name": "Qubani Ka Meetha",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 180,
+        "cultural_context": {
+            "origin": "Hyderabad, Telangana",
+            "traditional_pairing": "Fresh cream or Ice Cream",
+            "festival": "Hyderabadi weddings & Eid",
+            "fun_fact": "Made from dried apricots imported from Afghanistan — a Nizam-era luxury dessert that's 300+ years old."
+        }
+    },
+    "rabri": {
+        "display_name": "Rabri",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.15,
+        "type": "liquid",
+        "serving_size_info": "1 cup (150g)",
+        "allergens": [
+            "dairy"
+        ],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 270,
+        "cultural_context": {
+            "origin": "Uttar Pradesh (Varanasi & Lucknow)",
+            "traditional_pairing": "Jalebi, Malpua or Gulab Jamun",
+            "festival": "Janmashtami & Holi",
+            "fun_fact": "Takes 3-4 hours of continuous stirring — the cream layers (malai) are carefully folded in one by one."
+        }
+    },
+    "rajma chawal": {
+        "display_name": "Rajma Chawal",
+        "calories_per_100g": 140,
+        "carbs_per_100g": 26.0,
+        "protein_per_100g": 3.0,
+        "fat_per_100g": 3.0,
+        "density": 0.8,
+        "type": "solid",
+        "serving_size_info": "1 plate (250g)",
+        "allergens": [],
+        "glycemic_index": 72,
+        "carbon_footprint_gco2_per_100g": 140,
+        "cultural_context": {
+            "origin": "Jammu & Kashmir / Punjab",
+            "traditional_pairing": "Onion rings, Pickle & Raita",
+            "festival": "Sunday family lunch tradition",
+            "fun_fact": "Rajma Chawal is Delhi's 'soul food' — college hostels and office canteens serve it every Monday without fail."
+        }
+    },
+    "rasgulla": {
+        "display_name": "Rasgulla",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [
+            "dairy"
+        ],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 200,
+        "cultural_context": {
+            "origin": "Odisha (disputed with West Bengal)",
+            "traditional_pairing": "As standalone dessert",
+            "festival": "Rath Yatra & Durga Puja",
+            "fun_fact": "The origin battle between Odisha and Bengal went to court — Odisha won the GI tag in 2019."
+        }
+    },
+    "rasmalai": {
+        "display_name": "Rasmalai",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [
+            "dairy"
+        ],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 240,
+        "cultural_context": {
+            "origin": "West Bengal (K.C. Das, Kolkata)",
+            "traditional_pairing": "Chilled with saffron & pistachios",
+            "festival": "Diwali & Bengali celebrations",
+            "fun_fact": "Invented by K.C. Das in the early 1900s — the same family that commercialized Rasgulla in tin cans."
+        }
+    },
+    "roti": {
+        "display_name": "Roti",
+        "calories_per_100g": 270,
+        "carbs_per_100g": 50.0,
+        "protein_per_100g": 7.0,
+        "fat_per_100g": 5.0,
+        "density": 0.5,
+        "type": "flatbread",
+        "serving_size_info": "1 piece",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 65,
+        "cultural_context": {
+            "origin": "Pan-India (staple of North India)",
+            "traditional_pairing": "Any curry, sabzi or dal",
+            "festival": "Everyday staple food",
+            "fun_fact": "An average Indian family makes 2000+ rotis per year — automated roti makers are now a billion-dollar industry."
+        }
+    },
+    "sambar": {
+        "display_name": "Sambar",
+        "calories_per_100g": 120,
+        "carbs_per_100g": 8.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 8.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 80,
+        "cultural_context": {
+            "origin": "Tamil Nadu (popularized across South India)",
+            "traditional_pairing": "Idli, Dosa, Vada & Rice",
+            "festival": "Daily meal staple",
+            "fun_fact": "Legend says Sambar was accidentally invented by Maratha ruler Sambhaji when he substituted tamarind for kokum."
+        }
+    },
+    "samosa": {
+        "display_name": "Samosa",
+        "calories_per_100g": 290,
+        "carbs_per_100g": 35.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 15.0,
+        "density": 0.7,
+        "type": "solid",
+        "serving_size_info": "1 piece (90g)",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 72,
+        "carbon_footprint_gco2_per_100g": 190,
+        "cultural_context": {
+            "origin": "Central Asia (came to India via Silk Route)",
+            "traditional_pairing": "Mint Chutney & Tamarind Sauce",
+            "festival": "Tea-time snack, Holi & Diwali",
+            "fun_fact": "Originally called 'Sambosa' in Persian texts (13th century) — India now consumes 4+ billion samosas annually."
+        }
+    },
+    "sandesh": {
+        "display_name": "Sandesh",
+        "calories_per_100g": 150,
+        "carbs_per_100g": 20.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 6.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "1 serving",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 210,
+        "cultural_context": {
+            "origin": "West Bengal, Eastern India",
+            "traditional_pairing": "Tea or as dessert course",
+            "festival": "Durga Puja & Bengali New Year",
+            "fun_fact": "Bengal has 100+ varieties of Sandesh — from Nolen Gurer to Kanchagolla, each district has its own signature."
+        }
+    },
+    "shankarpali": {
+        "display_name": "Shankarpali",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 160,
+        "cultural_context": {
+            "origin": "Maharashtra & Goa",
+            "traditional_pairing": "Tea or as festive snack",
+            "festival": "Diwali",
+            "fun_fact": "Called 'Shankar Pale' in Konkani — every Maharashtrian household makes hundreds during Diwali week."
+        }
+    },
+    "sheer korma": {
+        "display_name": "Sheer Korma",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 280,
+        "cultural_context": {
+            "origin": "Mughlai cuisine (Hyderabad & Lucknow)",
+            "traditional_pairing": "As standalone dessert",
+            "festival": "Eid-ul-Fitr (must-have)",
+            "fun_fact": "Literally means 'milk with dates' in Persian — it's the first thing eaten after the month-long Ramadan fast."
+        }
+    },
+    "sheera": {
+        "display_name": "Sheera",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 200,
+        "cultural_context": {
+            "origin": "Maharashtra (called Halwa in North India)",
+            "traditional_pairing": "Puri or as Prasad offering",
+            "festival": "Ganesh Chaturthi & Satyanarayan Puja",
+            "fun_fact": "Temple prasad sheera uses only ghee and no oil — devotees believe the ghee-heavy version carries divine blessing."
+        }
+    },
+    "shrikhand": {
+        "display_name": "Shrikhand",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.15,
+        "type": "liquid",
+        "serving_size_info": "1 cup (150g)",
+        "allergens": [
+            "dairy"
+        ],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 250,
+        "cultural_context": {
+            "origin": "Gujarat & Maharashtra",
+            "traditional_pairing": "Puri (Shrikhand-Puri combo)",
+            "festival": "Gudi Padwa & Gujarati New Year",
+            "fun_fact": "Made by hanging yogurt overnight in muslin cloth — the longer it drains, the creamier the shrikhand becomes."
+        }
+    },
+    "sohan halwa": {
+        "display_name": "Sohan Halwa",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [
+            "gluten",
+            "nuts"
+        ],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 220,
+        "cultural_context": {
+            "origin": "Multan (now Pakistan) & Ajmer, Rajasthan",
+            "traditional_pairing": "Tea or as gift sweet",
+            "festival": "Diwali & Eid",
+            "fun_fact": "Ajmer's Sohan Halwa is cooked in massive copper pans and stirred continuously for 8 hours by 3 people."
+        }
+    },
+    "sohan papdi": {
+        "display_name": "Sohan Papdi",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 180,
+        "cultural_context": {
+            "origin": "Uttar Pradesh & Rajasthan",
+            "traditional_pairing": "Tea or as gift box sweet",
+            "festival": "Diwali (most gifted sweet in India)",
+            "fun_fact": "Sohan Papdi is India's most re-gifted Diwali sweet — internet memes about endless Sohan Papdi boxes are legendary."
+        }
+    },
+    "sutar feni": {
+        "display_name": "Sutar Feni",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 170,
+        "cultural_context": {
+            "origin": "Gujarat & Rajasthan",
+            "traditional_pairing": "Warm Milk",
+            "festival": "Ramadan & Eid",
+            "fun_fact": "Made by pulling sugar syrup-dough into 1000+ hair-thin threads — a dying art that only a few families still practice."
+        }
+    },
+    "unni appam": {
+        "display_name": "Unni Appam",
+        "calories_per_100g": 280,
+        "carbs_per_100g": 32.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 15.0,
+        "density": 0.7,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 140,
+        "cultural_context": {
+            "origin": "Kerala, South India",
+            "traditional_pairing": "Payasam or as snack",
+            "festival": "Onam & Vishu",
+            "fun_fact": "Traditional Unni Appam uses jaggery, banana and coconut — the combination creates a natural caramel flavor."
+        }
+    },
+    "vada": {
+        "display_name": "Vada",
+        "calories_per_100g": 280,
+        "carbs_per_100g": 32.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 15.0,
+        "density": 0.7,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 72,
+        "carbon_footprint_gco2_per_100g": 150,
+        "cultural_context": {
+            "origin": "South India (Tamil Nadu & Karnataka)",
+            "traditional_pairing": "Sambar & Coconut Chutney",
+            "festival": "Daily breakfast & temple offerings",
+            "fun_fact": "The perfect vada has a crispy outside and soft inside — vendors test oil temperature by dropping a tiny piece of batter."
+        }
+    },
+    "unknown": {
+        "display_name": "Unknown Food",
+        "calories_per_100g": 120,
+        "carbs_per_100g": 15.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 5.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "1 serving (100g)",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 100,
+        "cultural_context": {
+            "origin": "Unknown",
+            "traditional_pairing": "Unknown",
+            "festival": "Unknown",
+            "fun_fact": "This food item could not be identified — try a clearer photo for better recognition."
+        }
+    },
+    "Aloo Paratha": {
+        "display_name": "Aloo Paratha",
+        "calories_per_100g": 260,
+        "carbs_per_100g": 32.0,
+        "protein_per_100g": 7.0,
+        "fat_per_100g": 12.0,
+        "density": 0.9,
+        "type": "solid",
+        "serving_size_info": "1 paratha (120g)",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 140,
+        "cultural_context": {
+            "origin": "Punjab, North India",
+            "traditional_pairing": "White Butter, Curd & Pickle",
+            "festival": "Daily breakfast & Winter staple",
+            "fun_fact": "The humble Aloo Paratha is Punjab's soul food — truck stops (dhabas) across NH-1 are famous for their parathas."
+        }
+    },
+    "Appam": {
+        "display_name": "Appam",
+        "calories_per_100g": 170,
+        "carbs_per_100g": 30.0,
+        "protein_per_100g": 3.5,
+        "fat_per_100g": 4.0,
+        "density": 0.6,
+        "type": "solid",
+        "serving_size_info": "2 appams (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 75,
+        "cultural_context": {
+            "origin": "Kerala, South India",
+            "traditional_pairing": "Stew or Egg Curry",
+            "festival": "Christmas & Easter (Syrian Christian Kerala)",
+            "fun_fact": "Appam's lace-like edges and soft center come from toddy (palm wine) fermentation — coconut milk version exists too."
+        }
+    },
+    "Bagara Baingan": {
+        "display_name": "Bagara Baingan",
+        "calories_per_100g": 145,
+        "carbs_per_100g": 10.0,
+        "protein_per_100g": 3.0,
+        "fat_per_100g": 10.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 110,
+        "cultural_context": {
+            "origin": "Hyderabad, Telangana",
+            "traditional_pairing": "Biryani & Naan",
+            "festival": "Hyderabadi weddings & Eid",
+            "fun_fact": "Uses a special peanut-sesame paste that gives a unique nutty flavor — a must-have side dish at Hyderabadi feasts."
+        }
+    },
+    "Bal Mithai": {
+        "display_name": "Bal Mithai",
+        "calories_per_100g": 410,
+        "carbs_per_100g": 55.0,
+        "protein_per_100g": 6.0,
+        "fat_per_100g": 18.0,
+        "density": 1.3,
+        "type": "solid",
+        "serving_size_info": "2 pieces (50g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 190,
+        "cultural_context": {
+            "origin": "Almora, Uttarakhand",
+            "traditional_pairing": "Tea",
+            "festival": "All celebrations in Kumaon region",
+            "fun_fact": "Coated with white sugar balls (kheel) — this unique sweet has been Almora's pride since the early 1900s."
+        }
+    },
+    "Begun Bhaja": {
+        "display_name": "Begun Bhaja",
+        "calories_per_100g": 200,
+        "carbs_per_100g": 12.0,
+        "protein_per_100g": 2.5,
+        "fat_per_100g": 16.0,
+        "density": 0.7,
+        "type": "solid",
+        "serving_size_info": "4 slices (80g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 130,
+        "cultural_context": {
+            "origin": "West Bengal, Eastern India",
+            "traditional_pairing": "Rice & Dal",
+            "festival": "Bengali daily lunch staple",
+            "fun_fact": "Crispy fried eggplant slices are so beloved in Bengal that 'Begun Bhaja' is considered comfort food royalty."
+        }
+    },
+    "Bengali Kabiraji": {
+        "display_name": "Bengali Kabiraji",
+        "calories_per_100g": 290,
+        "carbs_per_100g": 18.0,
+        "protein_per_100g": 15.0,
+        "fat_per_100g": 18.0,
+        "density": 0.8,
+        "type": "solid",
+        "serving_size_info": "1 piece (150g)",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 350,
+        "cultural_context": {
+            "origin": "Kolkata, West Bengal",
+            "traditional_pairing": "Kasundi (Mustard Sauce)",
+            "festival": "Street food heritage",
+            "fun_fact": "Named after 'Coverage' (English) mispronounced as 'Kabiraji' — the egg net covering is the signature element."
+        }
+    },
+    "Besan Chilla": {
+        "display_name": "Besan Chilla",
+        "calories_per_100g": 195,
+        "carbs_per_100g": 22.0,
+        "protein_per_100g": 9.0,
+        "fat_per_100g": 8.0,
+        "density": 0.7,
+        "type": "solid",
+        "serving_size_info": "2 chillas (120g)",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 100,
+        "cultural_context": {
+            "origin": "Rajasthan & North India",
+            "traditional_pairing": "Green Chutney & Curd",
+            "festival": "Quick breakfast or Navratri fasting",
+            "fun_fact": "A high-protein vegetarian pancake that takes just 5 minutes to make — the ultimate busy morning breakfast."
+        }
+    },
+    "Bhakri": {
+        "display_name": "Bhakri",
+        "calories_per_100g": 340,
+        "carbs_per_100g": 65.0,
+        "protein_per_100g": 8.0,
+        "fat_per_100g": 5.0,
+        "density": 0.8,
+        "type": "solid",
+        "serving_size_info": "1 bhakri (80g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 70,
+        "cultural_context": {
+            "origin": "Maharashtra & Karnataka",
+            "traditional_pairing": "Thecha (Spicy Chutney) & Pitla",
+            "festival": "Farm harvest meals",
+            "fun_fact": "Made from jowar or bajra flour — this thick flatbread is the staple of Maharashtrian farmers for centuries."
+        }
+    },
+    "Boiled Bamboo Shoot": {
+        "display_name": "Boiled Bamboo Shoot",
+        "calories_per_100g": 27,
+        "carbs_per_100g": 4.0,
+        "protein_per_100g": 2.6,
+        "fat_per_100g": 0.3,
+        "density": 0.9,
+        "type": "solid",
+        "serving_size_info": "1 cup (120g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 30,
+        "cultural_context": {
+            "origin": "Northeast India (Assam, Nagaland, Manipur)",
+            "traditional_pairing": "Rice & Pork curry",
+            "festival": "Everyday cuisine of Northeast",
+            "fun_fact": "Bamboo shoots are fermented for months in traditional Northeast homes — the fermentation adds a tangy umami flavor."
+        }
+    },
+    "Chhurpi": {
+        "display_name": "Chhurpi",
+        "calories_per_100g": 350,
+        "carbs_per_100g": 5.0,
+        "protein_per_100g": 55.0,
+        "fat_per_100g": 12.0,
+        "density": 1.4,
+        "type": "solid",
+        "serving_size_info": "2 pieces (30g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 180,
+        "cultural_context": {
+            "origin": "Sikkim & Himalayan region",
+            "traditional_pairing": "Tea or as chewing snack",
+            "festival": "Winter staple in Himalayas",
+            "fun_fact": "One of the hardest cheeses in the world — Himalayan yak herders chew on it for hours during long treks."
+        }
+    },
+    "Chomchom": {
+        "display_name": "Chomchom",
+        "calories_per_100g": 290,
+        "carbs_per_100g": 40.0,
+        "protein_per_100g": 8.0,
+        "fat_per_100g": 11.0,
+        "density": 1.1,
+        "type": "solid",
+        "serving_size_info": "2 pieces (80g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 220,
+        "cultural_context": {
+            "origin": "West Bengal (Porabazar, Bardhaman)",
+            "traditional_pairing": "Tea or festive meal",
+            "festival": "Durga Puja",
+            "fun_fact": "Bardhaman's Chomchom has a unique elongated shape and moist texture — different from Kolkata's drier version."
+        }
+    },
+    "Chuda Ka Ladoo": {
+        "display_name": "Chuda Ka Ladoo",
+        "calories_per_100g": 420,
+        "carbs_per_100g": 58.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 18.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 ladoos (60g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 160,
+        "cultural_context": {
+            "origin": "Bihar & Jharkhand",
+            "traditional_pairing": "Milk or Tea",
+            "festival": "Chhath Puja",
+            "fun_fact": "Made from flattened rice (chuda/poha) and jaggery — a quick energy snack prepared during Chhath."
+        }
+    },
+    "Chundo": {
+        "display_name": "Chundo",
+        "calories_per_100g": 310,
+        "carbs_per_100g": 72.0,
+        "protein_per_100g": 1.0,
+        "fat_per_100g": 0.5,
+        "density": 1.3,
+        "type": "liquid",
+        "serving_size_info": "2 tbsp (30g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 90,
+        "cultural_context": {
+            "origin": "Gujarat, Western India",
+            "traditional_pairing": "Thepla, Khakhra & Parathas",
+            "festival": "Mango season preparation",
+            "fun_fact": "A sweet-spicy raw mango preserve that Gujarati families prepare in huge batches every summer."
+        }
+    },
+    "Dal Baati Churma": {
+        "display_name": "Dal Baati Churma",
+        "calories_per_100g": 330,
+        "carbs_per_100g": 40.0,
+        "protein_per_100g": 10.0,
+        "fat_per_100g": 15.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "1 plate (250g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 180,
+        "cultural_context": {
+            "origin": "Rajasthan, Western India",
+            "traditional_pairing": "Complete meal trio served together",
+            "festival": "Rajasthani weddings & Teej",
+            "fun_fact": "Baatis were originally sun-baked by Rajput warriors in the Thar Desert during military campaigns."
+        }
+    },
+    "Fafda": {
+        "display_name": "Fafda",
+        "calories_per_100g": 480,
+        "carbs_per_100g": 42.0,
+        "protein_per_100g": 12.0,
+        "fat_per_100g": 30.0,
+        "density": 0.5,
+        "type": "solid",
+        "serving_size_info": "4 pieces (80g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 170,
+        "cultural_context": {
+            "origin": "Gujarat (Ahmedabad & Surat)",
+            "traditional_pairing": "Jalebi & Kadhi",
+            "festival": "Dussehra & Sunday breakfast tradition",
+            "fun_fact": "Sunday morning Fafda-Jalebi is Gujarat's most sacred breakfast ritual — shops have lines from 6 AM."
+        }
+    },
+    "Feeni": {
+        "display_name": "Feeni",
+        "calories_per_100g": 450,
+        "carbs_per_100g": 50.0,
+        "protein_per_100g": 6.0,
+        "fat_per_100g": 25.0,
+        "density": 0.4,
+        "type": "solid",
+        "serving_size_info": "2 pieces (60g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 200,
+        "cultural_context": {
+            "origin": "Goa, Western India",
+            "traditional_pairing": "Lime soda or Bebinca",
+            "festival": "Christmas & Goan festivals",
+            "fun_fact": "Cashew Feni has a GI tag — made by foot-stomping cashew apples, it's Goa's iconic spirit."
+        }
+    },
+    "Gulgula (Pahadi)": {
+        "display_name": "Gulgula (Pahadi)",
+        "calories_per_100g": 350,
+        "carbs_per_100g": 50.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 15.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "3 pieces (90g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 150,
+        "cultural_context": {
+            "origin": "Uttarakhand & Himachal Pradesh",
+            "traditional_pairing": "Tea",
+            "festival": "Local fairs & festivals",
+            "fun_fact": "Sweet wheat flour fritters with jaggery — a Pahadi grandmother's special recipe for visiting grandchildren."
+        }
+    },
+    "Halbai": {
+        "display_name": "Halbai",
+        "calories_per_100g": 310,
+        "carbs_per_100g": 45.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (80g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 180,
+        "cultural_context": {
+            "origin": "Coastal Karnataka (Udupi & Mangalore)",
+            "traditional_pairing": "Filter Coffee",
+            "festival": "Ganesh Chaturthi & temple offerings",
+            "fun_fact": "A coconut-rice-jaggery fudge that melts in your mouth — made exclusively during Mangalorean celebrations."
+        }
+    },
+    "Jhangora ki Kheer": {
+        "display_name": "Jhangora ki Kheer",
+        "calories_per_100g": 140,
+        "carbs_per_100g": 22.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 4.5,
+        "density": 1.1,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [
+            "dairy",
+            "nuts"
+        ],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 160,
+        "cultural_context": {
+            "origin": "Uttarakhand (Garhwal region)",
+            "traditional_pairing": "As standalone dessert",
+            "festival": "Winter celebrations & Makar Sankranti",
+            "fun_fact": "Made from barnyard millet (Jhangora) — a superfood grain that grows in the Himalayan terraced farms."
+        }
+    },
+    "Jonna Rotte": {
+        "display_name": "Jonna Rotte",
+        "calories_per_100g": 330,
+        "carbs_per_100g": 62.0,
+        "protein_per_100g": 10.0,
+        "fat_per_100g": 4.5,
+        "density": 0.8,
+        "type": "solid",
+        "serving_size_info": "1 rotte (80g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 60,
+        "cultural_context": {
+            "origin": "Telangana & Karnataka",
+            "traditional_pairing": "Peanut Chutney & Neyyi (Ghee)",
+            "festival": "Daily staple of Telangana farmers",
+            "fun_fact": "Made from jowar (sorghum) flour — Telangana's signature bread that's gluten-free and incredibly nutritious."
+        }
+    },
+    "Kafal": {
+        "display_name": "Kafal",
+        "calories_per_100g": 58,
+        "carbs_per_100g": 12.0,
+        "protein_per_100g": 1.5,
+        "fat_per_100g": 0.5,
+        "density": 0.9,
+        "type": "solid",
+        "serving_size_info": "1 cup (100g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 25,
+        "cultural_context": {
+            "origin": "Uttarakhand (Himalayan wild fruit)",
+            "traditional_pairing": "As fresh seasonal fruit",
+            "festival": "Summer season (May-June)",
+            "fun_fact": "A wild berry found only in Himalayan forests — the famous song 'Kafal Paako' celebrates this fruit's season."
+        }
+    },
+    "Kakori Kebab": {
+        "display_name": "Kakori Kebab",
+        "calories_per_100g": 265,
+        "carbs_per_100g": 5.0,
+        "protein_per_100g": 18.0,
+        "fat_per_100g": 20.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "2 kebabs (80g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 380,
+        "cultural_context": {
+            "origin": "Lucknow, Uttar Pradesh",
+            "traditional_pairing": "Paratha & Green Chutney",
+            "festival": "Eid & Awadhi feasts",
+            "fun_fact": "So soft they melt in your mouth — legend says a toothless Nawab ordered his chef to make a kebab he could eat."
+        }
+    },
+    "Kathi Roll": {
+        "display_name": "Kathi Roll",
+        "calories_per_100g": 230,
+        "carbs_per_100g": 24.0,
+        "protein_per_100g": 12.0,
+        "fat_per_100g": 10.0,
+        "density": 0.9,
+        "type": "solid",
+        "serving_size_info": "1 roll (180g)",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 300,
+        "cultural_context": {
+            "origin": "Kolkata, West Bengal (Nizam's Restaurant)",
+            "traditional_pairing": "Onion rings & Green Chutney",
+            "festival": "Street food staple",
+            "fun_fact": "Invented at Nizam's Restaurant, Kolkata in 1932 — the paratha wrap was created for British customers who didn't want greasy hands."
+        }
+    },
+    "Kesaria Peda": {
+        "display_name": "Kesaria Peda",
+        "calories_per_100g": 390,
+        "carbs_per_100g": 52.0,
+        "protein_per_100g": 8.0,
+        "fat_per_100g": 17.0,
+        "density": 1.3,
+        "type": "solid",
+        "serving_size_info": "2 pieces (50g)",
+        "allergens": [],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 240,
+        "cultural_context": {
+            "origin": "Mathura, Uttar Pradesh",
+            "traditional_pairing": "As temple prasad",
+            "festival": "Janmashtami & temple offerings",
+            "fun_fact": "Mathura's saffron pedas are offered at Krishna temples — made only with mawa, saffron, and cardamom."
+        }
+    },
+    "Khaja": {
+        "display_name": "Khaja",
+        "calories_per_100g": 420,
+        "carbs_per_100g": 55.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 20.0,
+        "density": 0.7,
+        "type": "solid",
+        "serving_size_info": "2 pieces (60g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 170,
+        "cultural_context": {
+            "origin": "Bihar (Silao, near Rajgir)",
+            "traditional_pairing": "Tea or Milk",
+            "festival": "Buddha Purnima & Bihar celebrations",
+            "fun_fact": "Silao Khaja has 16 flaky layers — it was reportedly offered to Lord Buddha during his travels through Bihar."
+        }
+    },
+    "Khaman": {
+        "display_name": "Khaman",
+        "calories_per_100g": 175,
+        "carbs_per_100g": 25.0,
+        "protein_per_100g": 8.0,
+        "fat_per_100g": 5.0,
+        "density": 0.7,
+        "type": "solid",
+        "serving_size_info": "3 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 100,
+        "cultural_context": {
+            "origin": "Gujarat (Surat & Ahmedabad)",
+            "traditional_pairing": "Green Chutney & Sev",
+            "festival": "Gujarati snack anytime",
+            "fun_fact": "Often confused with Dhokla — Khaman is made from gram flour (besan) while Dhokla uses rice+lentil batter."
+        }
+    },
+    "Kulcha": {
+        "display_name": "Kulcha",
+        "calories_per_100g": 300,
+        "carbs_per_100g": 45.0,
+        "protein_per_100g": 8.0,
+        "fat_per_100g": 10.0,
+        "density": 0.8,
+        "type": "solid",
+        "serving_size_info": "1 kulcha (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 120,
+        "cultural_context": {
+            "origin": "Amritsar, Punjab",
+            "traditional_pairing": "Chole & Pickle",
+            "festival": "Breakfast staple in Amritsar",
+            "fun_fact": "Amritsari Kulcha cooked in a tandoor is so popular that tourists visit Amritsar specifically for this dish."
+        }
+    },
+    "Maddur Vada": {
+        "display_name": "Maddur Vada",
+        "calories_per_100g": 340,
+        "carbs_per_100g": 35.0,
+        "protein_per_100g": 6.0,
+        "fat_per_100g": 20.0,
+        "density": 0.8,
+        "type": "solid",
+        "serving_size_info": "2 vadas (80g)",
+        "allergens": [],
+        "glycemic_index": 72,
+        "carbon_footprint_gco2_per_100g": 160,
+        "cultural_context": {
+            "origin": "Maddur, Karnataka",
+            "traditional_pairing": "Coconut Chutney & Filter Coffee",
+            "festival": "Train station snack heritage",
+            "fun_fact": "Famous as a railway platform snack — travelers buy them from vendors at Maddur railway station since the 1940s."
+        }
+    },
+    "Malpua (Telangana style)": {
+        "display_name": "Malpua (Telangana Style)",
+        "calories_per_100g": 360,
+        "carbs_per_100g": 48.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 16.0,
+        "density": 1.1,
+        "type": "solid",
+        "serving_size_info": "2 pieces (80g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 200,
+        "cultural_context": {
+            "origin": "Telangana, South India",
+            "traditional_pairing": "Rabri",
+            "festival": "Bonalu & Bathukamma",
+            "fun_fact": "Telangana's malpua is thinner and crispier than the North Indian version — soaked in rose-flavored sugar syrup."
+        }
+    },
+    "Mandua Roti": {
+        "display_name": "Mandua Roti",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 60.0,
+        "protein_per_100g": 7.5,
+        "fat_per_100g": 5.0,
+        "density": 0.8,
+        "type": "solid",
+        "serving_size_info": "1 roti (60g)",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 60,
+        "cultural_context": {
+            "origin": "Uttarakhand (Kumaon & Garhwal)",
+            "traditional_pairing": "Ghee & Bhatt ki Churkani",
+            "festival": "Winter staple in Himalayan homes",
+            "fun_fact": "Made from finger millet (Mandua/Ragi) — one of the most calcium-rich grains grown at high altitudes."
+        }
+    },
+    "Mirchi Bada": {
+        "display_name": "Mirchi Bada",
+        "calories_per_100g": 280,
+        "carbs_per_100g": 28.0,
+        "protein_per_100g": 7.0,
+        "fat_per_100g": 16.0,
+        "density": 0.8,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 170,
+        "cultural_context": {
+            "origin": "Jodhpur, Rajasthan",
+            "traditional_pairing": "Tomato Ketchup & Sweet Chutney",
+            "festival": "Rajasthani tea-time snack",
+            "fun_fact": "A large green chilli stuffed with spiced potato and deep-fried — Jodhpur's signature street food."
+        }
+    },
+    "Mishti Doi": {
+        "display_name": "Mishti Doi",
+        "calories_per_100g": 145,
+        "carbs_per_100g": 22.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 4.5,
+        "density": 1.1,
+        "type": "liquid",
+        "serving_size_info": "1 cup (120g)",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 200,
+        "cultural_context": {
+            "origin": "West Bengal, Eastern India",
+            "traditional_pairing": "As dessert course",
+            "festival": "Durga Puja & Bengali New Year",
+            "fun_fact": "The caramelized jaggery gives it a distinct brown color — set in earthen pots for authentic taste."
+        }
+    },
+    "Momos": {
+        "display_name": "Momos",
+        "calories_per_100g": 210,
+        "carbs_per_100g": 25.0,
+        "protein_per_100g": 9.0,
+        "fat_per_100g": 8.0,
+        "density": 0.9,
+        "type": "solid",
+        "serving_size_info": "6 momos (120g)",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 250,
+        "cultural_context": {
+            "origin": "Tibet (popularized in Delhi & Northeast India)",
+            "traditional_pairing": "Spicy Red Chutney & Clear Soup",
+            "festival": "Street food staple across North India",
+            "fun_fact": "Delhi consumes 5+ million momos daily — more than any city in Tibet, making Delhi the 'Momo Capital of the World'."
+        }
+    },
+    "Motichoor Ladoo": {
+        "display_name": "Motichoor Ladoo",
+        "calories_per_100g": 380,
+        "carbs_per_100g": 50.0,
+        "protein_per_100g": 6.0,
+        "fat_per_100g": 17.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "1 ladoo (50g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 200,
+        "cultural_context": {
+            "origin": "Rajasthan & Uttar Pradesh",
+            "traditional_pairing": "As celebration sweet",
+            "festival": "Diwali, Ganesh Chaturthi & Weddings",
+            "fun_fact": "'Motichoor' means 'crushed pearls' — the tiny boondi drops look like pearls, hence the poetic name."
+        }
+    },
+    "Mysore Pak (Tamil style)": {
+        "display_name": "Mysore Pak (Tamil Style)",
+        "calories_per_100g": 450,
+        "carbs_per_100g": 42.0,
+        "protein_per_100g": 7.0,
+        "fat_per_100g": 28.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (60g)",
+        "allergens": [],
+        "glycemic_index": 78,
+        "carbon_footprint_gco2_per_100g": 240,
+        "cultural_context": {
+            "origin": "Tamil Nadu (influenced by Karnataka)",
+            "traditional_pairing": "Filter Coffee",
+            "festival": "Deepavali & Tamil celebrations",
+            "fun_fact": "Tamil version uses less ghee and more besan — making it slightly harder and less crumbly than Karnataka's version."
+        }
+    },
+    "Nolen Gurer Sandesh": {
+        "display_name": "Nolen Gurer Sandesh",
+        "calories_per_100g": 320,
+        "carbs_per_100g": 42.0,
+        "protein_per_100g": 10.0,
+        "fat_per_100g": 13.0,
+        "density": 1.2,
+        "type": "solid",
+        "serving_size_info": "2 pieces (60g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 210,
+        "cultural_context": {
+            "origin": "West Bengal, Eastern India",
+            "traditional_pairing": "Tea",
+            "festival": "Winter season (Poush Mela)",
+            "fun_fact": "Made with date palm jaggery (Nolen Gur) available only in winter — a limited-edition Bengali luxury sweet."
+        }
+    },
+    "Osmania Biscuit": {
+        "display_name": "Osmania Biscuit",
+        "calories_per_100g": 440,
+        "carbs_per_100g": 60.0,
+        "protein_per_100g": 6.0,
+        "fat_per_100g": 19.0,
+        "density": 0.6,
+        "type": "solid",
+        "serving_size_info": "3 biscuits (45g)",
+        "allergens": [
+            "gluten"
+        ],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 150,
+        "cultural_context": {
+            "origin": "Hyderabad, Telangana",
+            "traditional_pairing": "Irani Chai",
+            "festival": "Irani café culture heritage",
+            "fun_fact": "Named after the last Nizam, Osman Ali Khan — best enjoyed by dunking in Irani chai at Hyderabad's iconic cafés."
+        }
+    },
+    "Pati Shapta": {
+        "display_name": "Pati Shapta",
+        "calories_per_100g": 260,
+        "carbs_per_100g": 35.0,
+        "protein_per_100g": 6.0,
+        "fat_per_100g": 11.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "2 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 180,
+        "cultural_context": {
+            "origin": "West Bengal, Eastern India",
+            "traditional_pairing": "As dessert with Nolen Gur",
+            "festival": "Makar Sankranti (Poush Parbon)",
+            "fun_fact": "Bengal's version of a crêpe — thin rice flour sheets rolled with coconut-jaggery filling."
+        }
+    },
+    "Patra": {
+        "display_name": "Patra",
+        "calories_per_100g": 190,
+        "carbs_per_100g": 25.0,
+        "protein_per_100g": 4.0,
+        "fat_per_100g": 8.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "4 pieces (100g)",
+        "allergens": [],
+        "glycemic_index": 52,
+        "carbon_footprint_gco2_per_100g": 90,
+        "cultural_context": {
+            "origin": "Gujarat, Western India",
+            "traditional_pairing": "Sev & Coriander garnish",
+            "festival": "Janmashtami & Navratri",
+            "fun_fact": "Made by spreading spiced batter on colocasia leaves, rolling them, steaming and slicing — an engineering marvel of a snack."
+        }
+    },
+    "Petha": {
+        "display_name": "Petha",
+        "calories_per_100g": 300,
+        "carbs_per_100g": 70.0,
+        "protein_per_100g": 1.0,
+        "fat_per_100g": 0.5,
+        "density": 1.3,
+        "type": "solid",
+        "serving_size_info": "2 pieces (80g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 80,
+        "cultural_context": {
+            "origin": "Agra, Uttar Pradesh",
+            "traditional_pairing": "Tea or as souvenir sweet",
+            "festival": "Taj Mahal tourist souvenir",
+            "fun_fact": "Made from ash gourd (white pumpkin) — Agra's Petha is the city's most famous product after the Taj Mahal."
+        }
+    },
+    "Rewri": {
+        "display_name": "Rewri",
+        "calories_per_100g": 430,
+        "carbs_per_100g": 65.0,
+        "protein_per_100g": 5.0,
+        "fat_per_100g": 17.0,
+        "density": 1.1,
+        "type": "solid",
+        "serving_size_info": "3 pieces (45g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 120,
+        "cultural_context": {
+            "origin": "Punjab & Haryana",
+            "traditional_pairing": "Peanuts & Popcorn",
+            "festival": "Lohri & Makar Sankranti",
+            "fun_fact": "Sesame + jaggery brittle distributed around bonfires during Lohri — symbolizes sweetness for the new harvest."
+        }
+    },
+    "Rosogolla": {
+        "display_name": "Rosogolla",
+        "calories_per_100g": 190,
+        "carbs_per_100g": 30.0,
+        "protein_per_100g": 6.0,
+        "fat_per_100g": 5.0,
+        "density": 1.1,
+        "type": "solid",
+        "serving_size_info": "2 pieces (80g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 200,
+        "cultural_context": {
+            "origin": "Odisha (GI tagged)",
+            "traditional_pairing": "As standalone dessert",
+            "festival": "Rath Yatra & Durga Puja",
+            "fun_fact": "The Rasgulla war: Odisha won the GI tag for 'Odisha Rasagola' in 2019, separate from West Bengal's version."
+        }
+    },
+    "Sakinalu": {
+        "display_name": "Sakinalu",
+        "calories_per_100g": 400,
+        "carbs_per_100g": 50.0,
+        "protein_per_100g": 7.0,
+        "fat_per_100g": 19.0,
+        "density": 0.4,
+        "type": "solid",
+        "serving_size_info": "2 pieces (50g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 140,
+        "cultural_context": {
+            "origin": "Telangana, South India",
+            "traditional_pairing": "Peanut Chutney",
+            "festival": "Sankranti & Bonalu",
+            "fun_fact": "Ring-shaped rice flour snacks that require expert hand-shaping — traditionally made by Telangana women during festivals."
+        }
+    },
+    "Shikanji": {
+        "display_name": "Shikanji",
+        "calories_per_100g": 45,
+        "carbs_per_100g": 10.0,
+        "protein_per_100g": 0.3,
+        "fat_per_100g": 0.1,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 glass (250ml)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 30,
+        "cultural_context": {
+            "origin": "North India (Delhi & Punjab)",
+            "traditional_pairing": "Street food snacks",
+            "festival": "Summer drink staple",
+            "fun_fact": "India's original lemonade — spiced with roasted cumin and black salt, it's the perfect antidote to Delhi's 45°C summers."
+        }
+    },
+    "Shukto": {
+        "display_name": "Shukto",
+        "calories_per_100g": 110,
+        "carbs_per_100g": 10.0,
+        "protein_per_100g": 3.0,
+        "fat_per_100g": 7.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 bowl (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 80,
+        "cultural_context": {
+            "origin": "West Bengal, Eastern India",
+            "traditional_pairing": "Rice (served as first course)",
+            "festival": "Bengali daily lunch tradition",
+            "fun_fact": "A bittersweet mixed vegetable dish served as the first course of a Bengali meal — believed to stimulate digestion."
+        }
+    },
+    "Solkadhi": {
+        "display_name": "Solkadhi",
+        "calories_per_100g": 55,
+        "carbs_per_100g": 3.0,
+        "protein_per_100g": 1.0,
+        "fat_per_100g": 4.0,
+        "density": 1.0,
+        "type": "liquid",
+        "serving_size_info": "1 glass (200ml)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 40,
+        "cultural_context": {
+            "origin": "Konkan coast (Maharashtra & Goa)",
+            "traditional_pairing": "Fish curry & Rice",
+            "festival": "Coastal Maharashtra daily meal",
+            "fun_fact": "Made from kokum fruit and coconut milk — the pink color comes naturally from kokum and acts as a digestive."
+        }
+    },
+    "Thekua": {
+        "display_name": "Thekua",
+        "calories_per_100g": 380,
+        "carbs_per_100g": 55.0,
+        "protein_per_100g": 6.0,
+        "fat_per_100g": 15.0,
+        "density": 1.1,
+        "type": "solid",
+        "serving_size_info": "3 pieces (75g)",
+        "allergens": [],
+        "glycemic_index": 62,
+        "carbon_footprint_gco2_per_100g": 160,
+        "cultural_context": {
+            "origin": "Bihar & Jharkhand",
+            "traditional_pairing": "As Prasad offering to Sun God",
+            "festival": "Chhath Puja (most important)",
+            "fun_fact": "Considered the holiest sweet in Chhath Puja — made only with wheat flour, jaggery, and ghee. No shortcuts allowed."
+        }
+    },
+    "Wahan Mosdeng Pork": {
+        "display_name": "Wahan Mosdeng Pork",
+        "calories_per_100g": 245,
+        "carbs_per_100g": 3.0,
+        "protein_per_100g": 22.0,
+        "fat_per_100g": 16.0,
+        "density": 1.0,
+        "type": "solid",
+        "serving_size_info": "1 serving (150g)",
+        "allergens": [],
+        "glycemic_index": 38,
+        "carbon_footprint_gco2_per_100g": 500,
+        "cultural_context": {
+            "origin": "Meghalaya, Northeast India",
+            "traditional_pairing": "Jadoh (Rice) & Tungrymbai",
+            "festival": "Khasi tribal celebrations",
+            "fun_fact": "Smoked pork with fiery chili chutney — a signature dish of the Khasi tribe, prepared over traditional wood fires."
+        }
+    }
+}

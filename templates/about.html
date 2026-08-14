@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}Nutrifexa AI - Technical Specifications & Methodology{% endblock %}
+
+{% block breadcrumb %}About AI{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-2" data-aos="fade-up">
+    <!-- Introduction Panel -->
+    <div class="glass-card p-4 mb-4">
+        <h2 class="text-light fw-bold mb-3">About Nutrifexa AI</h2>
+        <p class="text-secondary leading-relaxed mb-0">
+            Nutrifexa AI is a non-invasive dietary monitoring tool developed to automate portion-weight estimation and calorie count computation. Combining state-of-the-art computer vision algorithms, this web dashboard provides clinical-level insights in real-time, assisting users in tracking nutritional intakes and adhering to healthy lifestyle habits.
+        </p>
+    </div>
+
+    <!-- AI Architecture Details -->
+    <div class="row g-4 mb-4">
+        <div class="col-lg-6">
+            <div class="glass-card p-4 h-100">
+                <h4 class="text-light fw-bold mb-3"><i class="fa-solid fa-brain text-primary me-2"></i>The Deep Learning Model</h4>
+                <p class="text-secondary small leading-relaxed">
+                    Our food classifier is powered by <strong>EfficientNet-B3</strong>, a convolutional neural network architecture optimized for maximum accuracy and efficiency. EfficientNet uses a compound scaling method that uniformly scales network depth, width, and resolution using a simple yet highly effective compound coefficient.
+                </p>
+                <p class="text-secondary small leading-relaxed">
+                    The network is pre-trained on the ImageNet database (1.2 million images) and then fine-tuned via <strong>Transfer Learning</strong> on our food classification corpus. This approach allows the network to adapt its edge, texture, and shape detection filters to specific food boundaries with extremely high accuracy.
+                </p>
+                <div class="bg-dark bg-opacity-25 rounded p-3 border border-secondary-subtle">
+                    <span class="text-light fw-semibold small d-block mb-1">Architecture Highlights:</span>
+                    <ul class="text-secondary small mb-0 ps-3">
+                        <li>Depthwise Separable Convolutions to reduce computations</li>
+                        <li>Squeeze-and-Excitation blocks to model channel relationships</li>
+                        <li>Dropout layer (0.3 rate) to prevent overfitting during transfer training</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6">
+            <div class="glass-card p-4 h-100">
+                <h4 class="text-light fw-bold mb-3"><i class="fa-solid fa-sliders text-success me-2"></i>Calorie Estimation Pipeline</h4>
+                <p class="text-secondary small leading-relaxed">
+                    Estimating nutritional values from a 2D image is an underdetermined problem that requires several sequential stages:
+                </p>
+                
+                <div class="steps-process-flow ps-3 position-relative">
+                    <div class="step-flow-item mb-3">
+                        <strong class="text-light small d-block">1. Object Localization & Cropping</strong>
+                        <span class="text-secondary xx-small d-block">A pre-trained YOLOv8-nano model detects the bounding box of the main food item and filters out background noise.</span>
+                    </div>
+                    <div class="step-flow-item mb-3">
+                        <strong class="text-light small d-block">2. Segmenting OpenCV Contours</strong>
+                        <span class="text-secondary xx-small d-block">Otsu thresholding and Gaussian blur segment the food boundary, measuring the exact surface area in pixels.</span>
+                    </div>
+                    <div class="step-flow-item mb-3">
+                        <strong class="text-light small d-block">3. Portion Weight Estimation</strong>
+                        <span class="text-secondary xx-small d-block">Dynamic cm-per-pixel ratio (calibrated on plate boundaries) is multiplied by density anchors ($\text{g/cm}^3$) to calculate estimated portion weights in grams.</span>
+                    </div>
+                    <div class="step-flow-item">
+                        <strong class="text-light small d-block">4. Database Nutrition Lookup</strong>
+                        <span class="text-secondary xx-small d-block">Nutrifexa matches the predicted food label with a 94-item reference database to calculate scaled calories, carbs, fats, protein, and micro-nutrients.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Graphics and curves -->
+    <div class="row g-4">
+        <!-- Training curves -->
+        <div class="col-lg-6">
+            <div class="glass-card p-4 text-center">
+                <h4 class="text-light fw-bold mb-3 text-start"><i class="fa-solid fa-chart-line text-warning me-2"></i>Training History Curves</h4>
+                <div class="plot-img-wrapper border border-secondary-subtle rounded bg-black bg-opacity-25 overflow-hidden p-2 mb-3">
+                    <img src="/static/metrics/accuracy_loss_curves.png" alt="Classifier Training & Validation Curves" class="img-fluid" onerror="this.src='/static/metrics/curves_placeholder.png';">
+                </div>
+                <p class="text-secondary xx-small mb-0 text-start leading-tight">
+                    This chart depicts training vs. validation loss and accuracy across epochs. The validation accuracy peaks at <strong>83.51%</strong>, indicating excellent generalization.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Confusion Matrix -->
+        <div class="col-lg-6">
+            <div class="glass-card p-4 text-center">
+                <h4 class="text-light fw-bold mb-3 text-start"><i class="fa-solid fa-border-all text-danger me-2"></i>Confusion Matrix</h4>
+                <div class="plot-img-wrapper border border-secondary-subtle rounded bg-black bg-opacity-25 overflow-hidden p-2 mb-3">
+                    <img src="/static/metrics/confusion_matrix.png" alt="Classifier Confusion Matrix" class="img-fluid" onerror="this.src='/static/metrics/matrix_placeholder.png';">
+                </div>
+                <p class="text-secondary xx-small mb-0 text-start leading-tight">
+                    The confusion matrix visualizes classifier class boundaries. High diagonal concentration confirms reliable discrimination across the 94 target categories.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

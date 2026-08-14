@@ -1,0 +1,1392 @@
+/*
+=============================================================================
+FILE: styles.css  —  NutriLens-AI  (Glassmorphism & Medical AI Theme)
+=============================================================================
+*/
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   1. VARIABLE DESIGN TOKENS
+   ───────────────────────────────────────────────────────────────────────────── */
+:root {
+    /* Fonts */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Transition speeds */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark-theme {
+    /* Color Palette */
+    --color-bg: #070913;
+    --color-surface: rgba(15, 22, 42, 0.55);
+    --color-surface-hover: rgba(30, 41, 59, 0.7);
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-border-focus: rgba(30, 144, 255, 0.45);
+    
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #94a3b8;
+    --color-text-muted: #64748b;
+    
+    --color-primary: #3b82f6;       /* Blue */
+    --color-primary-rgb: 59, 130, 246;
+    --color-success: #10b981;       /* Green */
+    --color-warning: #f59e0b;       /* Orange */
+    --color-danger: #ef4444;        /* Red */
+    
+    --glass-blur: blur(16px);
+    --glow-opacity: 0.15;
+}
+
+.light-theme {
+    /* Color Palette */
+    --color-bg: #f4f6fa;
+    --color-surface: rgba(255, 255, 255, 0.7);
+    --color-surface-hover: rgba(255, 255, 255, 0.95);
+    --color-border: rgba(0, 0, 0, 0.06);
+    --color-border-focus: rgba(59, 130, 246, 0.35);
+    
+    --color-text-primary: #0f172a;
+    --color-text-secondary: #475569;
+    --color-text-muted: #94a3b8;
+    
+    --color-primary: #2563eb;       /* Rich Blue */
+    --color-primary-rgb: 37, 99, 235;
+    --color-success: #059669;       /* Dark Green */
+    --color-warning: #d97706;       /* Deep Orange */
+    --color-danger: #dc2626;        /* Deep Red */
+    
+    --glass-blur: blur(12px);
+    --glow-opacity: 0.06;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   2. CORE BASE STYLING
+   ───────────────────────────────────────────────────────────────────────────── */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+}
+
+/* Ambient Background Lights */
+.glass-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: linear-gradient(135deg, var(--color-bg) 0%, #030408 100%);
+}
+
+.glow-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    opacity: var(--glow-opacity);
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.orb-1 {
+    top: -10%;
+    right: 10%;
+    width: 45vw;
+    height: 45vw;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%);
+}
+
+.orb-2 {
+    bottom: -10%;
+    left: -5%;
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
+}
+
+.orb-3 {
+    top: 40%;
+    left: 30%;
+    width: 35vw;
+    height: 35vw;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, transparent 70%);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   3. APP SIDEBAR & HEADER LAYOUT
+   ───────────────────────────────────────────────────────────────────────────── */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar for Desktop */
+.sidebar-nav {
+    width: 280px;
+    background: var(--color-surface);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-right: 1px solid var(--color-border);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+    transition: var(--transition-smooth);
+}
+
+.sidebar-brand {
+    margin-bottom: 2.5rem;
+}
+
+.brand-logo {
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.brand-logo span span {
+    color: var(--color-primary);
+}
+
+.brand-icon-anim {
+    color: var(--color-primary);
+    animation: icon-pulse 3s infinite alternate;
+}
+
+@keyframes icon-pulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.4)); }
+    100% { transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.8)); }
+}
+
+.nav-links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-grow: 1;
+}
+
+.nav-item-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1.2rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+    border: 1px solid transparent;
+}
+
+.nav-item-link i {
+    font-size: 1.15rem;
+}
+
+.nav-item-link:hover {
+    color: var(--color-text-primary);
+    background: var(--color-border);
+    transform: translateX(3px);
+}
+
+.nav-item-link.active {
+    color: var(--color-text-primary);
+    background: rgba(var(--color-primary-rgb), 0.15);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.35);
+}
+
+.sidebar-theme-toggle {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.btn-theme-toggle {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    border-radius: 10px;
+    padding: 0.65rem;
+    transition: var(--transition-smooth);
+}
+
+.btn-theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-footer-brand {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* Content Container Wrapper */
+.content-wrapper {
+    flex-grow: 1;
+    margin-left: 280px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0;
+    transition: var(--transition-smooth);
+}
+
+.top-app-header {
+    height: 75px;
+    background: transparent;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    padding: 0 2.5rem;
+}
+
+.header-breadcrumb {
+    font-size: 0.95rem;
+    font-family: var(--font-heading);
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-indicator.online {
+    background-color: var(--color-success);
+    box-shadow: 0 0 8px var(--color-success);
+}
+
+.server-status-pill {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    padding: 0.4rem 0.85rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.main-content-pane {
+    flex-grow: 1;
+    padding: 2.5rem;
+}
+
+.app-main-footer {
+    padding: 0 2.5rem;
+    background: transparent;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   4. GLASSMORPHIC CARDS & BUTTONS
+   ───────────────────────────────────────────────────────────────────────────── */
+.glass-card {
+    background: var(--color-surface);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+    border-color: var(--color-border-focus);
+    box-shadow: 0 8px 32px 0 rgba(var(--color-primary-rgb), 0.08);
+}
+
+.btn-gradient {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #1d4ed8 100%);
+    border: none;
+    color: #ffffff !important;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-success) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hover-up {
+    transition: var(--transition-smooth);
+}
+
+.hover-up:hover {
+    transform: translateY(-3px);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   5. HOME PAGE ELEMENTS
+   ───────────────────────────────────────────────────────────────────────────── */
+.hero-row {
+    padding: 3rem 0;
+}
+
+.hero-title {
+    font-size: 3.2rem;
+    line-height: 1.15;
+}
+
+.hero-image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-illustration-img {
+    position: relative;
+    z-index: 2;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    max-height: 380px;
+}
+
+.hero-image-glow {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, var(--color-primary) 0%, transparent 60%);
+    opacity: 0.3;
+    filter: blur(40px);
+    z-index: 1;
+}
+
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border);
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-secondary);
+}
+
+.stat-card {
+    transition: var(--transition-smooth);
+}
+
+.stat-icon-wrapper {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+}
+
+.stat-number {
+    font-size: 2.2rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   6. FOOD PREDICTOR ELEMENTS (PREDICT PAGE)
+   ───────────────────────────────────────────────────────────────────────────── */
+.drop-zone {
+    border: 2px dashed var(--color-border);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    background: rgba(255,255,255,0.01);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.drop-zone:hover, .drop-zone.dragover {
+    border-color: var(--color-primary);
+    background: rgba(var(--color-primary-rgb), 0.03);
+}
+
+.drop-icon {
+    font-size: 3.5rem;
+    opacity: 0.6;
+    transition: var(--transition-smooth);
+}
+
+.drop-zone:hover .drop-icon {
+    transform: scale(1.1);
+    color: var(--color-primary) !important;
+}
+
+.camera-feed-container {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border: 1px solid var(--color-border);
+    background: #000;
+}
+
+.preview-img-wrapper {
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.2);
+}
+
+.preview-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   7. STEP LOADER & SCANNER ANIMATION
+   ───────────────────────────────────────────────────────────────────────────── */
+.ai-loader-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader-brain-icon {
+    font-size: 1.6rem;
+    animation: brain-pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes brain-pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.15); }
+}
+
+.loading-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: left;
+}
+
+.loading-step {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
+}
+
+.loading-step.active {
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+.loading-step.completed {
+    color: var(--color-success);
+}
+
+.step-icon {
+    font-size: 1.1rem;
+}
+
+.step-icon.spinner {
+    color: var(--color-primary);
+}
+
+.step-icon.checked {
+    color: var(--color-success);
+}
+
+/* Scanner Circle Motion */
+.scanner-ring-anim {
+    animation: ring-rotate 4s infinite linear;
+}
+
+@keyframes ring-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   8. RESULTS & LABELS
+   ───────────────────────────────────────────────────────────────────────────── */
+.result-img-container {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: #000;
+}
+
+.result-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.dashboard-metric-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--color-border);
+    transition: var(--transition-smooth);
+}
+
+.dashboard-metric-card:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.15);
+}
+
+.top-5-row {
+    margin-bottom: 0.75rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   9. NUTRITION DIRECTORY (NUTRITION PAGE)
+   ───────────────────────────────────────────────────────────────────────────── */
+.food-directory-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.food-directory-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.food-directory-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
+.food-directory-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+.hover-item {
+    transition: var(--transition-smooth);
+}
+
+.hover-item:hover {
+    background: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   10. MOBILE RESPONSIVE ADAPTATIONS
+   ───────────────────────────────────────────────────────────────────────────── */
+/* Mobile Drawer Menu style */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+}
+
+.mobile-nav-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-nav-panel {
+    width: 300px;
+    height: 100%;
+    background: var(--color-surface);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-right: 1px solid var(--color-border);
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-nav-overlay.open .mobile-nav-panel {
+    transform: translateX(0);
+}
+
+.mobile-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1.2rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-nav-link.active {
+    color: var(--color-text-primary);
+    background: rgba(var(--color-primary-rgb), 0.15);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.25);
+}
+
+/* Responsiveness breakpoints */
+@media (max-width: 991.98px) {
+    .sidebar-nav {
+        transform: translateX(-100%);
+        visibility: hidden;
+    }
+    
+    .content-wrapper {
+        margin-left: 0;
+    }
+    
+    .top-app-header {
+        padding: 0 1.5rem;
+    }
+    
+    .main-content-pane {
+        padding: 1.5rem;
+    }
+    
+    .app-main-footer {
+        padding: 0 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 2.3rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-title {
+        font-size: 1.85rem;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   10. AI PLATE MUTATOR — Diet Health Swapper Styles
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* Mutator Section Card */
+.mutator-section {
+    border: 1px solid rgba(var(--color-primary-rgb), 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.mutator-section::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #f97316, #3b82f6, #10b981, #8b5cf6);
+    border-radius: 3px;
+}
+
+/* Diet Selector Pills */
+.mutator-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 50px;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: 0.82rem;
+    font-weight: 500;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+}
+
+.mutator-pill:hover {
+    border-color: rgba(var(--color-primary-rgb), 0.4);
+    background: rgba(var(--color-primary-rgb), 0.08);
+    color: var(--color-text-primary);
+    transform: translateY(-1px);
+}
+
+.mutator-pill.active {
+    border-color: var(--color-primary);
+    background: rgba(var(--color-primary-rgb), 0.15);
+    color: var(--color-primary);
+    font-weight: 600;
+    box-shadow: 0 0 16px rgba(var(--color-primary-rgb), 0.2);
+}
+
+.mutator-pill[data-diet="keto"].active {
+    border-color: #f97316;
+    background: rgba(249, 115, 22, 0.15);
+    color: #f97316;
+    box-shadow: 0 0 16px rgba(249, 115, 22, 0.2);
+}
+
+.mutator-pill[data-diet="diabetic"].active {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    box-shadow: 0 0 16px rgba(239, 68, 68, 0.2);
+}
+
+.mutator-pill[data-diet="high_protein"].active {
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.2);
+}
+
+.mutator-pill[data-diet="low_calorie"].active {
+    border-color: #10b981;
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.2);
+}
+
+.mutator-pill[data-diet="vegan"].active {
+    border-color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.15);
+    color: #8b5cf6;
+    box-shadow: 0 0 16px rgba(139, 92, 246, 0.2);
+}
+
+/* Comparison Cards */
+.mutator-compare-card {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--color-border);
+    transition: var(--transition-smooth);
+}
+
+.mutator-compare-card.mutated {
+    background: rgba(var(--color-primary-rgb), 0.06);
+    border-color: rgba(var(--color-primary-rgb), 0.2);
+}
+
+.mutator-macro-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.mutator-macro-row:last-child {
+    border-bottom: none;
+}
+
+/* Delta Badges */
+.mutator-delta {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 20px;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.mutator-delta.good {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.mutator-delta.bad {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.mutator-delta.neutral {
+    background: rgba(148, 163, 184, 0.1);
+    color: #94a3b8;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+/* Swap Rows */
+.mutator-swap-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    animation: swapSlideIn 0.35s ease-out both;
+}
+
+.mutator-swap-original {
+    color: var(--color-text-secondary);
+    font-size: 0.82rem;
+    text-decoration: line-through;
+    text-decoration-color: rgba(239, 68, 68, 0.5);
+}
+
+.mutator-swap-replacement {
+    color: #10b981;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.mutator-swap-impact {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    background: rgba(59, 130, 246, 0.12);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Recipe Tip Card */
+.mutator-tip-card {
+    background: rgba(245, 158, 11, 0.06);
+    border: 1px solid rgba(245, 158, 11, 0.15);
+}
+
+/* Animations */
+@keyframes mutatorFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes deltaPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    60% {
+        transform: scale(1.15);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes swapSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Light Theme Overrides */
+.light-theme .mutator-compare-card {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.light-theme .mutator-compare-card.mutated {
+    background: rgba(var(--color-primary-rgb), 0.04);
+}
+
+.light-theme .mutator-swap-row {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.light-theme .mutator-tip-card {
+    background: rgba(245, 158, 11, 0.04);
+}
+
+.light-theme .mutator-pill {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+/* Responsive for mutator */
+@media (max-width: 575.98px) {
+    .mutator-diet-pills {
+        gap: 0.35rem !important;
+    }
+    
+    .mutator-pill {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.75rem;
+    }
+
+    .mutator-swap-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mutator-swap-impact {
+        margin-top: 0.25rem;
+    }
+}
+
+/* Upgraded Features Styles */
+.calorie-ring-wrapper {
+    position: relative;
+    width: 160px;
+    height: 160px;
+}
+
+.calorie-ring-svg {
+    transform: rotate(0deg);
+    transition: stroke-dashoffset 0.5s ease-out;
+}
+
+#calorie-ring-progress {
+    transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tracker-macro-row {
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.3s;
+}
+
+.tracker-macro-row:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+#compare-results-table th, 
+#compare-results-table td {
+    padding: 0.75rem;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+#compare-results-table .table-success {
+    background: rgba(34, 197, 94, 0.15) !important;
+}
+
+.alert-danger {
+    background: rgba(239, 68, 68, 0.1) !important;
+    border-left: 3px solid #ef4444 !important;
+    color: #fca5a5 !important;
+}
+
+.alert-warning {
+    background: rgba(245, 158, 11, 0.1) !important;
+    border-left: 3px solid #f59e0b !important;
+    color: #fde047 !important;
+}
+
+.alert-info {
+    background: rgba(59, 130, 246, 0.1) !important;
+    border-left: 3px solid #3b82f6 !important;
+    color: #93c5fd !important;
+}
+
+.alert-success {
+    background: rgba(34, 197, 94, 0.1) !important;
+    border-left: 3px solid #22c55e !important;
+    color: #86efac !important;
+}
+
+/* =============================================================================
+   11. REDESIGNED RESULTS & COMPARISON UI STYLES
+   ============================================================================= */
+
+/* Header & Navigation */
+.results-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.results-back-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 1.25rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.results-back-btn:hover {
+    color: var(--color-primary);
+    transform: translateX(-4px);
+}
+
+/* 2-Column Grid Layout */
+.results-layout-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.left-results-col {
+    flex: 1 1 60%;
+    min-width: 320px;
+    display: flex;
+    flex-column: column;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.right-results-col {
+    flex: 1 1 35%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Premium Prediction Card */
+.your-prediction-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.prediction-img-wrapper {
+    flex: 1 1 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #000;
+    position: relative;
+    max-height: 250px;
+}
+
+.prediction-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.prediction-info-wrapper {
+    flex: 1.5 1 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.confidence-progress-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    margin-top: 0.25rem;
+}
+
+.confidence-progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease-out;
+}
+
+/* Nutrition Grid */
+.nutrition-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 0.75rem;
+}
+
+.nutrition-box {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+
+.nutrition-box:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Health Recommendation Circular Gauge */
+.health-gauge-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.gauge-circle-container {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    flex-shrink: 0;
+}
+
+.gauge-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.gauge-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.05);
+    stroke-width: 10;
+}
+
+.gauge-fill {
+    fill: none;
+    stroke-width: 10;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 1s ease-out;
+}
+
+.gauge-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.gauge-val {
+    font-size: 1.85rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--color-text-primary);
+}
+
+.gauge-status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.recommendation-content {
+    flex: 1;
+}
+
+/* Healthier Alternatives Scroll Row */
+.alternatives-scroll-row {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.75rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+
+.alternatives-scroll-row::-webkit-scrollbar {
+    height: 6px;
+}
+
+.alternatives-scroll-row::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.alternatives-scroll-row::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+}
+
+.alternative-card {
+    flex: 0 0 160px;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: var(--transition-smooth);
+}
+
+.alternative-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.alt-thumbnail {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    font-size: 1.5rem;
+    overflow: hidden;
+}
+
+.alt-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Why Better Badges */
+.why-better-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.why-better-pill {
+    padding: 0.5rem 0.85rem;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.why-better-pill.calories { border-color: rgba(16, 185, 129, 0.25); color: #86efac; background: rgba(16, 185, 129, 0.05); }
+.why-better-pill.fat { border-color: rgba(245, 158, 11, 0.25); color: #fde047; background: rgba(245, 158, 11, 0.05); }
+.why-better-pill.protein { border-color: rgba(59, 130, 246, 0.25); color: #93c5fd; background: rgba(59, 130, 246, 0.05); }
+.why-better-pill.fiber { border-color: rgba(16, 185, 129, 0.25); color: #86efac; background: rgba(16, 185, 129, 0.05); }
+.why-better-pill.sodium { border-color: rgba(167, 139, 250, 0.25); color: #c084fc; background: rgba(167, 139, 250, 0.05); }
+
+/* Diet Coach (Tips) */
+.diet-coach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 0.75rem;
+}
+
+.diet-coach-box {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+/* Compare Search Autocomplete Dropdown */
+.compare-search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.search-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    margin-top: 0.25rem;
+    max-height: 240px;
+    overflow-y: auto;
+    z-index: 100;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.search-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.search-item-row:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.search-item-row:last-child {
+    border-bottom: none;
+}
+
+/* Tabs & Charts */
+.comparison-preview-tabs {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.comparison-tab-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    padding: 0.4rem 0.75rem;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.comparison-tab-btn.active {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.charts-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0.5rem;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+}
+
+/* Healthier Choice recommendation */
+.healthier-choice-card {
+    background: rgba(16, 185, 129, 0.04);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.healthier-choice-card.win-b {
+    background: rgba(59, 130, 246, 0.04);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.healthier-choice-card .trophy-icon {
+    font-size: 1.5rem;
+    color: var(--color-warning);
+}
+
+

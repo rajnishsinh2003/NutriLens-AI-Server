@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+
+{% block title %}Nutrifexa AI - Community Social Feed{% endblock %}
+
+{% block breadcrumb %}Community Feed{% endblock %}
+
+{% block extra_css %}
+<style>
+    .feed-card {
+        margin-bottom: 24px;
+        transition: var(--transition-smooth);
+        border: 1px solid var(--color-border);
+    }
+    .feed-card:hover {
+        border-color: rgba(16, 185, 129, 0.25) !important;
+        box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.1);
+    }
+    .feed-user-avatar {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+    .feed-image {
+        width: 100%;
+        max-height: 350px;
+        object-fit: cover;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.02);
+    }
+    .macro-pill {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .like-btn {
+        background: none;
+        border: none;
+        color: var(--color-text-secondary);
+        font-weight: 600;
+        transition: var(--transition-smooth);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .like-btn:hover {
+        color: #ef4444;
+        transform: scale(1.05);
+    }
+    .like-btn.liked {
+        color: #ef4444;
+    }
+    .recipe-accordion {
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        margin-top: 15px;
+    }
+    .recipe-header-btn {
+        width: 100%;
+        background: none;
+        border: none;
+        color: #10b981;
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 12px;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .recipe-body {
+        padding: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        color: var(--color-text-secondary);
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    .rating-badge-container {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 5;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-2" data-aos="fade-up">
+    <div class="row g-4">
+        <!-- Social Feed posts timeline -->
+        <div class="col-lg-8 order-lg-1 order-2">
+            <div id="posts-timeline-container">
+                <!-- Posts dynamic loader -->
+                <div class="text-center py-5" id="feed-loader">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="visually-hidden">Loading Feed...</span>
+                    </div>
+                    <p class="text-secondary mt-3">Connecting to Nutrifexa Community...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar panels -->
+        <div class="col-lg-4 order-lg-2 order-1">
+            <!-- Share CTA Card -->
+            <div class="glass-card p-4 mb-4 text-center border-success border-opacity-20">
+                <div class="stat-icon-wrapper bg-success-subtle text-success mx-auto mb-3" style="width: 60px; height: 60px;">
+                    <i class="fa-solid fa-camera-retro"></i>
+                </div>
+                <h4 class="text-light fw-bold mb-2">Share Your Plate</h4>
+                <p class="text-secondary small leading-relaxed mb-4">
+                    Scanned a healthy breakfast or lunch? Click on "Food Predictor", analyze your food, and tap "Share Feed" to publish it here with friends!
+                </p>
+                <a href="/predict" class="btn btn-success btn-gradient w-100 py-3 fw-bold shadow-sm hover-up">
+                    <i class="fa-solid fa-wand-magic-sparkles me-2"></i>Analyze & Share Now
+                </a>
+            </div>
+
+            <!-- Health guidelines or NutriGrade info card -->
+            <div class="glass-card p-4">
+                <h4 class="text-light fw-bold mb-3">
+                    <i class="fa-solid fa-circle-info text-info me-2"></i>Nutri-Grade A Recipes
+                </h4>
+                <p class="text-secondary small leading-relaxed mb-3">
+                    The community social feed prioritizes meals with **Nutri-Grade A** ratings. These are dishes with a healthy balance of nutrients, high fiber, high protein, and low sodium.
+                </p>
+                <div class="alert alert-success border-success-subtle bg-success-subtle text-success p-3 rounded mb-0" style="font-size: 0.85rem;">
+                    <i class="fa-solid fa-leaf me-2"></i>Include ingredients and step-by-step instructions when sharing your recipe so others can replicate your healthy lifestyle!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        loadFeedPosts();
+    });
+
+    function loadFeedPosts() {
+        const container = document.getElementById("posts-timeline-container");
+        
+        fetch('/api/community/posts')
+            .then(res => res.json())
+            .then(data => {
+                if (!data.success) {
+                    container.innerHTML = `<div class="alert alert-danger">Error loading feed posts: ${data.error}</div>`;
+                    return;
+                }
+                
+                const posts = data.posts;
+                if (!posts || posts.length === 0) {
+                    container.innerHTML = `
+                        <div class="glass-card p-5 text-center text-secondary">
+                            <i class="fa-solid fa-comments-slash fs-1 mb-3 text-secondary"></i>
+                            <h4 class="text-light fw-bold">No community posts yet</h4>
+                            <p class="mb-0">Be the first to share a healthy meal scan with the community!</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                container.innerHTML = posts.map(post => {
+                    // Check if recipe is present
+                    let recipeHTML = '';
+                    if (post.recipe_title) {
+                        recipeHTML = `
+                            <div class="recipe-accordion">
+                                <button class="recipe-header-btn" type="button" onclick="toggleRecipeAccordion(${post.id})">
+                                    <span><i class="fa-solid fa-kitchen-set me-2"></i>Recipe: ${escapeHtml(post.recipe_title)}</span>
+                                    <i class="fa-solid fa-chevron-down" id="recipe-arrow-${post.id}"></i>
+                                </button>
+                                <div class="recipe-body d-none" id="recipe-body-${post.id}">
+                                    <strong>Ingredients & Directions:</strong><br>
+                                    <span style="white-space: pre-line;">${escapeHtml(post.recipe_instructions || 'No instructions provided.')}</span>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    
+                    // Avatar initial
+                    const initial = (post.username || 'A')[0].toUpperCase();
+                    
+                    // Likes status (saved locally in localStorage)
+                    const likedKey = `post_liked_${post.id}`;
+                    const isLiked = localStorage.getItem(likedKey) === 'true';
+                    const likeClass = isLiked ? 'liked' : '';
+                    const heartIcon = isLiked ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+                    
+                    // Health badge color
+                    let ratingClass = 'bg-secondary';
+                    if (post.health_rating) {
+                        if (post.health_rating.startsWith('A')) ratingClass = 'bg-success';
+                        else if (post.health_rating.startsWith('B')) ratingClass = 'bg-info';
+                        else if (post.health_rating.startsWith('C')) ratingClass = 'bg-warning';
+                        else ratingClass = 'bg-danger';
+                    }
+                    
+                    return `
+                        <div class="glass-card feed-card p-4 position-relative" data-post-id="${post.id}">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="feed-user-avatar">${initial}</div>
+                                    <div>
+                                        <h5 class="text-light fw-bold mb-0">${escapeHtml(post.username)}</h5>
+                                        <span class="text-secondary small"><i class="fa-regular fa-clock me-1"></i>${post.created_at}</span>
+                                    </div>
+                                </div>
+                                <span class="badge ${ratingClass} fs-6 px-3 py-2 fw-semibold">Nutri-Grade ${post.health_rating || 'B'}</span>
+                            </div>
+                            
+                            <h4 class="text-light fw-semibold mb-3">${escapeHtml(post.food_name)}</h4>
+                            
+                            <div class="position-relative mb-3">
+                                <img src="${post.image_path || '/static/images/hero_illustration.png'}" 
+                                     alt="${escapeHtml(post.food_name)}" 
+                                     class="feed-image" 
+                                     onerror="this.src='/static/images/hero_illustration.png'">
+                            </div>
+                            
+                            <!-- Nutrition pills bar -->
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                <span class="macro-pill text-danger"><i class="fa-solid fa-fire me-1"></i>${post.calories.toFixed(0)} kcal</span>
+                                <span class="macro-pill text-primary"><i class="fa-solid fa-egg me-1"></i>Protein: ${post.protein.toFixed(1)}g</span>
+                                <span class="macro-pill text-success"><i class="fa-solid fa-wheat-awn me-1"></i>Carbs: ${post.carbs.toFixed(1)}g</span>
+                                <span class="macro-pill text-warning"><i class="fa-solid fa-droplet me-1"></i>Fat: ${post.fat.toFixed(1)}g</span>
+                            </div>
+                            
+                            ${recipeHTML}
+                            
+                            <hr class="border-secondary-subtle my-3">
+                            
+                            <!-- Action footer (likes) -->
+                            <div class="d-flex align-items-center">
+                                <button class="like-btn ${likeClass}" onclick="likePost(${post.id}, this)">
+                                    <i class="${heartIcon} fs-5"></i>
+                                    <span id="likes-count-${post.id}">${post.likes_count}</span> Likes
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            })
+            .catch(err => {
+                console.error("Feed API error:", err);
+                container.innerHTML = `<div class="alert alert-danger">Network error connecting to social feed.</div>`;
+            });
+    }
+
+    function toggleRecipeAccordion(postId) {
+        const body = document.getElementById(`recipe-body-${postId}`);
+        const arrow = document.getElementById(`recipe-arrow-${postId}`);
+        if (body.classList.contains("d-none")) {
+            body.classList.remove("d-none");
+            arrow.className = "fa-solid fa-chevron-up";
+        } else {
+            body.classList.add("d-none");
+            arrow.className = "fa-solid fa-chevron-down";
+        }
+    }
+
+    function likePost(postId, button) {
+        const likedKey = `post_liked_${postId}`;
+        if (localStorage.getItem(likedKey) === 'true') {
+            // Already liked
+            return;
+        }
+        
+        fetch(`/api/community/posts/${postId}/like`, { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    // Update client UI
+                    localStorage.setItem(likedKey, 'true');
+                    button.classList.add("liked");
+                    
+                    const heart = button.querySelector("i");
+                    heart.className = "fa-solid fa-heart";
+                    
+                    const countSpan = document.getElementById(`likes-count-${postId}`);
+                    const currentCount = parseInt(countSpan.innerText);
+                    countSpan.innerText = currentCount + 1;
+                }
+            })
+            .catch(err => console.error("Like error:", err));
+    }
+
+    // Helper: Escape HTML to avoid XSS injections
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+</script>
+{% endblock %}

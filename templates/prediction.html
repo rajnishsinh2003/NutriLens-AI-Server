@@ -1,0 +1,776 @@
+{% extends 'base.html' %}
+
+{% block title %}Nutrifexa AI - ML Weight Prediction Dashboard{% endblock %}
+
+{% block breadcrumb %}Weight Predictor{% endblock %}
+
+{% block extra_css %}
+<style>
+    .metric-card {
+        transition: var(--transition-smooth);
+    }
+    .metric-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.15);
+        border-color: rgba(59, 130, 246, 0.3) !important;
+    }
+    .insight-badge {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+    }
+    .chart-container {
+        position: relative;
+        height: 380px;
+        width: 100%;
+    }
+    .log-list {
+        max-height: 250px;
+        overflow-y: auto;
+    }
+    .log-list::-webkit-scrollbar {
+        width: 6px;
+    }
+    .log-list::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.02);
+    }
+    .log-list::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+    }
+    .log-item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 10px 0;
+    }
+    .log-item:last-child {
+        border-bottom: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-2" data-aos="fade-up">
+    
+    <!-- Profile Setup View (Initially Hidden/Shown via JS) -->
+    <div id="profile-setup-section" class="d-none">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="glass-card p-5 text-center shadow-lg border border-primary-subtle">
+                    <div class="stat-icon-wrapper bg-primary-subtle text-primary mx-auto mb-4" style="width: 70px; height: 70px; font-size: 1.8rem;">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h2 class="text-light fw-bold mb-3">Setup Your Health Profile</h2>
+                    <p class="text-secondary mb-4 leading-relaxed">
+                        To predict your future weight gain or loss, Nutrifexa AI needs to configure your baseline physical demographics. This calculates your Total Daily Energy Expenditure (TDEE).
+                    </p>
+                    
+                    <form id="setup-profile-form" class="text-start">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label text-light fw-semibold">Age (years)</label>
+                                <input type="number" name="age" class="form-control" min="10" max="100" value="25" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-light fw-semibold">Gender</label>
+                                <select name="gender" class="form-select" required>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-light fw-semibold">Height (cm)</label>
+                                <input type="number" name="height" class="form-control" min="100" max="250" value="170" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-light fw-semibold">Activity Level</label>
+                                <select name="activity_level" class="form-select" required>
+                                    <option value="sedentary">Sedentary (No exercise)</option>
+                                    <option value="light">Lightly Active (1-3 days/week)</option>
+                                    <option value="moderate" selected>Moderately Active (3-5 days/week)</option>
+                                    <option value="active">Active (6-7 days/week)</option>
+                                    <option value="very_active">Very Active (Heavy training)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-light fw-semibold">Starting Weight (kg)</label>
+                                <input type="number" name="initial_weight" class="form-control" step="0.1" min="30" max="250" value="70.0" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-light fw-semibold">Target Weight (kg)</label>
+                                <input type="number" name="target_weight" class="form-control" step="0.1" min="30" max="250" value="65.0" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-gradient w-100 py-3 mt-4 fw-bold shadow-sm hover-up">
+                            <i class="fa-solid fa-calculator me-2"></i>Calculate & Initialize Dashboard
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard View (Initially Hidden/Shown via JS) -->
+    <div id="dashboard-section" class="d-none">
+        <!-- Top Metrics Cards -->
+        <div class="row g-4 mb-4">
+            <div class="col-xl-2 col-md-4 col-sm-6">
+                <div class="glass-card metric-card p-4 h-100 d-flex flex-column justify-content-between">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-secondary small fw-semibold">Current Weight</span>
+                        <i class="fa-solid fa-weight-scale text-primary"></i>
+                    </div>
+                    <div class="mt-3">
+                        <h2 class="text-light fw-bold mb-0" id="metric-current-weight">0.0 kg</h2>
+                        <p class="text-secondary small mb-0 mt-1" id="profile-starting-weight">Start: 0 kg</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xl-2 col-md-4 col-sm-6">
+                <div class="glass-card metric-card p-4 h-100 d-flex flex-column justify-content-between">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-secondary small fw-semibold">Target Weight</span>
+                        <i class="fa-solid fa-bullseye text-warning"></i>
+                    </div>
+                    <div class="mt-3">
+                        <h2 class="text-light fw-bold mb-0" id="metric-target-weight">0.0 kg</h2>
+                        <p class="text-secondary small mb-0 mt-1" id="weight-to-go">0.0 kg to go</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-2 col-md-4 col-sm-6">
+                <div class="glass-card metric-card p-4 h-100 d-flex flex-column justify-content-between">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-secondary small fw-semibold">Metabolic TDEE</span>
+                        <i class="fa-solid fa-fire text-danger"></i>
+                    </div>
+                    <div class="mt-3">
+                        <h2 class="text-light fw-bold mb-0" id="metric-tdee">0 kcal</h2>
+                        <p class="text-secondary small mb-0 mt-1" id="metric-bmr">BMR: 0 kcal</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="glass-card metric-card p-4 h-100 d-flex flex-column justify-content-between">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-secondary small fw-semibold">Avg Calorie Intake</span>
+                        <i class="fa-solid fa-utensils text-success"></i>
+                    </div>
+                    <div class="mt-3">
+                        <h2 class="text-light fw-bold mb-0" id="metric-avg-intake">0 kcal</h2>
+                        <p class="text-secondary small mb-0 mt-1">Daily average (7-day history)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="glass-card metric-card p-4 h-100 d-flex flex-column justify-content-between">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-secondary small fw-semibold">Net Calorie Surplus</span>
+                        <i class="fa-solid fa-arrows-left-right text-info"></i>
+                    </div>
+                    <div class="mt-3">
+                        <h2 class="text-light fw-bold mb-0" id="metric-avg-surplus">0 kcal</h2>
+                        <div class="mt-1" id="surplus-status-badge">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Big Chart Card -->
+        <div class="row g-4 mb-4">
+            <div class="col-lg-8">
+                <div class="glass-card p-4 h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h3 class="text-light fw-bold mb-1">
+                                <i class="fa-solid fa-chart-line text-primary me-2"></i>Calorie-Weight Projection Path
+                            </h3>
+                            <p class="text-secondary small mb-0">ML-simulated 30-day forecast based on eating patterns & weight logs.</p>
+                        </div>
+                        <div>
+                            <span class="insight-badge bg-secondary-subtle text-secondary" id="model-type-badge">
+                                <i class="fa-solid fa-calculator me-1"></i>Physiologically Guided
+                            </span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="weightPredictionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Health Insights & Recommendation -->
+            <div class="col-lg-4">
+                <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <h3 class="text-light fw-bold mb-3">
+                            <i class="fa-solid fa-wand-magic-sparkles text-warning me-2"></i>AI Weight Forecast
+                        </h3>
+                        <hr class="border-secondary-subtle mb-4">
+                        
+                        <div class="mb-4">
+                            <h5 class="text-light fw-semibold mb-2">Projected Change</h5>
+                            <div class="p-3 rounded bg-secondary-subtle" id="ai-projected-change-container">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h5 class="text-light fw-semibold mb-2">Goal Target Forecast</h5>
+                            <p class="text-secondary small leading-relaxed" id="ai-goal-timeframe">
+                                Loading insights...
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-3">
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary w-100 py-3 fw-semibold" onclick="openProfileModal()">
+                                <i class="fa-solid fa-user-gear me-2"></i>Update Demographics
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logging Weights and History list -->
+        <div class="row g-4">
+            <!-- Log weight Form -->
+            <div class="col-md-5">
+                <div class="glass-card p-4">
+                    <h3 class="text-light fw-bold mb-3">
+                        <i class="fa-solid fa-calendar-plus text-success me-2"></i>Record Weight
+                    </h3>
+                    <p class="text-secondary small mb-4">Log your weight periodically to train and calibrate the ML prediction model.</p>
+                    
+                    <form id="log-weight-form">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <label class="form-label text-light fw-semibold">Weight (kg)</label>
+                                <input type="number" name="weight" class="form-control form-control-lg" step="0.05" min="30" max="250" placeholder="e.g. 70.4" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label text-light fw-semibold">Date</label>
+                                <input type="date" name="date" class="form-control form-control-lg" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-gradient w-100 py-3 mt-4 fw-bold shadow-sm hover-up">
+                            <i class="fa-solid fa-plus me-2"></i>Log Weight entry
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Historical Weight list -->
+            <div class="col-md-7">
+                <div class="glass-card p-4">
+                    <h3 class="text-light fw-bold mb-3">
+                        <i class="fa-solid fa-clock-rotate-left text-warning me-2"></i>Weight Log Records
+                    </h3>
+                    <p class="text-secondary small mb-4">Manage logged weight items. Calibrated regression requires at least 5 logs across different dates.</p>
+                    
+                    <div class="log-list px-2" id="weight-history-list">
+                        <!-- Weight records populated dynamically -->
+                        <div class="text-center text-secondary py-4">No weight logs found. Please record a weight.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Update Profile -->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-card p-4 border border-secondary-subtle">
+            <div class="modal-header border-0 pb-0">
+                <h4 class="modal-title text-light fw-bold" id="profileModalLabel">
+                    <i class="fa-solid fa-user-gear text-primary me-2"></i>Edit Physical Profile
+                </h4>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pt-4">
+                <form id="edit-profile-form">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-light fw-semibold">Age (years)</label>
+                            <input type="number" id="edit-age" name="age" class="form-control" min="10" max="100" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-light fw-semibold">Gender</label>
+                            <select id="edit-gender" name="gender" class="form-select" required>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-light fw-semibold">Height (cm)</label>
+                            <input type="number" id="edit-height" name="height" class="form-control" min="100" max="250" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-light fw-semibold">Activity Level</label>
+                            <select id="edit-activity_level" name="activity_level" class="form-select" required>
+                                <option value="sedentary">Sedentary (No exercise)</option>
+                                <option value="light">Lightly Active (1-3 days/week)</option>
+                                <option value="moderate">Moderately Active (3-5 days/week)</option>
+                                <option value="active">Active (6-7 days/week)</option>
+                                <option value="very_active">Very Active (Heavy training)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-light fw-semibold">Starting Weight (kg)</label>
+                            <input type="number" id="edit-initial_weight" name="initial_weight" class="form-control" step="0.1" min="30" max="250" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-light fw-semibold">Target Weight (kg)</label>
+                            <input type="number" id="edit-target_weight" name="target_weight" class="form-control" step="0.1" min="30" max="250" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 p-0 pt-4 mt-2">
+                        <button type="button" class="btn btn-outline-secondary px-4 py-2" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-gradient px-4 py-2 fw-semibold">Save Profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Bootstrap Bundle includes Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    let predictionChart = null;
+    let profileModalInstance = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Set date input to today
+        const todayStr = new Date().toISOString().split('T')[0];
+        document.querySelector('input[name="date"]').value = todayStr;
+        
+        // Initial load
+        refreshDashboard();
+        
+        // Form submissions
+        document.getElementById("setup-profile-form").addEventListener("submit", handleProfileSave);
+        document.getElementById("edit-profile-form").addEventListener("submit", handleProfileSave);
+        document.getElementById("log-weight-form").addEventListener("submit", handleWeightLog);
+        
+        profileModalInstance = new bootstrap.Modal(document.getElementById('profileModal'));
+    });
+
+    function refreshDashboard() {
+        fetch('/api/weight/predict')
+            .then(res => res.json())
+            .then(data => {
+                if (!data.success) {
+                    showToast("Error fetching weight data", "error");
+                    return;
+                }
+                
+                if (!data.has_profile) {
+                    document.getElementById("profile-setup-section").classList.remove("d-none");
+                    document.getElementById("dashboard-section").classList.add("d-none");
+                    return;
+                }
+                
+                document.getElementById("profile-setup-section").classList.add("d-none");
+                document.getElementById("dashboard-section").classList.remove("d-none");
+                
+                populateMetrics(data);
+                populateLogs(data.history);
+                renderChart(data.history, data.forecast, data.target_weight);
+                populateAiInsights(data);
+            })
+            .catch(err => {
+                console.error("Dashboard error:", err);
+                showToast("Failed to load dashboard data", "error");
+            });
+    }
+
+    function populateMetrics(data) {
+        document.getElementById("metric-current-weight").innerText = `${data.current_weight.toFixed(1)} kg`;
+        document.getElementById("profile-starting-weight").innerText = `Start: ${data.profile.initial_weight.toFixed(1)} kg`;
+        
+        document.getElementById("metric-target-weight").innerText = `${data.target_weight.toFixed(1)} kg`;
+        const diff = data.target_weight - data.current_weight;
+        const diffText = diff > 0 ? `+${diff.toFixed(1)} kg to target` : `${diff.toFixed(1)} kg to target`;
+        document.getElementById("weight-to-go").innerText = diffText;
+        
+        document.getElementById("metric-tdee").innerText = `${Math.round(data.tdee)} kcal`;
+        document.getElementById("metric-bmr").innerText = `BMR: ${Math.round(data.bmr)} kcal`;
+        
+        document.getElementById("metric-avg-intake").innerText = `${Math.round(data.avg_daily_intake)} kcal`;
+        
+        const surplus = data.avg_daily_surplus;
+        document.getElementById("metric-avg-surplus").innerText = `${surplus > 0 ? '+' : ''}${Math.round(surplus)} kcal`;
+        
+        const statusBadge = document.getElementById("surplus-status-badge");
+        if (surplus > 50) {
+            statusBadge.innerHTML = `<span class="badge bg-danger-subtle text-danger px-3 py-2 fw-semibold">
+                <i class="fa-solid fa-arrow-up-right me-1"></i>Calorie Surplus</span>`;
+        } else if (surplus < -50) {
+            statusBadge.innerHTML = `<span class="badge bg-success-subtle text-success px-3 py-2 fw-semibold">
+                <i class="fa-solid fa-arrow-down-left me-1"></i>Calorie Deficit</span>`;
+        } else {
+            statusBadge.innerHTML = `<span class="badge bg-info-subtle text-info px-3 py-2 fw-semibold">
+                <i class="fa-solid fa-circle-minus me-1"></i>Maintenance</span>`;
+        }
+    }
+
+    function populateLogs(history) {
+        const listContainer = document.getElementById("weight-history-list");
+        if (!history || history.length === 0) {
+            listContainer.innerHTML = `<div class="text-center text-secondary py-4">No weight logs found. Please record a weight.</div>`;
+            return;
+        }
+        
+        // Sort history by date descending for list display
+        const sortedHistory = [...history].sort((a, b) => b.date.localeCompare(a.date));
+        
+        listContainer.innerHTML = sortedHistory.map(log => `
+            <div class="log-item d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="text-light fw-bold fs-5">${log.weight.toFixed(1)} kg</span>
+                    <span class="text-secondary small ms-3"><i class="fa-regular fa-calendar me-1"></i>${log.date}</span>
+                </div>
+                <button class="btn btn-outline-danger btn-sm border-0" onclick="deleteWeightLog(${log.id})">
+                    <i class="fa-regular fa-trash-can"></i>
+                </button>
+            </div>
+        `).join('');
+    }
+
+    function populateAiInsights(data) {
+        const modelBadge = document.getElementById("model-type-badge");
+        if (data.is_calibrated) {
+            modelBadge.className = "insight-badge bg-success-subtle text-success border border-success-subtle";
+            modelBadge.innerHTML = `<i class="fa-solid fa-brain me-1"></i>ML-Tuned (${Math.round(data.beta_calibrated_kcal_per_kg)} kcal/kg)`;
+        } else {
+            modelBadge.className = "insight-badge bg-primary-subtle text-primary border border-primary-subtle";
+            modelBadge.innerHTML = `<i class="fa-solid fa-calculator me-1"></i>Physiologically Guided`;
+        }
+
+        const changeContainer = document.getElementById("ai-projected-change-container");
+        const lastForecast = data.forecast[data.forecast.length - 1];
+        const weightDiff = lastForecast.weight - data.current_weight;
+        
+        if (weightDiff > 0.05) {
+            changeContainer.innerHTML = `
+                <div class="d-flex align-items-center text-danger mb-1">
+                    <i class="fa-solid fa-chevron-up fs-4 me-2"></i>
+                    <span class="fw-bold fs-5">+${weightDiff.toFixed(2)} kg</span>
+                </div>
+                <p class="text-secondary small mb-0">Projected weight gain over the next 30 days based on your current surplus.</p>
+            `;
+        } else if (weightDiff < -0.05) {
+            changeContainer.innerHTML = `
+                <div class="d-flex align-items-center text-success mb-1">
+                    <i class="fa-solid fa-chevron-down fs-4 me-2"></i>
+                    <span class="fw-bold fs-5">${weightDiff.toFixed(2)} kg</span>
+                </div>
+                <p class="text-secondary small mb-0">Projected weight loss over the next 30 days based on your current deficit.</p>
+            `;
+        } else {
+            changeContainer.innerHTML = `
+                <div class="d-flex align-items-center text-info mb-1">
+                    <i class="fa-solid fa-circle-minus fs-4 me-2"></i>
+                    <span class="fw-bold fs-5">0.0 kg</span>
+                </div>
+                <p class="text-secondary small mb-0">Your weight is projected to remain stable at your current eating patterns.</p>
+            `;
+        }
+
+        const timeframeText = document.getElementById("ai-goal-timeframe");
+        const goalDiff = data.target_weight - data.current_weight;
+        
+        if (Math.abs(goalDiff) < 0.1) {
+            timeframeText.innerHTML = `<i class="fa-solid fa-circle-check text-success me-2"></i>Congratulations! You are currently at your target weight of <strong>${data.target_weight.toFixed(1)} kg</strong>. Eat at maintenance (<strong>${Math.round(data.tdee)} kcal/day</strong>) to hold this weight.`;
+        } else if (data.days_to_target) {
+            const verb = goalDiff < 0 ? "lose" : "gain";
+            const dir = goalDiff < 0 ? "deficit" : "surplus";
+            timeframeText.innerHTML = `
+                <i class="fa-regular fa-clock text-warning me-2"></i>
+                At your average daily ${dir} of <strong>${Math.round(Math.abs(data.avg_daily_surplus))} kcal</strong>, you will reach your target weight in approximately <strong>${data.days_to_target} days</strong>.
+                <br><br>
+                <i class="fa-solid fa-circle-info text-info me-2"></i>
+                To maintain this pace, target daily intakes around <strong>${Math.round(data.tdee + data.avg_daily_surplus)} kcal/day</strong>.
+            `;
+        } else {
+            const advice = goalDiff < 0 ? "deficit" : "surplus";
+            const currentIntakeType = data.avg_daily_surplus > 0 ? "surplus" : "deficit";
+            timeframeText.innerHTML = `
+                <i class="fa-solid fa-circle-exclamation text-danger me-2"></i>
+                Your current diet patterns (running a calorie ${currentIntakeType}) move you <strong>away</strong> from your target weight of <strong>${data.target_weight.toFixed(1)} kg</strong>.
+                <br><br>
+                <i class="fa-solid fa-lightbulb text-primary me-2"></i>
+                To lose weight, you must create a calorie <strong>deficit</strong> by consuming less than your TDEE (<strong>${Math.round(data.tdee)} kcal</strong>).
+            `;
+        }
+    }
+
+    function renderChart(history, forecast, targetWeight) {
+        const ctx = document.getElementById('weightPredictionChart').getContext('2d');
+        
+        // Compile labels (dates)
+        const historyLabels = history.map(h => h.date);
+        const forecastLabels = forecast.map(f => f.date);
+        const allLabels = [...historyLabels, ...forecastLabels];
+        
+        // Compile datasets
+        const historyData = history.map(h => h.weight);
+        
+        // To draw continuous line, the first forecast point should overlap the last history point
+        const forecastStartIdx = historyLabels.length > 0 ? historyLabels.length - 1 : 0;
+        const forecastData = new Array(allLabels.length).fill(null);
+        
+        if (history.length > 0) {
+            forecastData[forecastStartIdx] = history[history.length - 1].weight;
+        } else if (forecast.length > 0) {
+            forecastData[0] = forecast[0].weight;
+        }
+        
+        forecast.forEach((f, idx) => {
+            forecastData[forecastStartIdx + idx + (historyLabels.length > 0 ? 1 : 0)] = f.weight;
+        });
+
+        // Extend history data to match label dimensions with nulls
+        const fullHistoryData = [...historyData];
+        while (fullHistoryData.length < allLabels.length) {
+            fullHistoryData.push(null);
+        }
+
+        const targetData = new Array(allLabels.length).fill(targetWeight);
+
+        if (predictionChart) {
+            predictionChart.destroy();
+        }
+
+        const isDark = document.body.classList.contains("dark-theme");
+        const gridColor = isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.05)";
+        const textColor = isDark ? "#94a3b8" : "#475569";
+
+        predictionChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: allLabels,
+                datasets: [
+                    {
+                        label: 'Historical Weight',
+                        data: fullHistoryData,
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#3b82f6',
+                        pointRadius: historyLabels.length > 30 ? 0 : 4,
+                        spanGaps: false,
+                        fill: true
+                    },
+                    {
+                        label: 'Predicted Forecast (30d)',
+                        data: forecastData,
+                        borderColor: '#06b6d4',
+                        borderWidth: 3,
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        spanGaps: true,
+                        fill: false
+                    },
+                    {
+                        label: 'Target Weight',
+                        data: targetData,
+                        borderColor: 'rgba(239, 68, 68, 0.7)',
+                        borderWidth: 2,
+                        borderDash: [3, 3],
+                        pointRadius: 0,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: textColor,
+                            font: {
+                                family: 'Inter',
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: gridColor
+                        },
+                        ticks: {
+                            color: textColor,
+                            maxTicksLimit: 10,
+                            font: {
+                                size: 10
+                            }
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: gridColor
+                        },
+                        ticks: {
+                            color: textColor,
+                            font: {
+                                size: 11
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function handleProfileSave(e) {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const payload = {
+            age: parseInt(formData.get("age")),
+            gender: formData.get("gender"),
+            height: parseFloat(formData.get("height")),
+            activity_level: formData.get("activity_level"),
+            initial_weight: parseFloat(formData.get("initial_weight")),
+            target_weight: parseFloat(formData.get("target_weight"))
+        };
+
+        fetch('/api/profile', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                showToast("Health profile saved successfully", "success");
+                profileModalInstance.hide();
+                refreshDashboard();
+            } else {
+                showToast(data.error || "Failed to save profile", "error");
+            }
+        })
+        .catch(err => {
+            console.error("Save profile error:", err);
+            showToast("Network error occurred", "error");
+        });
+    }
+
+    function handleWeightLog(e) {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const payload = {
+            weight: parseFloat(formData.get("weight")),
+            date: formData.get("date")
+        };
+
+        fetch('/api/weight/log', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                showToast("Weight logged successfully", "success");
+                form.reset();
+                // Reset date to today after submit
+                document.querySelector('input[name="date"]').value = new Date().toISOString().split('T')[0];
+                refreshDashboard();
+            } else {
+                showToast(data.error || "Failed to log weight", "error");
+            }
+        })
+        .catch(err => {
+            console.error("Weight log error:", err);
+            showToast("Network error occurred", "error");
+        });
+    }
+
+    function deleteWeightLog(id) {
+        if (!confirm("Are you sure you want to delete this weight log record?")) return;
+
+        fetch(`/api/weight/log/${id}`, { method: 'DELETE' })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    showToast("Log entry deleted", "success");
+                    refreshDashboard();
+                } else {
+                    showToast(data.error || "Failed to delete log entry", "error");
+                }
+            })
+            .catch(err => {
+                console.error("Delete log error:", err);
+                showToast("Network error occurred", "error");
+            });
+    }
+
+    function openProfileModal() {
+        // Fetch current profile and populate
+        fetch('/api/profile')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success && data.profile) {
+                    const p = data.profile;
+                    document.getElementById("edit-age").value = p.age;
+                    document.getElementById("edit-gender").value = p.gender;
+                    document.getElementById("edit-height").value = p.height;
+                    document.getElementById("edit-activity_level").value = p.activity_level;
+                    document.getElementById("edit-initial_weight").value = p.initial_weight;
+                    document.getElementById("edit-target_weight").value = p.target_weight;
+                    
+                    profileModalInstance.show();
+                } else {
+                    showToast("Failed to load profile data", "error");
+                }
+            });
+    }
+
+    // Helper: Toast notifications (maps to app custom toast if present, otherwise fallback alert)
+    function showToast(message, type = "success") {
+        // Fallback to JS Alert if no custom UI element
+        const alertClass = type === "success" ? "alert-success" : "alert-danger";
+        const icon = type === "success" ? "fa-circle-check" : "fa-circle-exclamation";
+        
+        const toastDiv = document.createElement("div");
+        toastDiv.style.position = "fixed";
+        toastDiv.style.top = "20px";
+        toastDiv.style.right = "20px";
+        toastDiv.style.zIndex = "9999";
+        toastDiv.className = `alert ${alertClass} shadow-lg d-flex align-items-center p-3 rounded-lg border-0`;
+        toastDiv.innerHTML = `<i class="fa-solid ${icon} me-2 fs-5"></i><div>${message}</div>`;
+        
+        document.body.appendChild(toastDiv);
+        setTimeout(() => {
+            toastDiv.style.transition = "opacity 0.5s ease";
+            toastDiv.style.opacity = "0";
+            setTimeout(() => toastDiv.remove(), 500);
+        }, 3000);
+    }
+</script>
+{% endblock %}

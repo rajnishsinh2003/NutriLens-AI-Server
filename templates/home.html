@@ -1,0 +1,307 @@
+{% extends 'base.html' %}
+
+{% block title %}Nutrifexa AI - Premium Food Scan Dashboard{% endblock %}
+
+{% block breadcrumb %}Home{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-2">
+    <!-- Hero Section -->
+    <div class="row align-items-center mb-5 hero-row g-4">
+        <div class="col-lg-6" data-aos="fade-right">
+            <span class="badge bg-primary-subtle text-primary mb-3 px-3 py-2 fw-semibold text-uppercase tracking-wider">
+                <i class="fa-solid fa-microscope me-2"></i>AI Healthcare Innovation
+            </span>
+            <h1 class="hero-title fw-extrabold text-light mb-3">
+                Smart Food Recognition & <br>
+                <span class="gradient-text">Calorie Estimation</span>
+            </h1>
+            <p class="hero-desc text-secondary mb-4 leading-relaxed">
+                Nutrifexa AI is a clinical-grade artificial intelligence platform that leverages computer vision to
+                automatically detect food items from images, estimate serving portion weights, and calculate detailed
+                nutritional values instantly.
+            </p>
+            <div class="d-flex flex-wrap gap-3 mb-4">
+                <a href="/predict" class="btn btn-primary btn-gradient px-4 py-3 fw-semibold shadow-sm hover-up">
+                    <i class="fa-solid fa-cloud-arrow-up me-2"></i>Upload Food Image
+                </a>
+                <a href="/predict?demo=true" class="btn btn-outline-secondary px-4 py-3 fw-semibold hover-up">
+                    <i class="fa-solid fa-circle-play me-2"></i>Try Demo
+                </a>
+            </div>
+
+            <!-- Tech badges -->
+            <div class="tech-badges-group pt-2">
+                <span class="tech-badge"><i class="fa-brands fa-python text-warning me-1"></i> Flask</span>
+                <span class="tech-badge"><i class="fa-solid fa-cubes text-info me-1"></i> PyTorch</span>
+                <span class="tech-badge"><i class="fa-solid fa-eye text-success me-1"></i> YOLOv8</span>
+                <span class="tech-badge"><i class="fa-solid fa-circle-notch text-primary me-1"></i>
+                    EfficientNet-B3</span>
+                <span class="tech-badge"><i class="fa-solid fa-chart-simple text-danger me-1"></i> Chart.js</span>
+            </div>
+        </div>
+
+        <div class="col-lg-6 text-center" data-aos="fade-left" data-aos-delay="200">
+            <div class="hero-image-container">
+                <div class="hero-image-glow"></div>
+                <img src="/static/images/hero_illustration.png" alt="Nutrifexa AI Scanner Illustration"
+                    class="img-fluid hero-illustration-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Stats Cards Row -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="glass-card stat-card p-4">
+                <div class="stat-icon-wrapper bg-primary-subtle text-primary">
+                    <i class="fa-solid fa-tags"></i>
+                </div>
+                <div class="stat-content mt-3">
+                    <h2 class="stat-number count-up text-light fw-bold mb-1" data-target="{{ class_count }}">0</h2>
+                    <p class="stat-label text-secondary mb-0">Food Classes Supported</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="glass-card stat-card p-4">
+                <div class="stat-icon-wrapper bg-success-subtle text-success">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div class="stat-content mt-3">
+                    <h2 class="stat-number count-up-decimal text-light fw-bold mb-1" data-target="93.36">0.0</h2>
+                    <p class="stat-label text-secondary mb-0">Validation Accuracy</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="glass-card stat-card p-4">
+                <div class="stat-icon-wrapper bg-info-subtle text-info">
+                    <i class="fa-solid fa-images"></i>
+                </div>
+                <div class="stat-content mt-3">
+                    <h2 class="stat-number count-up text-light fw-bold mb-1" data-target="7776">0</h2>
+                    <p class="stat-label text-secondary mb-0">Training Images</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="glass-card stat-card p-4">
+                <div class="stat-icon-wrapper bg-danger-subtle text-danger">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div class="stat-content mt-3">
+                    <h2 class="stat-number count-up text-light fw-bold mb-1" data-target="94.11">0</h2>
+                    <p class="stat-label text-secondary mb-0">Training Accuracy (%)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DAILY HYDRATION & PACKAGED BARCODE WIDGETS -->
+    <div class="row g-4 mb-5" data-aos="fade-up">
+        <!-- Water Intake Tracker Card (Feature 12) -->
+        <div class="col-lg-7">
+            <div class="glass-card p-4 h-100">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h3 class="card-title text-light fw-bold mb-0">
+                        <i class="fa-solid fa-droplet text-info me-2"></i>Daily Water Intake Tracker
+                    </h3>
+                    <span class="badge bg-info-subtle text-info fw-bold" id="water-badge">0 / 8 Glasses</span>
+                </div>
+                <div class="d-flex align-items-center gap-4 my-3">
+                    <div class="p-3 bg-dark bg-opacity-40 rounded-3 border border-secondary-subtle text-center" style="min-width: 130px;">
+                        <i class="fa-solid fa-glass-water text-info fs-1 mb-2 d-block"></i>
+                        <strong class="text-light fs-4 d-block" id="water-glasses-count">0 / 8</strong>
+                        <span class="text-secondary xx-small text-uppercase">Glasses (<span id="water-volume-ml">0</span> ml)</span>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-secondary small">Daily Goal (2,000 ml)</span>
+                            <span class="text-light fw-semibold small" id="water-percentage">0%</span>
+                        </div>
+                        <div class="progress mb-3" style="height: 10px;">
+                            <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" role="progressbar" id="water-progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-outline-info btn-sm fw-bold px-3" onclick="updateWaterIntake(1)">
+                                <i class="fa-solid fa-plus me-1"></i> Add Glass (+250ml)
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm px-3" onclick="updateWaterIntake(-1)">
+                                <i class="fa-solid fa-minus me-1"></i> Remove
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Packaged Barcode Quick Search Card (Feature 11) -->
+        <div class="col-lg-5">
+            <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+                <div>
+                    <h3 class="card-title text-light fw-bold mb-3">
+                        <i class="fa-solid fa-barcode text-primary me-2"></i>Packaged Food Barcode
+                    </h3>
+                    <p class="text-secondary small mb-3">
+                        Scan or enter 13-digit EAN/UPC barcodes for instant nutrition facts on Maggi, Oats, Biscuits, Chips, Milk & Snacks.
+                    </p>
+                </div>
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control bg-dark text-light border-secondary small" id="barcode-quick-input" placeholder="Enter barcode (e.g. 8901058852312)">
+                    <button class="btn btn-primary btn-gradient" type="button" onclick="searchBarcodeHome()">
+                        <i class="fa-solid fa-magnifying-glass"></i> Search
+                    </button>
+                </div>
+                <div class="small text-secondary xx-small">
+                    Quick test: <code>8901058852312</code> (Maggi) | <code>8901491101820</code> (Lays)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Architecture & System Monitor -->
+    <div class="row g-4 mb-5">
+        <!-- Model Specifications Card -->
+        <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
+            <div class="glass-card p-4 h-100">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h3 class="card-title text-light fw-bold mb-0">
+                        <i class="fa-solid fa-brain text-primary me-2"></i>AI Classifier Details
+                    </h3>
+                    <span class="badge bg-success-subtle text-success">Active</span>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <div class="p-3 rounded border border-secondary-subtle bg-dark-subtle">
+                            <span class="text-secondary small d-block mb-1">Architecture</span>
+                            <span class="text-light fw-semibold fs-5">EfficientNet-B3</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="p-3 rounded border border-secondary-subtle bg-dark-subtle">
+                            <span class="text-secondary small d-block mb-1">Deep Learning Framework</span>
+                            <span class="text-light fw-semibold fs-5"><i class="fa-solid fa-cubes text-info me-1"></i>
+                                PyTorch</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="p-3 rounded border border-secondary-subtle bg-dark-subtle">
+                            <span class="text-secondary small d-block mb-1">Input Image Dim</span>
+                            <span class="text-light fw-semibold fs-5">300 × 300 Pixels</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="p-3 rounded border border-secondary-subtle bg-dark-subtle">
+                            <span class="text-secondary small d-block mb-1">Object Detection Layer</span>
+                            <span class="text-light fw-semibold fs-5">YOLOv8 Nano (Plate crop)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-top border-secondary-subtle text-secondary small">
+                    <i class="fa-solid fa-circle-info text-info me-2"></i>The system runs YOLOv8 to segment and crop the
+                    dish before feeding the pixels to the EfficientNet-B3 backbone. It automatically flags images with
+                    multiple items to ensure single-food compliance.
+                </div>
+            </div>
+        </div>
+
+        <!-- Hardware Health / GPU Status Card -->
+        <div class="col-lg-5" data-aos="fade-up" data-aos-delay="200">
+            <div class="glass-card p-4 h-100">
+                <h3 class="card-title text-light fw-bold mb-4">
+                    <i class="fa-solid fa-microchip text-success me-2"></i>Inference Engine Status
+                </h3>
+
+                <div class="mb-4">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="text-light fw-medium">Active Inference Hardware</span>
+                        <span class="badge bg-primary text-uppercase">{{ device }}</span>
+                    </div>
+                    <div class="d-flex align-items-center p-3 rounded border border-secondary-subtle bg-dark-subtle">
+                        <i class="fa-solid fa-server text-secondary fs-3 me-3"></i>
+                        <div>
+                            <span class="text-secondary small d-block">Device Target</span>
+                            <strong class="text-light">{% if device == 'GPU' %}NVIDIA CUDA-Enabled GPU{% else %}System
+                                CPU Thread Pool{% endif %}</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="text-light fw-medium d-block mb-2">Hardware Performance Simulation</span>
+                    <div class="row g-2 text-center">
+                        <div class="col-6">
+                            <div class="p-2 border border-secondary-subtle rounded bg-dark-subtle">
+                                <span class="text-secondary small d-block">Latency</span>
+                                <strong class="text-primary">~180ms</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-2 border border-secondary-subtle rounded bg-dark-subtle">
+                                <span class="text-secondary small d-block">Memory Usage</span>
+                                <strong class="text-success">~432MB</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-2 text-secondary small">
+                    <span class="d-flex align-items-center">
+                        <span class="status-indicator online me-2"></span> System health normal. Model loaded
+                        dynamically at startup.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Count-up animation for stats
+    document.addEventListener("DOMContentLoaded", () => {
+        const counters = document.querySelectorAll(".count-up");
+        const decimals = document.querySelectorAll(".count-up-decimal");
+
+        counters.forEach(counter => {
+            const target = +counter.getAttribute("data-target");
+            const speed = 200; // lower is faster
+
+            const updateCount = () => {
+                const count = +counter.innerText;
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCount();
+        });
+
+        decimals.forEach(decimal => {
+            const target = parseFloat(decimal.getAttribute("data-target"));
+            let current = 0.0;
+            const step = target / 100;
+
+            const updateDecimal = () => {
+                if (current < target) {
+                    current += step;
+                    if (current > target) current = target;
+                    decimal.innerText = current.toFixed(2) + "%";
+                    setTimeout(updateDecimal, 10);
+                } else {
+                    decimal.innerText = target.toFixed(2) + "%";
+                }
+            };
+            updateDecimal();
+        });
+    });
+</script>
+{% endblock %}

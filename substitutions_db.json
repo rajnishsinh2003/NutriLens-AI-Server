@@ -1,0 +1,503 @@
+{
+    "_meta": {
+        "description": "Nutrifexa AI Plate Mutator — Diet-specific food substitutions database",
+        "version": "1.0",
+        "diets": ["keto", "diabetic", "high_protein", "low_calorie", "vegan"]
+    },
+
+    "category_defaults": {
+        "curry": {
+            "keto":         { "tip": "Use coconut cream instead of onion-tomato base to reduce carbs. Add extra ghee for healthy fats.", "cal_mult": 0.85, "carb_mult": 0.30, "protein_mult": 1.10, "fat_mult": 1.60 },
+            "diabetic":     { "tip": "Replace potato with lauki/bottle gourd. Use minimal oil and add methi (fenugreek) leaves for blood sugar control.", "cal_mult": 0.70, "carb_mult": 0.45, "protein_mult": 1.05, "fat_mult": 0.60 },
+            "high_protein": { "tip": "Add paneer cubes, tofu, or boiled egg whites to boost protein content.", "cal_mult": 1.05, "carb_mult": 0.90, "protein_mult": 1.80, "fat_mult": 0.85 },
+            "low_calorie":  { "tip": "Use water-based gravy with minimal oil. Steam vegetables instead of frying. Add lemon for flavor.", "cal_mult": 0.55, "carb_mult": 0.65, "protein_mult": 1.00, "fat_mult": 0.30 },
+            "vegan":        { "tip": "Replace ghee/butter with cold-pressed coconut oil. Use cashew cream instead of dairy cream.", "cal_mult": 0.95, "carb_mult": 1.00, "protein_mult": 0.85, "fat_mult": 1.05 }
+        },
+        "bread": {
+            "keto":         { "tip": "Replace wheat flour with almond flour or coconut flour. Use psyllium husk as binding agent.", "cal_mult": 0.80, "carb_mult": 0.20, "protein_mult": 1.40, "fat_mult": 2.00 },
+            "diabetic":     { "tip": "Use multigrain atta with oat bran and flaxseed. Add cinnamon to the dough for insulin sensitivity.", "cal_mult": 0.85, "carb_mult": 0.60, "protein_mult": 1.20, "fat_mult": 0.90 },
+            "high_protein": { "tip": "Add whey protein or chickpea flour to the dough. Serve with a side of paneer or egg.", "cal_mult": 1.10, "carb_mult": 0.80, "protein_mult": 2.20, "fat_mult": 0.95 },
+            "low_calorie":  { "tip": "Use ragi (finger millet) flour. Make thinner rotis and skip the ghee topping.", "cal_mult": 0.60, "carb_mult": 0.70, "protein_mult": 1.10, "fat_mult": 0.25 },
+            "vegan":        { "tip": "Already vegan-friendly! Use flaxseed meal for extra omega-3 and skip ghee for olive oil.", "cal_mult": 0.95, "carb_mult": 1.00, "protein_mult": 1.00, "fat_mult": 0.90 }
+        },
+        "rice_dish": {
+            "keto":         { "tip": "Replace white rice with cauliflower rice. Use ghee for sautéing and add extra paneer/meat.", "cal_mult": 0.45, "carb_mult": 0.12, "protein_mult": 1.30, "fat_mult": 1.50 },
+            "diabetic":     { "tip": "Use hand-pounded brown rice or quinoa. Add a tablespoon of virgin coconut oil while cooking to reduce glycemic index.", "cal_mult": 0.80, "carb_mult": 0.55, "protein_mult": 1.15, "fat_mult": 0.85 },
+            "high_protein": { "tip": "Add grilled chicken, boiled eggs, or roasted chickpeas on top. Use quinoa instead of white rice.", "cal_mult": 1.10, "carb_mult": 0.70, "protein_mult": 2.00, "fat_mult": 1.00 },
+            "low_calorie":  { "tip": "Replace half the rice with shredded cabbage or konjac rice. Use minimal oil and load with vegetables.", "cal_mult": 0.50, "carb_mult": 0.40, "protein_mult": 1.00, "fat_mult": 0.35 },
+            "vegan":        { "tip": "Replace meat with marinated tofu or jackfruit. Use coconut milk instead of yogurt-based marinades.", "cal_mult": 0.85, "carb_mult": 1.00, "protein_mult": 0.75, "fat_mult": 0.80 }
+        },
+        "dessert": {
+            "keto":         { "tip": "Replace sugar with erythritol or stevia. Use almond flour and coconut cream for the base.", "cal_mult": 0.55, "carb_mult": 0.15, "protein_mult": 1.30, "fat_mult": 1.80 },
+            "diabetic":     { "tip": "Use jaggery powder (in small amounts) or stevia instead of refined sugar. Add nuts for slower glucose absorption.", "cal_mult": 0.60, "carb_mult": 0.35, "protein_mult": 1.20, "fat_mult": 0.80 },
+            "high_protein": { "tip": "Add protein powder, Greek yogurt, or crushed almonds. Replace refined flour with chickpea flour.", "cal_mult": 0.90, "carb_mult": 0.60, "protein_mult": 2.50, "fat_mult": 0.85 },
+            "low_calorie":  { "tip": "Replace sugar syrup with a light stevia glaze. Use skimmed milk instead of full-fat khoya. Reduce ghee by 75%.", "cal_mult": 0.40, "carb_mult": 0.45, "protein_mult": 1.00, "fat_mult": 0.20 },
+            "vegan":        { "tip": "Replace ghee with coconut oil, khoya with cashew cream, and milk with oat milk.", "cal_mult": 0.90, "carb_mult": 1.05, "protein_mult": 0.70, "fat_mult": 0.95 }
+        },
+        "snack": {
+            "keto":         { "tip": "Replace besan batter with egg and almond flour coating. Deep fry in avocado oil or air-fry.", "cal_mult": 0.75, "carb_mult": 0.20, "protein_mult": 1.50, "fat_mult": 1.40 },
+            "diabetic":     { "tip": "Bake instead of deep frying. Use whole wheat or oats coating and add a sprinkle of cinnamon.", "cal_mult": 0.65, "carb_mult": 0.50, "protein_mult": 1.10, "fat_mult": 0.45 },
+            "high_protein": { "tip": "Stuff with paneer, chicken mince, or soy chunks. Add a protein-rich dipping sauce.", "cal_mult": 1.05, "carb_mult": 0.80, "protein_mult": 2.20, "fat_mult": 0.90 },
+            "low_calorie":  { "tip": "Air-fry instead of deep frying. Use a thin spray of oil. Fill with leafy greens and sprouts.", "cal_mult": 0.45, "carb_mult": 0.60, "protein_mult": 1.05, "fat_mult": 0.20 },
+            "vegan":        { "tip": "Replace paneer with tofu, use flax eggs instead of eggs, and coat with rice flour.", "cal_mult": 0.90, "carb_mult": 1.00, "protein_mult": 0.80, "fat_mult": 0.95 }
+        },
+        "drink": {
+            "keto":         { "tip": "Skip the sugar entirely. Use full-fat cream and a pinch of stevia for sweetness.", "cal_mult": 0.70, "carb_mult": 0.20, "protein_mult": 1.20, "fat_mult": 1.80 },
+            "diabetic":     { "tip": "Replace sugar with stevia. Add a pinch of cinnamon and use low-fat dairy.", "cal_mult": 0.55, "carb_mult": 0.30, "protein_mult": 1.10, "fat_mult": 0.60 },
+            "high_protein": { "tip": "Blend in whey protein powder or add Greek yogurt for a protein boost.", "cal_mult": 1.10, "carb_mult": 0.85, "protein_mult": 2.50, "fat_mult": 0.90 },
+            "low_calorie":  { "tip": "Use skimmed milk, skip the sugar, and add ice for volume without calories.", "cal_mult": 0.40, "carb_mult": 0.50, "protein_mult": 1.00, "fat_mult": 0.15 },
+            "vegan":        { "tip": "Replace dairy with almond milk, oat milk, or coconut milk.", "cal_mult": 0.80, "carb_mult": 1.10, "protein_mult": 0.60, "fat_mult": 0.85 }
+        }
+    },
+
+    "food_to_category": {
+        "adhirasam": "dessert",
+        "aloo fry": "snack",
+        "aloo gobi": "curry",
+        "aloo matar": "curry",
+        "aloo methi": "curry",
+        "aloo shimla mirch": "curry",
+        "aloo tikki": "snack",
+        "anarsa": "dessert",
+        "ariselu": "dessert",
+        "bandar laddu": "dessert",
+        "basundi": "dessert",
+        "beetroot": "curry",
+        "bhatura": "bread",
+        "bhindi masala": "curry",
+        "biryani": "rice_dish",
+        "bitter gourd": "curry",
+        "boondi": "dessert",
+        "butter chicken": "curry",
+        "chak hao kheer": "dessert",
+        "cham cham": "dessert",
+        "chana masala": "curry",
+        "chapati": "bread",
+        "chhena kheeri": "dessert",
+        "chicken razala": "curry",
+        "chicken tikka": "snack",
+        "chicken tikka masala": "curry",
+        "chikki": "dessert",
+        "daal baati churma": "curry",
+        "daal puri": "bread",
+        "dal curry": "curry",
+        "dal makhani": "curry",
+        "dal tadka": "curry",
+        "dharwad pedha": "dessert",
+        "doodhpak": "dessert",
+        "dosa": "bread",
+        "double ka meetha": "dessert",
+        "dum aloo": "curry",
+        "gajar ka halwa": "dessert",
+        "gavvalu": "dessert",
+        "ghevar": "dessert",
+        "gulab jamun": "dessert",
+        "idly": "bread",
+        "imarti": "dessert",
+        "jalebi": "dessert",
+        "kachori": "snack",
+        "kadai paneer": "curry",
+        "kadhi pakoda": "curry",
+        "kajjikaya": "dessert",
+        "kakinada khaja": "dessert",
+        "kalakand": "dessert",
+        "karela bharta": "curry",
+        "kebab": "snack",
+        "kofta": "curry",
+        "kuzhi paniyaram": "snack",
+        "lassi": "drink",
+        "ledikeni": "dessert",
+        "litti chokha": "snack",
+        "lyangcha": "dessert",
+        "maach jhol": "curry",
+        "makki di roti sarson da saag": "curry",
+        "malapua": "dessert",
+        "mango pickle": "snack",
+        "misi roti": "bread",
+        "misti doi": "dessert",
+        "modak": "dessert",
+        "mysore pak": "dessert",
+        "naan": "bread",
+        "navrattan korma": "curry",
+        "palak paneer": "curry",
+        "paneer butter masala": "curry",
+        "phirni": "dessert",
+        "pithe": "dessert",
+        "poha": "rice_dish",
+        "poornalu": "dessert",
+        "pootharekulu": "dessert",
+        "puri": "bread",
+        "qubani ka meetha": "dessert",
+        "rabri": "dessert",
+        "rajma chawal": "rice_dish",
+        "rasgulla": "dessert",
+        "rasmalai": "dessert",
+        "roti": "bread",
+        "sambar": "curry",
+        "samosa": "snack",
+        "sandesh": "dessert",
+        "shankarpali": "snack",
+        "sheer korma": "dessert",
+        "sheera": "dessert",
+        "shrikhand": "dessert",
+        "sohan halwa": "dessert",
+        "sohan papdi": "dessert",
+        "sutar feni": "dessert",
+        "unni appam": "dessert",
+        "vada": "snack"
+    },
+
+    "specific_swaps": {
+        "biryani": {
+            "keto": {
+                "swaps": [
+                    { "original": "White Basmati Rice", "replacement": "Cauliflower Rice", "impact": "-45g carbs" },
+                    { "original": "Potato pieces", "replacement": "Paneer cubes", "impact": "+8g protein" },
+                    { "original": "Vegetable oil", "replacement": "Ghee / Avocado oil", "impact": "Healthy fats" }
+                ]
+            },
+            "diabetic": {
+                "swaps": [
+                    { "original": "White Basmati Rice", "replacement": "Brown Rice / Quinoa", "impact": "Lower GI" },
+                    { "original": "Sugar in marinade", "replacement": "Skip sugar", "impact": "-5g sugar" },
+                    { "original": "Refined oil", "replacement": "Virgin Coconut Oil (1 tbsp)", "impact": "Reduces GI of rice" }
+                ]
+            },
+            "high_protein": {
+                "swaps": [
+                    { "original": "Half the rice", "replacement": "Grilled Chicken / Paneer", "impact": "+20g protein" },
+                    { "original": "Garnish", "replacement": "Boiled Egg halves", "impact": "+6g protein" },
+                    { "original": "White Rice", "replacement": "Quinoa", "impact": "+4g protein" }
+                ]
+            },
+            "low_calorie": {
+                "swaps": [
+                    { "original": "Half the rice", "replacement": "Shredded Cabbage", "impact": "-150 kcal" },
+                    { "original": "3 tbsp oil", "replacement": "1 tsp oil (air fry)", "impact": "-120 kcal" },
+                    { "original": "Fried onions", "replacement": "Raw onion rings", "impact": "-40 kcal" }
+                ]
+            },
+            "vegan": {
+                "swaps": [
+                    { "original": "Chicken / Mutton", "replacement": "Jackfruit / Soy Chunks", "impact": "Plant protein" },
+                    { "original": "Yogurt marinade", "replacement": "Cashew yogurt", "impact": "Dairy-free" },
+                    { "original": "Ghee", "replacement": "Coconut oil", "impact": "Vegan fat" }
+                ]
+            }
+        },
+        "butter chicken": {
+            "keto": {
+                "swaps": [
+                    { "original": "Tomato-onion gravy", "replacement": "Cream & butter base", "impact": "-10g carbs" },
+                    { "original": "Serve with naan", "replacement": "Serve with almond flour naan", "impact": "-35g carbs" }
+                ]
+            },
+            "diabetic": {
+                "swaps": [
+                    { "original": "Heavy cream", "replacement": "Low-fat yogurt", "impact": "-8g fat" },
+                    { "original": "Sugar in sauce", "replacement": "Skip sugar", "impact": "-4g sugar" },
+                    { "original": "Serve with naan", "replacement": "Serve with multigrain roti", "impact": "Lower GI" }
+                ]
+            },
+            "high_protein": {
+                "swaps": [
+                    { "original": "Standard portion", "replacement": "Double chicken, half gravy", "impact": "+25g protein" }
+                ]
+            },
+            "low_calorie": {
+                "swaps": [
+                    { "original": "Heavy cream + butter", "replacement": "Cashew paste (2 tbsp)", "impact": "-180 kcal" },
+                    { "original": "Deep-fried chicken", "replacement": "Grilled tandoori chicken", "impact": "-100 kcal" }
+                ]
+            },
+            "vegan": {
+                "swaps": [
+                    { "original": "Chicken", "replacement": "Soy chunks / Cauliflower", "impact": "Plant-based" },
+                    { "original": "Butter & cream", "replacement": "Coconut cream + vegan butter", "impact": "Dairy-free" }
+                ]
+            }
+        },
+        "samosa": {
+            "keto": {
+                "swaps": [
+                    { "original": "Maida (refined flour) shell", "replacement": "Cheese/Almond flour shell", "impact": "-20g carbs" },
+                    { "original": "Potato filling", "replacement": "Paneer + spinach filling", "impact": "-15g carbs" },
+                    { "original": "Deep frying", "replacement": "Air fry in ghee spray", "impact": "Healthy fats" }
+                ]
+            },
+            "diabetic": {
+                "swaps": [
+                    { "original": "Potato filling", "replacement": "Cauliflower + peas filling", "impact": "Lower GI" },
+                    { "original": "Maida shell", "replacement": "Whole wheat shell", "impact": "More fiber" },
+                    { "original": "Deep frying", "replacement": "Baked in oven", "impact": "-60% fat" }
+                ]
+            },
+            "high_protein": {
+                "swaps": [
+                    { "original": "Potato filling", "replacement": "Chicken keema / Soy keema", "impact": "+18g protein" },
+                    { "original": "Plain shell", "replacement": "Add chickpea flour to dough", "impact": "+5g protein" }
+                ]
+            },
+            "low_calorie": {
+                "swaps": [
+                    { "original": "Deep frying", "replacement": "Air fry (no oil)", "impact": "-150 kcal" },
+                    { "original": "Potato filling", "replacement": "Mixed veggie + sprouts", "impact": "-60 kcal" },
+                    { "original": "Maida shell (thick)", "replacement": "Thin rice paper wrap", "impact": "-80 kcal" }
+                ]
+            },
+            "vegan": {
+                "swaps": [
+                    { "original": "Ghee in dough", "replacement": "Olive oil", "impact": "Vegan fat" }
+                ]
+            }
+        },
+        "gulab jamun": {
+            "keto": {
+                "swaps": [
+                    { "original": "Khoya + maida balls", "replacement": "Almond flour + cream cheese balls", "impact": "-30g carbs" },
+                    { "original": "Sugar syrup", "replacement": "Erythritol syrup", "impact": "Zero sugar" }
+                ]
+            },
+            "diabetic": {
+                "swaps": [
+                    { "original": "Sugar syrup", "replacement": "Stevia-based light syrup", "impact": "No sugar spike" },
+                    { "original": "Maida", "replacement": "Oat flour", "impact": "More fiber" }
+                ]
+            },
+            "high_protein": {
+                "swaps": [
+                    { "original": "Khoya", "replacement": "Whey protein khoya", "impact": "+12g protein" },
+                    { "original": "Maida", "replacement": "Chickpea flour", "impact": "+5g protein" }
+                ]
+            },
+            "low_calorie": {
+                "swaps": [
+                    { "original": "Deep frying", "replacement": "Steam + light bake", "impact": "-120 kcal" },
+                    { "original": "Sugar syrup soak", "replacement": "Light stevia glaze", "impact": "-100 kcal" },
+                    { "original": "Full-fat khoya", "replacement": "Skimmed milk solids", "impact": "-60 kcal" }
+                ]
+            },
+            "vegan": {
+                "swaps": [
+                    { "original": "Khoya (milk solids)", "replacement": "Coconut milk solids", "impact": "Dairy-free" },
+                    { "original": "Ghee for frying", "replacement": "Coconut oil", "impact": "Vegan" }
+                ]
+            }
+        },
+        "palak paneer": {
+            "keto": {
+                "swaps": [
+                    { "original": "Onion-tomato base", "replacement": "Cream + butter base", "impact": "-8g carbs" },
+                    { "original": "Standard paneer", "replacement": "Extra paneer chunks", "impact": "+10g fat" }
+                ]
+            },
+            "high_protein": {
+                "swaps": [
+                    { "original": "Standard paneer", "replacement": "Tofu + paneer mix (double)", "impact": "+15g protein" },
+                    { "original": "Light spinach", "replacement": "Add edamame beans", "impact": "+8g protein" }
+                ]
+            },
+            "low_calorie": {
+                "swaps": [
+                    { "original": "Full-fat paneer", "replacement": "Low-fat paneer", "impact": "-80 kcal" },
+                    { "original": "Cream in gravy", "replacement": "Cashew paste (small)", "impact": "-50 kcal" }
+                ]
+            },
+            "vegan": {
+                "swaps": [
+                    { "original": "Paneer", "replacement": "Firm Tofu", "impact": "Plant protein" },
+                    { "original": "Cream", "replacement": "Coconut cream", "impact": "Dairy-free" },
+                    { "original": "Ghee", "replacement": "Olive oil", "impact": "Vegan fat" }
+                ]
+            }
+        },
+        "dosa": {
+            "keto": {
+                "swaps": [
+                    { "original": "Rice batter", "replacement": "Almond flour + egg batter", "impact": "-35g carbs" },
+                    { "original": "Potato masala filling", "replacement": "Cheese + mushroom filling", "impact": "-12g carbs" }
+                ]
+            },
+            "diabetic": {
+                "swaps": [
+                    { "original": "White rice batter", "replacement": "Moong dal + oats batter", "impact": "Lower GI" },
+                    { "original": "Potato masala", "replacement": "Mixed veggie filling", "impact": "More fiber" }
+                ]
+            },
+            "high_protein": {
+                "swaps": [
+                    { "original": "Rice batter", "replacement": "Moong dal + chana dal batter", "impact": "+12g protein" },
+                    { "original": "Potato filling", "replacement": "Paneer bhurji filling", "impact": "+10g protein" }
+                ]
+            },
+            "low_calorie": {
+                "swaps": [
+                    { "original": "Oil for roasting", "replacement": "Non-stick spray", "impact": "-80 kcal" },
+                    { "original": "Thick batter", "replacement": "Paper-thin dosa", "impact": "-60 kcal" }
+                ]
+            },
+            "vegan": {
+                "swaps": [
+                    { "original": "Ghee for roasting", "replacement": "Sesame oil", "impact": "Vegan" }
+                ]
+            }
+        },
+        "chapati": {
+            "keto": {
+                "swaps": [
+                    { "original": "Whole wheat flour", "replacement": "Almond flour + psyllium husk", "impact": "-25g carbs" },
+                    { "original": "Ghee topping", "replacement": "Butter (extra)", "impact": "More healthy fats" }
+                ]
+            },
+            "diabetic": {
+                "swaps": [
+                    { "original": "Regular atta", "replacement": "Multigrain atta + flaxseed", "impact": "Lower GI" },
+                    { "original": "2 chapatis", "replacement": "1 chapati + salad", "impact": "Portion control" }
+                ]
+            },
+            "high_protein": {
+                "swaps": [
+                    { "original": "Wheat flour", "replacement": "Soy flour + wheat blend", "impact": "+8g protein" },
+                    { "original": "Plain chapati", "replacement": "Stuffed with paneer", "impact": "+12g protein" }
+                ]
+            },
+            "low_calorie": {
+                "swaps": [
+                    { "original": "Regular thickness", "replacement": "Ultra-thin phulka", "impact": "-40 kcal" },
+                    { "original": "Ghee topping", "replacement": "Skip ghee", "impact": "-45 kcal" }
+                ]
+            },
+            "vegan": {
+                "swaps": [
+                    { "original": "Ghee", "replacement": "Olive oil", "impact": "Vegan" }
+                ]
+            }
+        },
+        "dal makhani": {
+            "keto": {
+                "swaps": [
+                    { "original": "Urad dal base", "replacement": "Reduce dal, add cream & butter", "impact": "-15g carbs" },
+                    { "original": "Serve with rice", "replacement": "Serve alone or with keto naan", "impact": "-40g carbs" }
+                ]
+            },
+            "high_protein": {
+                "swaps": [
+                    { "original": "Standard portion", "replacement": "Extra thick dal (double portion)", "impact": "+14g protein" },
+                    { "original": "Cream finish", "replacement": "Greek yogurt finish", "impact": "+5g protein" }
+                ]
+            },
+            "low_calorie": {
+                "swaps": [
+                    { "original": "Butter + cream", "replacement": "1 tsp ghee, no cream", "impact": "-150 kcal" },
+                    { "original": "Slow-cooked in butter", "replacement": "Pressure cook, light tadka", "impact": "-80 kcal" }
+                ]
+            },
+            "vegan": {
+                "swaps": [
+                    { "original": "Butter & cream", "replacement": "Coconut cream + vegan butter", "impact": "Dairy-free" }
+                ]
+            }
+        },
+        "naan": {
+            "keto": {
+                "swaps": [
+                    { "original": "Maida (refined flour)", "replacement": "Fathead dough (mozzarella + almond flour)", "impact": "-30g carbs" },
+                    { "original": "Yogurt in dough", "replacement": "Sour cream", "impact": "Keto-friendly" }
+                ]
+            },
+            "diabetic": {
+                "swaps": [
+                    { "original": "Maida", "replacement": "Whole wheat + oat flour", "impact": "Lower GI" },
+                    { "original": "Sugar in dough", "replacement": "Skip sugar", "impact": "-3g sugar" }
+                ]
+            },
+            "high_protein": {
+                "swaps": [
+                    { "original": "Maida", "replacement": "Chickpea flour + wheat blend", "impact": "+8g protein" },
+                    { "original": "Butter topping", "replacement": "Garlic butter + seeds", "impact": "+3g protein" }
+                ]
+            },
+            "low_calorie": {
+                "swaps": [
+                    { "original": "Maida + butter", "replacement": "Thin whole wheat kulcha", "impact": "-100 kcal" },
+                    { "original": "Butter brush", "replacement": "Light garlic spray", "impact": "-45 kcal" }
+                ]
+            },
+            "vegan": {
+                "swaps": [
+                    { "original": "Yogurt in dough", "replacement": "Plant-based yogurt", "impact": "Dairy-free" },
+                    { "original": "Butter", "replacement": "Vegan butter", "impact": "Vegan" }
+                ]
+            }
+        },
+        "rajma chawal": {
+            "keto": {
+                "swaps": [
+                    { "original": "White Rice", "replacement": "Cauliflower Rice", "impact": "-42g carbs" },
+                    { "original": "Rajma (kidney beans)", "replacement": "Reduce portion, add paneer", "impact": "-10g carbs" }
+                ]
+            },
+            "diabetic": {
+                "swaps": [
+                    { "original": "White Rice", "replacement": "Brown Rice", "impact": "Lower GI" },
+                    { "original": "Standard serving", "replacement": "More rajma, less rice", "impact": "More fiber" }
+                ]
+            },
+            "high_protein": {
+                "swaps": [
+                    { "original": "Standard rajma", "replacement": "Rajma + soy chunks mix", "impact": "+15g protein" },
+                    { "original": "White Rice", "replacement": "Quinoa", "impact": "+6g protein" }
+                ]
+            },
+            "low_calorie": {
+                "swaps": [
+                    { "original": "Full rice portion", "replacement": "Half rice + salad", "impact": "-130 kcal" },
+                    { "original": "Oil-based tadka", "replacement": "Dry roast spices", "impact": "-50 kcal" }
+                ]
+            },
+            "vegan": {
+                "swaps": [
+                    { "original": "Ghee tadka", "replacement": "Mustard oil", "impact": "Already vegan-friendly!" }
+                ]
+            }
+        }
+    },
+
+    "diet_metadata": {
+        "keto": {
+            "label": "Keto",
+            "icon": "fa-fire-flame-curved",
+            "color": "#f97316",
+            "description": "Very low carb, high fat diet for ketosis",
+            "badge_class": "bg-warning-subtle text-warning"
+        },
+        "diabetic": {
+            "label": "Diabetic-Friendly",
+            "icon": "fa-heart-pulse",
+            "color": "#ef4444",
+            "description": "Low glycemic index, controlled sugar intake",
+            "badge_class": "bg-danger-subtle text-danger"
+        },
+        "high_protein": {
+            "label": "High Protein",
+            "icon": "fa-dumbbell",
+            "color": "#3b82f6",
+            "description": "Maximize protein for muscle building",
+            "badge_class": "bg-primary-subtle text-primary"
+        },
+        "low_calorie": {
+            "label": "Low Calorie",
+            "icon": "fa-leaf",
+            "color": "#10b981",
+            "description": "Reduced calories for weight management",
+            "badge_class": "bg-success-subtle text-success"
+        },
+        "vegan": {
+            "label": "Vegan",
+            "icon": "fa-seedling",
+            "color": "#8b5cf6",
+            "description": "100% plant-based alternatives",
+            "badge_class": "bg-info-subtle text-info"
+        }
+    }
+}

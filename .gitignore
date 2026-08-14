@@ -1,0 +1,156 @@
+# ===========================
+# Python
+# ===========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# ===========================
+# Virtual Environment
+# ===========================
+.venv/
+venv/
+env/
+
+# ===========================
+# IDE
+# ===========================
+.vscode/
+.idea/
+
+# ===========================
+# Jupyter
+# ===========================
+.ipynb_checkpoints/
+
+# ===========================
+# Build
+# ===========================
+build/
+dist/
+*.egg-info/
+
+# ===========================
+# Logs
+# ===========================
+*.log
+
+# ===========================
+# Environment
+# ===========================
+.env
+.env.*
+
+# ===========================
+# Dataset Images
+# ===========================
+data/*
+!data/nutrition_db.json
+!data/substitutions_db.json
+
+dataset/
+datasets/
+dataset_split/
+
+# ===========================
+# Mobile Application
+# ===========================
+nutrilens_mobile/
+
+# ===========================
+# Training Files
+# ===========================
+train.py
+test.py
+prepare_dataset.py
+train_yolo.py
+filter_dataset.py
+
+runs/
+weights/
+checkpoints/
+
+# ===========================
+# Training Results
+# ===========================
+model/last_prediction.json
+model/test_metrics.json
+model/test_results.json
+model/training_curves.png
+model/training_history.json
+model/evaluation_results.json
+model/confusion_matrix.json
+model/confusion_matrix.png
+
+# ===========================
+# Cache
+# ===========================
+.cache/
+.pytest_cache/
+.mypy_cache/
+
+# ===========================
+# TensorBoard
+# ===========================
+events.out.tfevents.*
+
+# ===========================
+# Uploads
+# ===========================
+static/uploads/*
+!static/uploads/.gitkeep
+
+# ===========================
+# Local Database
+# ===========================
+history.db
+*.db
+*.sqlite
+*.sqlite3
+
+# ===========================
+# Temporary Files
+# ===========================
+dummy_input.npy
+scratch/
+tmp/
+temp/
+
+# ===========================
+# ONNX
+# ===========================
+model/*.onnx
+model/*.onnx.data
+model/onnx2tf_out/
+
+# ===========================
+# TFLite
+# ===========================
+*.tflite
+
+# ===========================
+# Conversion Scripts
+# ===========================
+run_onnx2tf.py
+convert_tflite_fixed.py
+convert_tflite_v2.py
+
+# ===========================
+# YOLO
+# ===========================
+yolov8n.pt
+
+# ===========================
+# OS
+# ===========================
+Thumbs.db
+.DS_Store
+
+# ===========================
+# Coverage
+# ===========================
+.coverage
+coverage.xml
+htmlcov/

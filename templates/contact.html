@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block title %}Nutrifexa AI - Developer Portfolio{% endblock %}
+
+{% block breadcrumb %}Contact Dev{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-2" data-aos="fade-up">
+    <div class="row g-4">
+        <!-- Developer Profile Card -->
+        <div class="col-lg-5">
+            <div
+                class="glass-card p-4 h-100 text-center d-flex flex-column align-items-center justify-content-center p-5">
+                <div class="dev-avatar-wrapper mb-4 rounded-circle border border-3 border-primary overflow-hidden p-1 shadow-sm"
+                    style="width: 140px; height: 140px;">
+                    <!-- User avatar placeholder or initials -->
+                    <div
+                        class="w-100 h-100 rounded-circle bg-primary-subtle d-flex align-items-center justify-content-center text-primary fw-bold fs-1">
+                        RS
+                    </div>
+                </div>
+
+                <h3 class="text-light fw-bold mb-1">Rajnish Sinh , Vasu Koradiya & Vandit Doshi</h3>
+                <span class="text-primary fw-semibold small mb-3">AI / ML Developer</span>
+                <p class="text-secondary small max-w-sm mb-4 leading-relaxed">
+                    Undergraduate student specializing in Computer Science Engineering. Architected the deep learning
+                    classification backends and custom segmentations for Nutrifexa AI.
+                </p>
+
+                <!-- Social Connect Buttons -->
+                <div class="d-flex gap-3 mb-4">
+                    <a href="mailto:rajnishsinh2003@gmail.com"
+                        class="btn btn-outline-secondary rounded-circle p-0 d-flex align-items-center justify-content-center hover-up"
+                        style="width: 45px; height: 45px;" title="Email">
+                        <i class="fa-solid fa-envelope fs-5"></i>
+                    </a>
+                    <a href="https://github.com/rajnishsinh2003" target="_blank"
+                        class="btn btn-outline-secondary rounded-circle p-0 d-flex align-items-center justify-content-center hover-up"
+                        style="width: 45px; height: 45px;" title="GitHub">
+                        <i class="fa-brands fa-github fs-5"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/rajnishsinh2003" target="_blank"
+                        class="btn btn-outline-secondary rounded-circle p-0 d-flex align-items-center justify-content-center hover-up"
+                        style="width: 45px; height: 45px;" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in fs-5"></i>
+                    </a>
+                </div>
+
+                <div class="border-top border-secondary-subtle pt-3 text-secondary small w-100">
+                    <div class="d-flex justify-content-between py-1">
+                        <span>Institution:</span>
+                        <strong class="text-light">B.Tech MAJOR-I</strong>
+                    </div>
+                    <div class="d-flex justify-content-between py-1">
+                        <span>Project Domain:</span>
+                        <strong class="text-light">AI in Healthcare</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form / Message Panel -->
+        <div class="col-lg-7">
+            <div class="glass-card p-4 h-100">
+                <h3 class="text-light fw-bold mb-3">Get in Touch</h3>
+                <p class="text-secondary small mb-4">Submit comments, bug reports, or partnership opportunities
+                    concerning the Nutrifexa AI project.</p>
+
+                <form id="contact-feedback-form" onsubmit="handleContactSubmit(event)">
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-secondary small">Your Name</label>
+                            <input type="text" class="form-control bg-dark-subtle border-secondary-subtle text-light"
+                                required id="contact-name">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-secondary small">Email Address</label>
+                            <input type="email" class="form-control bg-dark-subtle border-secondary-subtle text-light"
+                                required id="contact-email">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-secondary small">Message</label>
+                        <textarea class="form-control bg-dark-subtle border-secondary-subtle text-light" rows="5"
+                            required id="contact-msg" placeholder="Write your message details here..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-gradient px-4 py-2 fw-semibold hover-up">
+                        <i class="fa-solid fa-paper-plane me-2"></i>Send Message
+                    </button>
+                </form>
+
+                <!-- Success feedback -->
+                <div class="alert alert-success d-none mt-4 border-success-subtle bg-success-subtle text-success p-3 rounded"
+                    id="contact-success-alert">
+                    <i class="fa-solid fa-circle-check me-2"></i>Thank you! Your feedback has been simulated
+                    successfully.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function handleContactSubmit(e) {
+        e.preventDefault();
+
+        // Simulate sending a message
+        document.getElementById("contact-name").disabled = true;
+        document.getElementById("contact-email").disabled = true;
+        document.getElementById("contact-msg").disabled = true;
+
+        const alert = document.getElementById("contact-success-alert");
+        alert.classList.remove("d-none");
+
+        setTimeout(() => {
+            document.getElementById("contact-feedback-form").reset();
+            document.getElementById("contact-name").disabled = false;
+            document.getElementById("contact-email").disabled = false;
+            document.getElementById("contact-msg").disabled = false;
+            alert.classList.add("d-none");
+        }, 4000);
+    }
+</script>
+{% endblock %}

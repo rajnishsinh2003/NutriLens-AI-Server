@@ -1,0 +1,747 @@
+{% extends 'base.html' %}
+
+{% block title %}Nutrifexa AI - Food Calorie Estimation Scan{% endblock %}
+
+{% block breadcrumb %}Predict{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-2">
+    <!-- SCANNER CONTAINER -->
+    <div class="row g-4">
+    <div id="scanner-section" class="row g-4">
+        <!-- LEFT COLUMN: INPUT INTERFACE -->
+        <div class="col-lg-5" data-aos="fade-right">
+            <div class="glass-card p-4 h-100">
+                <div class="d-flex align-items-center justify-content-between mb-4 border-bottom border-secondary-subtle pb-3">
+                    <h3 class="card-title text-light fw-bold mb-0">
+                        <i class="fa-solid fa-camera-retro text-primary me-2"></i>Plate Scanner
+                    </h3>
+                    <div class="nav nav-pills" id="upload-tabs" role="tablist">
+                        <button class="nav-link active me-2" id="tab-upload" data-bs-toggle="pill" data-bs-target="#pane-upload" type="button" role="tab" onclick="setMode('upload')">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+                        </button>
+                        <button class="nav-link" id="tab-camera" data-bs-toggle="pill" data-bs-target="#pane-camera" type="button" role="tab" onclick="setMode('camera')">
+                            <i class="fa-solid fa-camera"></i> Camera
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="upload-tabs-content">
+                    <!-- Drop Zone Upload Pane -->
+                    <div class="tab-pane fade show active" id="pane-upload" role="tabpanel">
+                        <div class="drop-zone" id="drop-zone-container" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" onclick="triggerFileInput()">
+                            <i class="fa-solid fa-images drop-icon text-secondary mb-3"></i>
+                            <p class="drop-text text-light fw-semibold mb-2">Drag & drop your food image here</p>
+                            <span class="text-secondary small mb-3">or</span>
+                            <button type="button" class="btn btn-outline-primary fw-medium px-4 mb-2">Browse Files</button>
+                            <span class="text-muted xx-small">Supported: JPG, JPEG, PNG, WEBP (Max 10 MB)</span>
+                            <input type="file" id="image-file-input" accept="image/png, image/jpeg, image/jpg, image/webp" style="display: none;" onchange="handleFileSelect(event)">
+                        </div>
+                    </div>
+
+                    <!-- Live Camera Feed Pane -->
+                    <div class="tab-pane fade" id="pane-camera" role="tabpanel">
+                        <div class="camera-feed-container bg-black rounded mb-3 position-relative overflow-hidden">
+                            <video id="webcam-stream" autoplay playsinline class="w-100 h-100 object-fit-cover"></video>
+                            <canvas id="snapshot-canvas" style="display: none;"></canvas>
+                            <div class="camera-overlay-instructions text-center p-2 bg-dark bg-opacity-75 text-secondary small w-100 position-absolute bottom-0 start-0">
+                                Fit the food dish inside the camera view
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-outline-success w-50 fw-semibold" id="btn-camera-toggle" onclick="toggleWebcam()">
+                                <i class="fa-solid fa-circle-play me-2"></i>Start Feed
+                            </button>
+                            <button type="button" class="btn btn-primary btn-gradient w-50 fw-semibold" id="btn-camera-capture" onclick="captureWebcamSnapshot()" disabled>
+                                <i class="fa-solid fa-camera me-2"></i>Take Snapshot
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Area (Shared) -->
+                <div class="image-preview-area mt-4 d-none" id="preview-panel">
+                    <div class="d-flex align-items-center justify-content-between mb-3 border-top border-secondary-subtle pt-3">
+                        <span class="text-light fw-semibold">Selected Food Image</span>
+                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="resetPreview()">
+                            <i class="fa-solid fa-trash-can"></i> Remove
+                        </button>
+                    </div>
+                    <div class="preview-img-wrapper rounded overflow-hidden mb-3 border border-secondary-subtle">
+                        <img src="" alt="Food Preview" class="img-fluid w-100" id="preview-image-elem">
+                    </div>
+                    <button type="button" class="btn btn-primary btn-gradient w-100 py-3 fw-bold shadow hover-up" onclick="startAIAnalysis()">
+                        <i class="fa-solid fa-wand-magic-sparkles me-2"></i>Analyze & Estimate Calories
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN: RESULTS / PROGRESS / ERROR VIEW -->
+        <div class="col-lg-7" data-aos="fade-left" data-aos-delay="200">
+            <!-- AWAITING SCAN SCREEN -->
+            <div class="glass-card p-4 h-100 d-flex flex-column align-items-center justify-content-center text-center p-5" id="awaiting-scan-card">
+                <div class="scanner-ring-anim mb-4 text-primary bg-primary-subtle rounded-circle p-4">
+                    <i class="fa-solid fa-utensils fs-1"></i>
+                </div>
+                <h3 class="text-light fw-bold">Awaiting Scan</h3>
+                <p class="text-secondary max-w-sm mb-0">
+                    Upload an image or capture a snapshot of a single food plate on the left. The Nutrifexa AI scanner will detect the food items, estimate the portion weight, and show the exact nutrition facts.
+                </p>
+            </div>
+
+            <!-- MULTI-STAGE LOADING SCREEN -->
+            <div class="glass-card p-4 h-100 d-flex flex-column align-items-center justify-content-center d-none" id="loading-scan-card">
+                <div class="ai-loader-container mb-4">
+                    <div class="spinner-border text-primary fs-3" role="status" style="width: 4rem; height: 4rem;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <i class="fa-solid fa-brain loader-brain-icon text-primary position-absolute"></i>
+                </div>
+                <h4 class="text-light fw-bold mb-1">Nutrifexa AI</h4>
+                <p class="text-secondary small mb-4" id="loader-subtext">Initializing AI Model...</p>
+                
+                <!-- STEP-BY-STEP CHECKLIST -->
+                <div class="loading-steps-list w-75 max-w-md mx-auto">
+                    <div class="loading-step active" id="step-upload">
+                        <i class="fa-solid fa-circle-notch fa-spin step-icon spinner"></i>
+                        <i class="fa-solid fa-circle-check step-icon checked d-none"></i>
+                        <span>Uploading Image File</span>
+                    </div>
+                    <div class="loading-step" id="step-validate">
+                        <i class="fa-solid fa-circle-notch fa-spin step-icon spinner d-none"></i>
+                        <i class="fa-solid fa-circle-check step-icon checked d-none"></i>
+                        <span>Image & Boundary Validation</span>
+                    </div>
+                    <div class="loading-step" id="step-model">
+                        <i class="fa-solid fa-circle-notch fa-spin step-icon spinner d-none"></i>
+                        <i class="fa-solid fa-circle-check step-icon checked d-none"></i>
+                        <span>Loading PyTorch Model Weights</span>
+                    </div>
+                    <div class="loading-step" id="step-preprocess">
+                        <i class="fa-solid fa-circle-notch fa-spin step-icon spinner d-none"></i>
+                        <i class="fa-solid fa-circle-check step-icon checked d-none"></i>
+                        <span>Preprocessing Color Matrix</span>
+                    </div>
+                    <div class="loading-step" id="step-prediction">
+                        <i class="fa-solid fa-circle-notch fa-spin step-icon spinner d-none"></i>
+                        <i class="fa-solid fa-circle-check step-icon checked d-none"></i>
+                        <span>Running EfficientNet-B3 Inference</span>
+                    </div>
+                    <div class="loading-step" id="step-nutrition">
+                        <i class="fa-solid fa-circle-notch fa-spin step-icon spinner d-none"></i>
+                        <i class="fa-solid fa-circle-check step-icon checked d-none"></i>
+                        <span>Fetching Portion Nutrition Data</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BEAUTIFUL ERROR CARDS -->
+            <div class="glass-card p-4 h-100 d-flex flex-column align-items-center justify-content-center text-center p-5 d-none" id="error-scan-card">
+                <div class="error-icon-wrapper mb-4 bg-danger-subtle text-danger rounded-circle p-4">
+                    <i class="fa-solid fa-triangle-exclamation fs-1"></i>
+                </div>
+                <h3 class="text-light fw-bold" id="error-title">Analysis Error</h3>
+                <p class="text-secondary max-w-sm mb-4" id="error-message">
+                    An error occurred while estimating calorie data. Please try again.
+                </p>
+                <button type="button" class="btn btn-outline-danger px-4" onclick="resetPreview()">
+                    <i class="fa-solid fa-rotate-left me-2"></i>Scan New Plate
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         NEW REDESIGNED FULL-WIDTH TWO-COLUMN RESULTS PANEL
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="results-section" class="d-none" data-aos="fade-up">
+        <!-- Results Header Bar -->
+        <div class="results-header-bar">
+            <button class="results-back-btn" onclick="resetToScanner()">
+                <i class="fa-solid fa-arrow-left"></i> Prediction Result
+            </button>
+            <div class="d-flex gap-2">
+                <button type="button" class="btn btn-primary btn-gradient btn-sm rounded-pill px-3" onclick="speakPredictionSummary()">
+                    <i class="fa-solid fa-volume-high me-1"></i> Listen Summary
+                </button>
+                <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3" onclick="resetToScanner()">
+                    <i class="fa-solid fa-rotate-left me-1"></i> Predict Again
+                </button>
+                <button type="button" class="btn btn-success btn-gradient btn-sm rounded-pill px-3" onclick="openSharePostModal()">
+                    <i class="fa-solid fa-share-nodes me-1"></i> Share Results
+                </button>
+            </div>
+        </div>
+
+        <!-- Meal Timing Intelligence Banner -->
+        <div id="meal-timing-alert-banner" class="d-none alert alert-info border-info-subtle bg-dark text-info p-3 rounded-3 mb-3 border shadow-sm" role="alert">
+            <div class="d-flex align-items-center gap-3">
+                <i class="fa-solid fa-moon text-warning fs-3"></i>
+                <div>
+                    <strong class="text-light d-block mb-1">Meal Timing Intelligence Alert</strong>
+                    <span id="meal-timing-alert-body" class="small text-secondary">Late Night High-Carb Notice: Consuming high-carb foods after 9:00 PM may slow digestion.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Allergen Alert Banner -->
+        <div id="allergen-alert-banner" class="d-none alert alert-danger border-danger-subtle bg-danger-subtle text-danger p-3 rounded-3 mb-3 shadow-sm" role="alert">
+            <div class="d-flex align-items-center gap-3">
+                <i class="fa-solid fa-triangle-exclamation text-danger fs-3"></i>
+                <div>
+                    <strong class="text-danger d-block mb-1">⚠️ Allergen Warning Detected!</strong>
+                    <span id="allergen-alert-body" class="small text-light">This food contains Gluten and Dairy, matching your saved allergy preferences.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2-Column Results Layout Row -->
+        <div class="results-layout-row">
+            <!-- Left Column: Prediction Info, Metrics, Gauge, Alternatives, Diet Coach -->
+            <div class="left-results-col">
+                <!-- CARD 1: YOUR PREDICTION -->
+                <div class="glass-card p-4">
+                    <h5 class="text-light fw-bold mb-3">Your Prediction</h5>
+                    <div class="your-prediction-card">
+                        <div class="prediction-img-wrapper">
+                            <img src="" alt="Predicted Dish" id="res-image">
+                        </div>
+                        <div class="prediction-info-wrapper">
+                            <div>
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <h2 class="text-light fw-bold mb-0" id="res-food-name">Food Name</h2>
+                                    <span class="badge bg-primary bg-opacity-25 text-primary border border-primary-subtle" id="res-category">Category</span>
+                                    <span class="badge bg-danger text-light" id="res-gi-badge">High GI</span>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="text-secondary small">Confidence Score</span>
+                                        <strong class="text-light" id="res-confidence-text">98.45%</strong>
+                                    </div>
+                                    <div class="confidence-progress-bar">
+                                        <div class="confidence-progress-fill bg-success" id="res-confidence-bar" style="width: 98.45%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Large Metric Pills -->
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <div class="bg-dark bg-opacity-40 p-3 rounded-3 border border-secondary-subtle d-flex align-items-center gap-3">
+                                        <i class="fa-solid fa-fire text-danger fs-3"></i>
+                                        <div>
+                                            <span class="text-secondary xx-small d-block text-uppercase">Calories</span>
+                                            <strong class="text-light fs-5" id="res-kcal">725 kcal</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="bg-dark bg-opacity-40 p-3 rounded-3 border border-secondary-subtle d-flex align-items-center gap-3">
+                                        <i class="fa-solid fa-weight-hanging text-info fs-3"></i>
+                                        <div>
+                                            <span class="text-secondary xx-small d-block text-uppercase">Est. Weight</span>
+                                            <strong class="text-light fs-5" id="res-weight">250.0 g</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-2 flex-wrap">
+                                <button type="button" class="btn btn-outline-primary btn-sm flex-grow-1" onclick="speakPredictionSummary()">
+                                    <i class="fa-solid fa-volume-high me-1"></i> Speak Summary
+                                </button>
+                                <button type="button" class="btn btn-outline-success btn-sm" onclick="downloadPDFReport()">
+                                    <i class="fa-solid fa-file-pdf me-1"></i> Download PDF
+                                </button>
+                                <button type="button" class="btn btn-outline-primary btn-sm" onclick="resetToScanner()">
+                                    <i class="fa-solid fa-camera me-1"></i> Predict Again
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: NUTRITION OVERVIEW -->
+                <div class="glass-card p-4">
+                    <h5 class="text-light fw-bold mb-3">Nutrition Overview <span class="text-secondary small fw-normal" id="res-nutrition-header">(Per Portion)</span></h5>
+                    <div class="nutrition-grid">
+                        <div class="nutrition-box">
+                            <i class="fa-solid fa-fire text-danger mb-2 d-block fs-5"></i>
+                            <span class="text-secondary xx-small d-block text-uppercase">Calories</span>
+                            <strong class="text-light fs-6" id="overview-cal">725 kcal</strong>
+                        </div>
+                        <div class="nutrition-box">
+                            <i class="fa-solid fa-dumbbell text-primary mb-2 d-block fs-5"></i>
+                            <span class="text-secondary xx-small d-block text-uppercase">Protein</span>
+                            <strong class="text-light fs-6" id="overview-protein">10.0 g</strong>
+                        </div>
+                        <div class="nutrition-box">
+                            <i class="fa-solid fa-wheat-awn text-warning mb-2 d-block fs-5"></i>
+                            <span class="text-secondary xx-small d-block text-uppercase">Carbohydrates</span>
+                            <strong class="text-light fs-6" id="overview-carbs">87.5 g</strong>
+                        </div>
+                        <div class="nutrition-box">
+                            <i class="fa-solid fa-droplet text-info mb-2 d-block fs-5"></i>
+                            <span class="text-secondary xx-small d-block text-uppercase">Fat</span>
+                            <strong class="text-light fs-6" id="overview-fat">37.5 g</strong>
+                        </div>
+                        <div class="nutrition-box">
+                            <i class="fa-solid fa-leaf text-success mb-2 d-block fs-5"></i>
+                            <span class="text-secondary xx-small d-block text-uppercase">Fiber</span>
+                            <strong class="text-light fs-6" id="overview-fiber">2.8 g</strong>
+                        </div>
+                        <div class="nutrition-box">
+                            <i class="fa-solid fa-gauge-high text-warning mb-2 d-block fs-5"></i>
+                            <span class="text-secondary xx-small d-block text-uppercase">Glycemic Index</span>
+                            <strong class="text-light fs-6" id="overview-gi">75 (High)</strong>
+                        </div>
+                        <div class="nutrition-box">
+                            <i class="fa-solid fa-candy-cane text-danger mb-2 d-block fs-5"></i>
+                            <span class="text-secondary xx-small d-block text-uppercase">Sugar</span>
+                            <strong class="text-light fs-6" id="overview-sugar">17.5 g</strong>
+                        </div>
+                        <div class="nutrition-box">
+                            <i class="fa-solid fa-salt-shaker text-muted mb-2 d-block fs-5"></i>
+                            <span class="text-secondary xx-small d-block text-uppercase">Sodium</span>
+                            <strong class="text-light fs-6" id="overview-sodium">625 mg</strong>
+                        </div>
+                        <div class="nutrition-box">
+                            <i class="fa-solid fa-shield-virus text-warning mb-2 d-block fs-5"></i>
+                            <span class="text-secondary xx-small d-block text-uppercase">Allergens</span>
+                            <strong class="text-light fs-6" id="overview-allergens">None</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD: CALORIE BURN ESTIMATOR -->
+                <div class="glass-card p-4">
+                    <h5 class="text-light fw-bold mb-3"><i class="fa-solid fa-person-running text-danger me-2"></i>Calorie Burn Estimator</h5>
+                    <p class="text-secondary small mb-3">Estimated exercise required to burn off the <strong class="text-light" id="burn-cal-display">0 kcal</strong> in this dish:</p>
+                    <div class="row g-3">
+                        <div class="col-4 text-center">
+                            <div class="p-3 bg-dark bg-opacity-40 rounded-3 border border-secondary-subtle">
+                                <i class="fa-solid fa-person-walking text-info fs-3 mb-2 d-block"></i>
+                                <span class="text-secondary xx-small d-block text-uppercase">Brisk Walking</span>
+                                <strong class="text-light fs-5" id="burn-walk-min">0 min</strong>
+                            </div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="p-3 bg-dark bg-opacity-40 rounded-3 border border-secondary-subtle">
+                                <i class="fa-solid fa-person-running text-warning fs-3 mb-2 d-block"></i>
+                                <span class="text-secondary xx-small d-block text-uppercase">Running</span>
+                                <strong class="text-light fs-5" id="burn-run-min">0 min</strong>
+                            </div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="p-3 bg-dark bg-opacity-40 rounded-3 border border-secondary-subtle">
+                                <i class="fa-solid fa-person-biking text-success fs-3 mb-2 d-block"></i>
+                                <span class="text-secondary xx-small d-block text-uppercase">Cycling</span>
+                                <strong class="text-light fs-5" id="burn-cycle-min">0 min</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD: CARBON FOOTPRINT ECO-RATING -->
+                <div class="glass-card p-4">
+                    <h5 class="text-light fw-bold mb-3"><i class="fa-solid fa-leaf text-success me-2"></i>Carbon Footprint Eco-Rating</h5>
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="p-3 bg-dark bg-opacity-40 rounded-3 border border-secondary-subtle text-center" style="min-width: 100px;">
+                            <i class="fa-solid fa-cloud text-info fs-3 mb-1 d-block"></i>
+                            <span class="text-secondary xx-small d-block text-uppercase">Total CO2</span>
+                            <strong class="text-light fs-5" id="carbon-total-g">0g</strong>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="badge bg-warning text-dark" id="carbon-eco-badge">Moderate</span>
+                                <span class="text-secondary small">Eco Impact</span>
+                            </div>
+                            <p class="text-secondary small mb-0" id="carbon-eco-comparison">
+                                This meal produced ~0g CO2 — like charging your phone 0 times.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="progress" style="height: 6px;">
+                        <div class="progress-bar bg-success" role="progressbar" id="carbon-progress-bar" style="width: 30%"></div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-1">
+                        <span class="xx-small text-success">Low</span>
+                        <span class="xx-small text-warning">Moderate</span>
+                        <span class="xx-small text-danger">High</span>
+                    </div>
+                </div>
+
+                <!-- CARD: FOOD CULTURAL CONTEXT -->
+                <div class="glass-card p-4">
+                    <h5 class="text-light fw-bold mb-3"><i class="fa-solid fa-earth-asia text-info me-2"></i>Food Cultural Context</h5>
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="p-3 bg-dark bg-opacity-40 rounded-3 border border-secondary-subtle h-100">
+                                <i class="fa-solid fa-map-location-dot text-primary fs-5 mb-2 d-block"></i>
+                                <span class="text-secondary xx-small d-block text-uppercase">Origin Region</span>
+                                <strong class="text-light small" id="cultural-origin">India</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 bg-dark bg-opacity-40 rounded-3 border border-secondary-subtle h-100">
+                                <i class="fa-solid fa-utensils text-warning fs-5 mb-2 d-block"></i>
+                                <span class="text-secondary xx-small d-block text-uppercase">Traditional Pairing</span>
+                                <strong class="text-light small" id="cultural-pairing">Rice or Roti</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 bg-dark bg-opacity-40 rounded-3 border border-secondary-subtle h-100">
+                                <i class="fa-solid fa-star text-danger fs-5 mb-2 d-block"></i>
+                                <span class="text-secondary xx-small d-block text-uppercase">Festival Association</span>
+                                <strong class="text-light small" id="cultural-festival">Traditional</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 bg-dark bg-opacity-40 rounded-3 border border-secondary-subtle h-100">
+                                <i class="fa-solid fa-lightbulb text-success fs-5 mb-2 d-block"></i>
+                                <span class="text-secondary xx-small d-block text-uppercase">Fun Fact</span>
+                                <strong class="text-light small" id="cultural-funfact">A traditional Indian dish.</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3: AI HEALTH RECOMMENDATION -->
+                <div class="glass-card p-4">
+                    <h5 class="text-light fw-bold mb-3">🩺 AI Health Recommendation</h5>
+                    <div class="health-gauge-row">
+                        <div class="gauge-circle-container">
+                            <svg class="gauge-svg">
+                                <circle class="gauge-bg" cx="65" cy="65" r="54"></circle>
+                                <circle class="gauge-fill" id="health-gauge-fill" cx="65" cy="65" r="54" stroke-dasharray="339.3" stroke-dashoffset="142.5" stroke="#f59e0b"></circle>
+                            </svg>
+                            <div class="gauge-text">
+                                <div class="gauge-val" id="health-gauge-val">58</div>
+                                <div class="gauge-status text-warning" id="health-gauge-status">Moderate</div>
+                            </div>
+                        </div>
+                        <div class="recommendation-content">
+                            <p class="text-secondary small mb-3" id="health-summary-text">
+                                Samosa is tasty but contains high calories, fat and sodium. It can be enjoyed occasionally. Consider these healthier alternatives for a better balance.
+                            </p>
+                            <div class="alert alert-warning d-flex align-items-center gap-2 mb-0 p-2 border-0 rounded-3">
+                                <i class="fa-solid fa-lightbulb text-warning"></i>
+                                <span class="small text-light" id="health-tip-text">Tip: Enjoy in moderation and pair with salad or lassi.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 4: HEALTHIER ALTERNATIVES -->
+                <div class="glass-card p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="text-light fw-bold mb-0">🥗 Healthier Alternatives</h5>
+                        <a href="javascript:void(0)" class="text-primary small text-decoration-none" onclick="alert('Viewing all food index suggestions!')">View All</a>
+                    </div>
+                    <div class="alternatives-scroll-row" id="alternatives-row">
+                        <!-- Dynamic alternative cards -->
+                    </div>
+                </div>
+
+                <!-- CARD 5: WHY THESE ARE BETTER? -->
+                <div class="glass-card p-4">
+                    <h5 class="text-light fw-bold mb-3">Why These Are Better?</h5>
+                    <div class="why-better-grid" id="why-better-badges">
+                        <!-- Dynamic comparative pills -->
+                    </div>
+                </div>
+
+                <!-- CARD 6: AI DIET COACH (TIPS) -->
+                <div class="glass-card p-4">
+                    <h5 class="text-light fw-bold mb-3">🧘 AI Diet Coach (Tips)</h5>
+                    <div class="diet-coach-grid">
+                        <div class="diet-coach-box">
+                            <i class="fa-solid fa-clock text-info fs-5 mt-1"></i>
+                            <div>
+                                <span class="text-secondary xx-small d-block text-uppercase">Best Time</span>
+                                <strong class="text-light small" id="coach-best-time">Evening Snack</strong>
+                            </div>
+                        </div>
+                        <div class="diet-coach-box">
+                            <i class="fa-solid fa-circle-plus text-success fs-5 mt-1"></i>
+                            <div>
+                                <span class="text-secondary xx-small d-block text-uppercase">Eat With</span>
+                                <strong class="text-light small" id="coach-eat-with">Mint Chutney / Salad</strong>
+                            </div>
+                        </div>
+                        <div class="diet-coach-box">
+                            <i class="fa-solid fa-circle-xmark text-danger fs-5 mt-1"></i>
+                            <div>
+                                <span class="text-secondary xx-small d-block text-uppercase">Avoid With</span>
+                                <strong class="text-light small" id="coach-avoid-with">Fried Foods / Soft Drinks</strong>
+                            </div>
+                        </div>
+                        <div class="diet-coach-box">
+                            <i class="fa-solid fa-heart text-warning fs-5 mt-1"></i>
+                            <div>
+                                <span class="text-secondary xx-small d-block text-uppercase">Good For</span>
+                                <strong class="text-light small" id="coach-good-for">Occasional Treat</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Interactive Comparison Deck -->
+            <div class="right-results-col">
+                <!-- CARD 7: COMPARE FOODS -->
+                <div class="glass-card p-4">
+                    <h5 class="text-light fw-bold mb-1">Compare Foods</h5>
+                    <p class="text-secondary xx-small mb-3">Compare nutrition of two foods side-by-side</p>
+                    
+                    <div class="d-flex flex-column gap-3">
+                        <!-- Food A Pill / Input -->
+                        <div>
+                            <label class="form-label text-secondary xx-small text-uppercase tracking-wider">Your Food (A)</label>
+                            <div class="d-flex align-items-center justify-content-between p-2 rounded-3 bg-dark bg-opacity-50 border border-secondary-subtle" id="compare-a-display">
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="badge bg-primary bg-opacity-25 text-primary border border-primary-subtle small px-2 py-1"><i class="fa-solid fa-circle-info"></i></span>
+                                    <span class="text-light fw-semibold small" id="compare-a-name">Samosa</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="text-secondary small" id="compare-a-cal">725 kcal</span>
+                                    <button class="btn btn-link btn-sm text-secondary p-0 line-height-1" onclick="clearCompareA()"><i class="fa-solid fa-xmark"></i></button>
+                                </div>
+                            </div>
+                            <div class="compare-search-wrapper d-none" id="compare-a-search-wrapper">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-dark border-secondary text-secondary"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                    <input type="text" class="form-control bg-dark text-light border-secondary small" id="search-compare-a" placeholder="Search Food A..." oninput="handleSearchInput('A')">
+                                </div>
+                                <div class="search-dropdown-menu" id="search-dropdown-a"></div>
+                            </div>
+                        </div>
+
+                        <!-- Food B Input -->
+                        <div>
+                            <label class="form-label text-secondary xx-small text-uppercase tracking-wider">Search Food (B)</label>
+                            <div class="compare-search-wrapper">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-dark border-secondary text-secondary"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                    <input type="text" class="form-control bg-dark text-light border-secondary small" id="search-compare-b" placeholder="Search Food B..." oninput="handleSearchInput('B')">
+                                </div>
+                                <div class="search-dropdown-menu" id="search-dropdown-b"></div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-gradient w-100 fw-semibold" onclick="triggerCompareNow()">
+                            <i class="fa-solid fa-scale-balanced me-2"></i> Compare Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CARD 8: QUICK COMPARISON PREVIEW & CHARTS -->
+                <div class="glass-card p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="text-light fw-bold mb-0">Quick Comparison Preview</h5>
+                    </div>
+
+                    <div class="comparison-preview-tabs">
+                        <button class="comparison-tab-btn active" id="tab-btn-table" onclick="setComparisonView('table')">Table View</button>
+                        <button class="comparison-tab-btn" id="tab-btn-charts" onclick="setComparisonView('charts')">Chart View</button>
+                    </div>
+
+                    <!-- Comparison Table View -->
+                    <div id="compare-table-view">
+                        <div class="table-responsive">
+                            <table class="table table-dark table-borderless table-sm text-center align-middle mb-0" id="results-compare-table">
+                                <thead>
+                                    <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+                                        <th class="text-secondary text-start pb-2">Nutrient (Per 100g)</th>
+                                        <th class="text-info pb-2" id="comp-header-a">Samosa</th>
+                                        <th class="text-warning pb-2" id="comp-header-b">Sandwich</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="results-compare-table-body">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Charts View -->
+                    <div id="compare-charts-view" class="d-none">
+                        <div class="charts-wrapper">
+                            <div>
+                                <h6 class="text-secondary xx-small text-uppercase mb-2 text-center">Macro Comparison (g)</h6>
+                                <div class="chart-container">
+                                    <canvas id="compareBarChart"></canvas>
+                                </div>
+                            </div>
+                            <hr class="border-secondary my-1">
+                            <div>
+                                <h6 class="text-secondary xx-small text-uppercase mb-2 text-center">Nutrient Proximity (Radar)</h6>
+                                <div class="chart-container">
+                                    <canvas id="compareRadarChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 9: HEALTHIER CHOICE -->
+                <div class="glass-card p-0 overflow-hidden d-none" id="healthier-choice-card">
+                    <div class="healthier-choice-card" id="healthier-choice-inner">
+                        <div class="trophy-icon">🏆</div>
+                        <div>
+                            <span class="text-secondary xx-small d-block text-uppercase tracking-wide mb-1">Recommended Healthier Choice</span>
+                            <h6 class="text-success fw-bold mb-1" id="healthier-winner-name">Sandwich</h6>
+                            <p class="text-secondary small mb-0" id="healthier-winner-reason">
+                                Lower in calories, fat and sugar with higher protein & fiber.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     BMI CALCULATOR MODAL
+     ═══════════════════════════════════════════════════════════ -->
+<div class="modal fade" id="bmiModal" tabindex="-1" aria-labelledby="bmiModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark border-secondary text-light">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="bmiModalLabel"><i class="fa-solid fa-calculator text-info me-2"></i>BMI & Calorie Goal Calculator</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <label class="form-label text-secondary small">Age</label>
+                        <input type="number" class="form-control bg-dark text-light border-secondary" id="bmi-age" value="22" min="10" max="100">
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label text-secondary small">Gender</label>
+                        <select class="form-select bg-dark text-light border-secondary" id="bmi-gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label text-secondary small">Weight (kg)</label>
+                        <input type="number" class="form-control bg-dark text-light border-secondary" id="bmi-weight" value="70" min="20" max="300">
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label text-secondary small">Height (cm)</label>
+                        <input type="number" class="form-control bg-dark text-light border-secondary" id="bmi-height" value="170" min="100" max="250">
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label text-secondary small">Activity Level</label>
+                        <select class="form-select bg-dark text-light border-secondary" id="bmi-activity">
+                            <option value="sedentary">Sedentary (little to no exercise)</option>
+                            <option value="light">Light (1-3 days/week)</option>
+                            <option value="moderate" selected>Moderate (3-5 days/week)</option>
+                            <option value="active">Active (6-7 days/week)</option>
+                            <option value="very_active">Very Active (intense daily)</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- BMI Result -->
+                <div class="mt-3 p-3 bg-black bg-opacity-50 rounded border border-secondary-subtle d-none" id="bmi-result-box">
+                    <div class="row text-center g-2">
+                        <div class="col-4">
+                            <span class="text-secondary xx-small d-block">BMI</span>
+                            <strong class="text-light fs-5" id="bmi-result-val">0</strong>
+                        </div>
+                        <div class="col-4">
+                            <span class="text-secondary xx-small d-block">Category</span>
+                            <strong class="text-info" id="bmi-result-cat">—</strong>
+                        </div>
+                        <div class="col-4">
+                            <span class="text-secondary xx-small d-block">Daily Target</span>
+                            <strong class="text-success fs-5" id="bmi-result-cal">0</strong>
+                            <span class="text-secondary xx-small">kcal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-secondary">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-gradient fw-semibold" onclick="calculateBMI()">
+                    <i class="fa-solid fa-calculator me-1"></i>Calculate & Set Goal
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Page load trigger checks
+    document.addEventListener("DOMContentLoaded", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('demo') === 'true') {
+            triggerDemoMode();
+        }
+    });
+
+    function triggerDemoMode() {
+        // Trigger a demo prediction using a sample image
+        // We will fetch a predefined asset or set values directly to demonstrate the UI
+        console.log("Demo mode initiated");
+        // Simulate demo selection
+        document.getElementById("preview-panel").classList.remove("d-none");
+        document.getElementById("preview-image-elem").src = "/static/images/hero_illustration.png";
+    }
+</script>
+
+<!-- Modal: Share to Community -->
+<div class="modal fade" id="sharePostModal" tabindex="-1" aria-labelledby="sharePostModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-card p-4 border border-secondary-subtle">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title text-light fw-bold" id="sharePostModalLabel">
+                    <i class="fa-solid fa-share-nodes text-success me-2"></i>Share to Community Feed
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pt-4">
+                <form id="share-post-form">
+                    <!-- Hidden inputs to hold scan details -->
+                    <input type="hidden" id="share-food-name" name="food_name">
+                    <input type="hidden" id="share-calories" name="calories">
+                    <input type="hidden" id="share-protein" name="protein">
+                    <input type="hidden" id="share-carbs" name="carbs">
+                    <input type="hidden" id="share-fat" name="fat">
+                    <input type="hidden" id="share-health-rating" name="health_rating">
+                    <input type="hidden" id="share-image-path" name="image_path">
+                    
+                    <div class="mb-3">
+                        <label class="form-label text-light fw-semibold">Display Username</label>
+                        <input type="text" id="share-username" name="username" class="form-control" placeholder="e.g. FitFoodie99" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label text-light fw-semibold">Recipe Title (Optional)</label>
+                        <input type="text" id="share-recipe-title" name="recipe_title" class="form-control" placeholder="e.g. My Low-Sodium Dal Fry">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label text-light fw-semibold">Recipe Instructions (Optional)</label>
+                        <textarea id="share-recipe-instructions" name="recipe_instructions" class="form-control" rows="4" placeholder="How did you make it? Include tips for friends..."></textarea>
+                    </div>
+                    
+                    <div class="alert alert-info border-info-subtle bg-info-subtle text-info p-3 rounded mb-4" style="font-size: 0.85rem;">
+                        <i class="fa-solid fa-circle-info me-2"></i>Sharing will post your meal scan, including its calories, macros, health rating, and image, to the public community feed.
+                    </div>
+                    
+                    <div class="modal-footer border-0 p-0 pt-2 mt-2">
+                        <button type="button" class="btn btn-outline-secondary px-4 py-2" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success btn-gradient px-4 py-2 fw-semibold">Share Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

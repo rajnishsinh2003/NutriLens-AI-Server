@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+
+{% block title %}Nutrifexa AI - System Configuration Settings{% endblock %}
+
+{% block breadcrumb %}Settings{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-2" data-aos="fade-up">
+    <div class="row g-4">
+        <!-- AI Inference Settings -->
+        <div class="col-lg-6">
+            <div class="glass-card p-4 h-100">
+                <h3 class="text-light fw-bold mb-4">
+                    <i class="fa-solid fa-microchip text-primary me-2"></i>AI Inference Engine
+                </h3>
+                
+                <!-- Target Device Selection -->
+                <div class="mb-4">
+                    <label class="form-label text-light fw-semibold">Target Hardware Accelerator</label>
+                    <p class="text-secondary small">Choose the hardware target to compile the PyTorch tensor graph for inference.</p>
+                    <div class="btn-group w-100" role="group">
+                        <input type="radio" class="btn-check" name="device-select" id="device-gpu" value="GPU" checked onchange="saveEngineSettings()">
+                        <label class="btn btn-outline-primary py-2 fw-semibold" for="device-gpu">
+                            <i class="fa-solid fa-bolt me-2"></i>GPU Acceleration (CUDA)
+                        </label>
+                        
+                        <input type="radio" class="btn-check" name="device-select" id="device-cpu" value="CPU" onchange="saveEngineSettings()">
+                        <label class="btn btn-outline-primary py-2 fw-semibold" for="device-cpu">
+                            <i class="fa-solid fa-server me-2"></i>System CPU (Standard)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Confidence filter slider -->
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between mb-2">
+                        <label class="form-label text-light fw-semibold mb-0">Minimum Confidence Threshold</label>
+                        <span class="badge bg-primary fs-6" id="threshold-val-display">25%</span>
+                    </div>
+                    <p class="text-secondary small">Discard detections below this score. Lower values show more guesses, higher values reduce false positives.</p>
+                    <input type="range" class="form-range" min="0.1" max="0.9" step="0.05" value="0.25" id="threshold-slider" oninput="updateThresholdDisplay()" onchange="saveEngineSettings()">
+                    <div class="d-flex justify-content-between text-secondary xx-small">
+                        <span>10% (High Recall)</span>
+                        <span>50% (Standard)</span>
+                        <span>90% (High Precision)</span>
+                    </div>
+                </div>
+
+                <div class="alert alert-success d-none border-success-subtle bg-success-subtle text-success p-3 rounded" id="settings-save-alert">
+                    <i class="fa-solid fa-circle-check me-2"></i>AI configuration updated and saved to session!
+                </div>
+            </div>
+        </div>
+
+        <!-- Application Prefs & Database -->
+        <div class="col-lg-6">
+            <div class="glass-card p-4 h-100">
+                <h3 class="text-light fw-bold mb-4">
+                    <i class="fa-solid fa-shield-virus text-warning me-2"></i>Personal Allergen Warning Preferences
+                </h3>
+                
+                <p class="text-secondary small mb-3">Select your dietary allergies. Nutrifexa AI will trigger high-visibility alerts if scanned food contains any selected allergen.</p>
+                
+                <div class="row g-2 mb-4">
+                    <div class="col-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input allergen-check" type="checkbox" value="gluten" id="alg-gluten" onchange="saveEngineSettings()">
+                            <label class="form-check-label text-light small fw-medium" for="alg-gluten">🌾 Gluten</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input allergen-check" type="checkbox" value="dairy" id="alg-dairy" onchange="saveEngineSettings()">
+                            <label class="form-check-label text-light small fw-medium" for="alg-dairy">🥛 Dairy / Milk</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input allergen-check" type="checkbox" value="nuts" id="alg-nuts" onchange="saveEngineSettings()">
+                            <label class="form-check-label text-light small fw-medium" for="alg-nuts">🥜 Nuts / Peanuts</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input allergen-check" type="checkbox" value="soy" id="alg-soy" onchange="saveEngineSettings()">
+                            <label class="form-check-label text-light small fw-medium" for="alg-soy">🫘 Soy</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input allergen-check" type="checkbox" value="egg" id="alg-egg" onchange="saveEngineSettings()">
+                            <label class="form-check-label text-light small fw-medium" for="alg-egg">🥚 Eggs</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme Preferences -->
+                <div class="mb-4 pb-3 border-top border-bottom border-secondary-subtle pt-3">
+                    <label class="form-label text-light fw-semibold d-block">Aesthetic Color Theme</label>
+                    <p class="text-secondary small">Toggle the application styles between dark dashboard mode and high-contrast light mode.</p>
+                    <div class="d-flex gap-3">
+                        <button type="button" class="btn btn-outline-secondary w-50 py-2 fw-semibold" onclick="setThemePreference('dark')">
+                            <i class="fa-solid fa-moon text-info me-2"></i>Sleek Dark Mode
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary w-50 py-2 fw-semibold" onclick="setThemePreference('light')">
+                            <i class="fa-solid fa-sun text-warning me-2"></i>Crisp Light Mode
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Database operations -->
+                <div>
+                    <label class="form-label text-light fw-semibold text-danger">Danger Zone</label>
+                    <p class="text-secondary small">These operations directly affect the SQLite database and cannot be undone.</p>
+                    <button type="button" class="btn btn-danger w-100 py-3 fw-bold" onclick="triggerDbReset()">
+                        <i class="fa-solid fa-trash-can me-2"></i>Purge Prediction History DB
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Fetch current settings from backend session API
+        fetch('/api/settings')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const settings = data.settings;
+                    
+                    // Device select
+                    if (settings.device === 'CPU') {
+                        document.getElementById("device-cpu").checked = true;
+                    } else {
+                        document.getElementById("device-gpu").checked = true;
+                    }
+                    
+                    // Slider
+                    document.getElementById("threshold-slider").value = settings.threshold;
+                    document.getElementById("threshold-val-display").innerText = Math.round(settings.threshold * 100) + "%";
+
+                    // Allergens
+                    const userAllergies = settings.allergies || JSON.parse(localStorage.getItem('user_allergies') || '[]');
+                    userAllergies.forEach(alg => {
+                        const el = document.getElementById(`alg-${alg}`);
+                        if (el) el.checked = true;
+                    });
+                }
+            });
+    });
+
+    function updateThresholdDisplay() {
+        const val = document.getElementById("threshold-slider").value;
+        document.getElementById("threshold-val-display").innerText = Math.round(val * 100) + "%";
+    }
+
+    function saveEngineSettings() {
+        const isCpu = document.getElementById("device-cpu").checked;
+        const threshold = parseFloat(document.getElementById("threshold-slider").value);
+        
+        // Collect checked allergies
+        const allergies = [];
+        document.querySelectorAll('.allergen-check:checked').forEach(cb => allergies.push(cb.value));
+        localStorage.setItem('user_allergies', JSON.stringify(allergies));
+
+        fetch('/api/settings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                device: isCpu ? 'CPU' : 'GPU',
+                threshold: threshold,
+                allergies: allergies
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                const alert = document.getElementById("settings-save-alert");
+                alert.classList.remove("d-none");
+                setTimeout(() => alert.classList.add("d-none"), 3000);
+            }
+        });
+    }
+
+    function setThemePreference(mode) {
+        if (mode === 'light') {
+            document.body.classList.remove('dark-theme');
+            document.body.classList.add('light-theme');
+            document.documentElement.setAttribute('data-bs-theme', 'light');
+            localStorage.setItem('theme-preference', 'light');
+        } else {
+            document.body.classList.remove('light-theme');
+            document.body.classList.add('dark-theme');
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+            localStorage.setItem('theme-preference', 'dark');
+        }
+    }
+
+    function triggerDbReset() {
+        if (confirm("Are you absolutely sure you want to purge the prediction history database? All records and uploaded image crops will be deleted permanently.")) {
+            fetch('/api/history/clear', { method: 'POST' })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Database purged successfully!");
+                    } else {
+                        alert("Error purging database: " + data.error);
+                    }
+                })
+                .catch(err => alert("Connection error: " + err));
+        }
+    }
+</script>
+{% endblock %}

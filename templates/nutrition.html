@@ -1,0 +1,256 @@
+{% extends 'base.html' %}
+
+{% block title %}Nutrifexa AI - Supported Foods & Nutrition Directory{% endblock %}
+
+{% block breadcrumb %}Nutrition Details{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-2" data-aos="fade-up">
+    <div class="row g-4">
+        <!-- LEFT COLUMN: SEARCH & FOOD ITEMS LIST -->
+        <div class="col-lg-7">
+            <div class="glass-card p-4 h-100">
+                <h3 class="text-light fw-bold mb-3">
+                    <i class="fa-solid fa-list-check text-primary me-2"></i>Food Item Directory
+                </h3>
+                <p class="text-secondary small mb-4">
+                    Nutrifexa AI classification is trained on 94 distinct food classes. Type below to search the database and see nutritional profiles.
+                </p>
+                
+                <!-- Search Input Group -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-dark-subtle border-secondary-subtle text-secondary">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" class="form-control bg-dark-subtle border-secondary-subtle text-light" placeholder="Search food items (e.g. Biryani, Samosa)..." id="food-search-input" oninput="filterFoodList()">
+                </div>
+
+                <!-- Nutrient Search Quick Filter Pills (Feature 10) -->
+                <div class="d-flex gap-2 mb-4 flex-wrap" id="nutrient-filter-pills">
+                    <button type="button" class="btn btn-sm btn-primary active pill-filter" onclick="applyNutrientFilter('all', this)">All Foods</button>
+                    <button type="button" class="btn btn-sm btn-outline-success pill-filter" onclick="applyNutrientFilter('high_protein', this)"><i class="fa-solid fa-dumbbell me-1"></i>High Protein (>10g)</button>
+                    <button type="button" class="btn btn-sm btn-outline-warning pill-filter" onclick="applyNutrientFilter('low_carb', this)"><i class="fa-solid fa-wheat-awn me-1"></i>Low Carb (<15g)</button>
+                    <button type="button" class="btn btn-sm btn-outline-info pill-filter" onclick="applyNutrientFilter('low_calorie', this)"><i class="fa-solid fa-fire me-1"></i>Under 150 kcal</button>
+                    <button type="button" class="btn btn-sm btn-outline-danger pill-filter" onclick="applyNutrientFilter('low_gi', this)"><i class="fa-solid fa-gauge-high me-1"></i>Low GI (≤55)</button>
+                </div>
+                
+                <!-- Scrollable Food List -->
+                <div class="food-directory-scroll border border-secondary-subtle rounded bg-dark bg-opacity-25" style="max-height: 440px; overflow-y: auto;">
+                    <div class="list-group list-group-flush" id="food-directory-list">
+                        <!-- Loaded dynamically via JavaScript API call -->
+                        <div class="text-center p-5 text-secondary">
+                            <div class="spinner-border spinner-border-sm text-primary me-2" role="status"></div>
+                            Loading food list...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RIGHT COLUMN: DETAILED NUTRITION CARD -->
+        <div class="col-lg-5">
+            <div class="glass-card p-4 h-100 d-flex flex-column justify-content-center" id="nutrition-facts-details-card">
+                <!-- Awaiting selection placeholder -->
+                <div class="text-center p-5 text-secondary" id="nutrition-placeholder">
+                    <i class="fa-solid fa-circle-info fs-1 text-primary mb-3"></i>
+                    <h5 class="text-light fw-bold">Select a Food Item</h5>
+                    <p class="mb-0 small">Click on any food class on the left to inspect its complete nutrition profile per 100g serving size.</p>
+                </div>
+                
+                <!-- Detailed Panel (Hidden by default) -->
+                <div class="d-none" id="nutrition-detailed-panel">
+                    <div class="border border-light border-3 p-3 text-light bg-black bg-opacity-25 rounded-3 font-monospace">
+                        <div class="text-center border-bottom border-secondary-subtle pb-2 mb-2">
+                            <h2 class="fw-extrabold text-uppercase m-0 tracking-tighter" style="font-family: 'Space Grotesk', sans-serif;">Nutrition Facts</h2>
+                            <span class="text-muted small">Standard Reference Database (per 100g)</span>
+                        </div>
+                        
+                        <div class="border-bottom border-light pb-2 mb-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold text-uppercase fs-4" id="label-food-title">Food Name</span>
+                                <span class="badge bg-secondary-subtle text-light" id="label-food-category">Category</span>
+                            </div>
+                            <div class="text-secondary small mt-1">
+                                Serving Size: <strong class="text-light" id="label-serving-size">100g</strong>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-end border-bottom border-light pb-2 mb-2" style="border-width: 8px !important;">
+                            <div>
+                                <span class="fw-bold d-block text-uppercase">Amount Per Serving</span>
+                                <span class="fw-extrabold fs-2 m-0 text-uppercase">Calories</span>
+                            </div>
+                            <span class="fw-extrabold fs-1" id="label-calories">150</span>
+                        </div>
+
+                        <div class="text-end border-bottom border-secondary-subtle pb-1 mb-2 small text-secondary">
+                            % Daily Value *
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center border-bottom border-secondary-subtle py-1">
+                            <span><strong>Total Fat</strong> <span id="label-fat">8.0g</span></span>
+                            <span class="fw-bold" id="label-fat-dv">12%</span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center border-bottom border-secondary-subtle py-1">
+                            <span><strong>Total Carbohydrates</strong> <span id="label-carbs">15.0g</span></span>
+                            <span class="fw-bold" id="label-carbs-dv">5%</span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center border-bottom border-secondary-subtle py-1 ms-3">
+                            <span class="text-secondary">Dietary Fiber <span id="label-fiber">2.0g</span></span>
+                            <span id="label-fiber-dv">7%</span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center border-bottom border-secondary-subtle py-1 ms-3">
+                            <span class="text-secondary">Sugars <span id="label-sugar">3.0g</span></span>
+                            <span>—</span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center border-bottom border-secondary-subtle py-1">
+                            <span><strong>Protein</strong> <span id="label-protein">5.0g</span></span>
+                            <span class="fw-bold" id="label-protein-dv">10%</span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center border-bottom border-secondary-subtle py-1">
+                            <span><strong>Sodium</strong> <span id="label-sodium">250mg</span></span>
+                            <span class="fw-bold" id="label-sodium-dv">10%</span>
+                        </div>
+
+                        <div class="small text-secondary mt-3 leading-tight border-top border-light pt-2">
+                            * The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet of 2,000 calories.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let cachedFoodsList = [];
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Fetch all food classes
+        fetch('/api/nutrition/all')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    cachedFoodsList = data.foods;
+                    renderFoodList(cachedFoodsList);
+                } else {
+                    showErrorList();
+                }
+            })
+            .catch(() => showErrorList());
+    });
+
+    function renderFoodList(foods) {
+        const container = document.getElementById("food-directory-list");
+        if (foods.length === 0) {
+            container.innerHTML = `<div class="text-center p-5 text-muted">No matching food classes found.</div>`;
+            return;
+        }
+        
+        container.innerHTML = foods.map((food, index) => {
+            return `
+                <button type="button" class="list-group-item list-group-item-action bg-transparent border-secondary-subtle text-light d-flex align-items-center justify-content-between py-3 px-4 hover-item" onclick="selectFoodItem('${food.class_name}')">
+                    <span class="fw-medium">${food.display_name}</span>
+                    <div class="d-flex gap-2">
+                        <span class="badge bg-danger-subtle text-danger">${food.calories_per_100g} kcal</span>
+                        <span class="badge bg-secondary-subtle text-secondary">per 100g</span>
+                    </div>
+                </button>
+            `;
+        }).join('');
+    }
+
+    function selectFoodItem(className) {
+        const food = cachedFoodsList.find(f => f.class_name === className);
+        if (!food) return;
+        
+        // Hide placeholder, show panel
+        document.getElementById("nutrition-placeholder").classList.add("d-none");
+        document.getElementById("nutrition-detailed-panel").classList.remove("d-none");
+        
+        // Update label values
+        document.getElementById("label-food-title").innerText = food.display_name;
+        document.getElementById("label-calories").innerText = food.calories_per_100g;
+        document.getElementById("label-serving-size").innerText = food.serving_size_info || "100g";
+        
+        document.getElementById("label-fat").innerText = food.fat_per_100g.toFixed(1) + "g";
+        document.getElementById("label-fat-dv").innerText = Math.round((food.fat_per_100g / 65) * 100) + "%";
+        
+        document.getElementById("label-carbs").innerText = food.carbs_per_100g.toFixed(1) + "g";
+        document.getElementById("label-carbs-dv").innerText = Math.round((food.carbs_per_100g / 300) * 100) + "%";
+        
+        const fiber = food.fiber_per_100g || (food.carbs_per_100g * 0.12);
+        document.getElementById("label-fiber").innerText = fiber.toFixed(1) + "g";
+        document.getElementById("label-fiber-dv").innerText = Math.round((fiber / 28) * 100) + "%";
+        
+        const sugar = food.sugar_per_100g || (food.carbs_per_100g * 0.08);
+        document.getElementById("label-sugar").innerText = sugar.toFixed(1) + "g";
+        
+        document.getElementById("label-protein").innerText = food.protein_per_100g.toFixed(1) + "g";
+        document.getElementById("label-protein-dv").innerText = Math.round((food.protein_per_100g / 50) * 100) + "%";
+        
+        const sodium = food.sodium_per_100g || 250;
+        document.getElementById("label-sodium").innerText = Math.round(sodium) + "mg";
+        document.getElementById("label-sodium-dv").innerText = Math.round((sodium / 2300) * 100) + "%";
+        
+        // Categorize roughly
+        let category = "Snack";
+        if (food.calories_per_100g > 300) category = "Dessert";
+        else if (food.protein_per_100g > 10) category = "High Protein";
+        else if (className.includes("roti") || className.includes("dosa") || className.includes("puri") || className.includes("naan") || className.includes("chapati")) category = "Bread";
+        else if (className.includes("aloo") || className.includes("dal") || className.includes("curry") || className.includes("chicken") || className.includes("paneer")) category = "Curry / Meal";
+        
+        document.getElementById("label-food-category").innerText = category;
+    }
+
+    let activeNutrientFilter = 'all';
+
+    function applyNutrientFilter(filterType, btnElem) {
+        activeNutrientFilter = filterType;
+        document.querySelectorAll('#nutrient-filter-pills .pill-filter').forEach(btn => {
+            btn.classList.remove('btn-primary', 'btn-success', 'btn-warning', 'btn-info', 'btn-danger', 'active');
+            btn.classList.add('btn-outline-secondary');
+        });
+        btnElem.classList.remove('btn-outline-secondary');
+        btnElem.classList.add('btn-primary', 'active');
+
+        filterFoodList();
+    }
+
+    function filterFoodList() {
+        const query = document.getElementById("food-search-input").value.toLowerCase().trim();
+        
+        let url = `/api/nutrition/search?q=${encodeURIComponent(query)}`;
+        if (activeNutrientFilter !== 'all') {
+            url += `&${activeNutrientFilter}=true`;
+        }
+
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    renderFoodList(data.foods);
+                } else {
+                    showErrorList();
+                }
+            })
+            .catch(() => showErrorList());
+    }
+
+    function showErrorList() {
+        document.getElementById("food-directory-list").innerHTML = `
+            <div class="text-center p-5 text-danger">
+                <i class="fa-solid fa-triangle-exclamation fs-3 mb-2"></i><br>
+                Failed to load food directory database.
+            </div>
+        `;
+    }
+</script>
+{% endblock %}
